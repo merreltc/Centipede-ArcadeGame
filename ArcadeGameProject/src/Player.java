@@ -3,6 +3,13 @@ import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Point2D;
+/**
+ * 
+ * TODO Put here a description of what this class does.
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Oct 28, 2015.
+ */
 
 public class Player extends Entity {
 	
@@ -24,16 +31,13 @@ public class Player extends Entity {
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub.
-			
+			// Do nothing
 		}
 
 		@Override
 		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub.
-			
+			// Do nothing
 		}
-		
 	}
 	
 	private Weapon currentWeapon;
@@ -43,6 +47,8 @@ public class Player extends Entity {
 		super(world, centerPoint);
 		Weapon weapon = new RapidFire(world, this.getCenterPoint());
 		this.currentWeapon = weapon;
+		ArrowListener move = new ArrowListener();
+		addKeyListener(move);
 	}
 	
 	public void fire() {
