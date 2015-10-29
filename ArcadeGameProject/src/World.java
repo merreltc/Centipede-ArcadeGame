@@ -110,11 +110,10 @@ public class World implements Drawable, Temporal {
 
 	/**
 	 * Loads a predesigned level from a file.
-	 * @throws FileNotFoundException
 	 */
 	public void loadLevel(int levelToLoad) {
 		try {
-			Scanner loader = new Scanner(new File("level" + levelToLoad));
+			Scanner loader = new Scanner(new File("C:\\EclipseWorkspaces\\csse220\\ArcadeGameProject\\Level Files\\level" + levelToLoad));
 			for (int i = 0; i < 20; i++) {
 				for (int j = 0; j < 20; j++) {
 					switch (loader.nextInt()) {
