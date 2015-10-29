@@ -4,13 +4,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 
+import javax.swing.JComponent;
+
 /**
  * Creates the game board, handles level change, and addition/removal of entities.
  *
  * @author Trinity Merrell and Walter Panfil.
  *         Created Oct 28, 2015.
  */
-public class World implements Drawable, Temporal, Runnable {
+public class World extends JComponent implements Drawable, Temporal, Runnable {
 	private final int CELL_WIDTH = 20;
 	private final int ROWS = 20;
 	private final int COLUMNS = 20;
@@ -49,21 +51,21 @@ public class World implements Drawable, Temporal, Runnable {
 	}
 	
 	/**
-	 * Adds the given ball to this world.
+	 * Adds the given entity to this world.
 	 * 
-	 * @param ball
-	 *            the ball to add, must not be null
+	 * @param entity
+	 *            the entity to add, must not be null
 	 */
 	void addEntity(Entity entity) {
 		
 	}
 
 	/**
-	 * Removes the given ball from this world, if it is in the world at all.
+	 * Removes the given entity from this world, if it is in the world at all.
 	 * Otherwise silently does nothing.
 	 * 
-	 * @param ball
-	 *            the ball to remove
+	 * @param entity
+	 *            the entity to remove
 	 */
 	void removeEntity(Entity entity) {
 		
@@ -80,9 +82,7 @@ public class World implements Drawable, Temporal, Runnable {
 	}
 
 	/**
-	 * Returns the center point of the world
-	 * 
-	 * @return the center point
+	 * Loads a predesigned level from a file.
 	 */
 	public void loadLevel(int level) {
 		//FIX MEEEEE
@@ -133,4 +133,6 @@ public class World implements Drawable, Temporal, Runnable {
 		// TODO Auto-generated method stub.
 		return null;
 	}
+	
+	
 }

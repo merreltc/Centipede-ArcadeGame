@@ -2,6 +2,13 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 
+/**
+ * 
+ * TODO Put here a description of what this class does.
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Oct 28, 2015.
+ */
 public abstract class Weapon extends Entity {
 	
 	private int rateOfFire;

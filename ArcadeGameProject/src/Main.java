@@ -8,7 +8,8 @@ import javax.swing.JFrame;
  * 
  * Also don't forget to write javadocs for your classes and functions!
  * 
- * @author Buffalo
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Oct 28, 2015. 
  *
  */
 public class Main {
@@ -17,9 +18,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//Component world = new World();
+		World world = new World();
 		JFrame frame = new JFrame();
-		//frame.add(world);
+		frame.add(world);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
