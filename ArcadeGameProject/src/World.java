@@ -1,7 +1,5 @@
 import java.awt.Color;
 import java.awt.Shape;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
@@ -31,27 +29,6 @@ public class World implements Drawable, Temporal {
 	private final List<Entity> entities = new ArrayList<Entity>();
 	private final List<Entity> entitiesToAdd = new ArrayList<Entity>();
 	private final List<Entity> entitiesToRemove = new ArrayList<Entity>();
-
-	public class LevelChangeListener implements KeyListener {
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-			// Unused
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e) {
-			// Unused
-		}
-
-		@Override
-		public void keyTyped(KeyEvent e) {
-			if (e.getKeyChar() == 'u')
-				loadLevel(getLevel() + 1);
-			if (e.getKeyChar() == 'd')
-				loadLevel(getLevel() - 1);
-		}
-	}
 
 	public World() {
 		this.background = new Rectangle2D.Double(0, 0, this.CELL_WIDTH * this.ROWS, this.CELL_WIDTH * this.COLUMNS);
@@ -114,19 +91,19 @@ public class World implements Drawable, Temporal {
 	public void loadLevel(int levelToLoad) {
 		try {
 			Scanner loader = new Scanner(new File("C:\\EclipseWorkspaces\\csse220\\ArcadeGameProject\\Level Files\\level" + levelToLoad));
-			for (int i = 0; i < 20; i++) {
-				for (int j = 0; j < 20; j++) {
+			for (int y = 0; y < 20; y++) {
+				for (int x = 0; x < 20; x++) {
 					switch (loader.nextInt()) {
 					case 1:
-						addEntity(new Mushroom(this, new Point2D.Double(i * this.CELL_WIDTH, j * this.CELL_WIDTH)));
+						addEntity(new Mushroom(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH)));
 						break;
 
 					case 2:
-						addEntity(new Centipede(this, new Point2D.Double(i * this.CELL_WIDTH, j * this.CELL_WIDTH)));
+						addEntity(new Centipede(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH)));
 						break;
 
 					case 3:
-						addEntity(new Player(this, new Point2D.Double(i * this.CELL_WIDTH, j * this.CELL_WIDTH)));
+						addEntity(new Player(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH)));
 						break;
 
 					default:
