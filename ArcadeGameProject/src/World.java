@@ -2,16 +2,19 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Creates the game board, handles level change, and addition/removal of
  * entities.
  *
- * @author Trinity Merrell and Walter Panfil.
- *         Created Oct 28, 2015.
+ * @author Trinity Merrell and Walter Panfil. Created Oct 28, 2015.
  */
 public class World implements Drawable, Temporal {
 	protected static final long UPDATE_INTERVAL_MS = 10;
@@ -89,7 +92,7 @@ public class World implements Drawable, Temporal {
 	 * 
 	 * @param entity
 	 *            the entity to remove
-	 * @return 
+	 * @return
 	 */
 	public synchronized void removeEntity(Entity entity) {
 		this.entitiesToRemove.add(entity);
@@ -107,9 +110,35 @@ public class World implements Drawable, Temporal {
 
 	/**
 	 * Loads a predesigned level from a file.
+	 * @throws FileNotFoundException
 	 */
-	public void loadLevel(int level) {
-		// FIX MEEEEE
+	public void loadLevel(int levelToLoad) {
+		try {
+			Scanner loader = new Scanner(new File("level" + levelToLoad));
+			for (int i = 0; i < 20; i++) {
+				for (int j = 0; j < 20; j++) {
+					switch (loader.nextInt()) {
+					case 1:
+						addEntity(new Mushroom(this, new Point2D.Double(i * this.CELL_WIDTH, j * this.CELL_WIDTH)));
+						break;
+
+					case 2:
+						addEntity(new Centipede(this, new Point2D.Double(i * this.CELL_WIDTH, j * this.CELL_WIDTH)));
+						break;
+
+					case 3:
+						addEntity(new Player(this, new Point2D.Double(i * this.CELL_WIDTH, j * this.CELL_WIDTH)));
+						break;
+
+					default:
+					}
+				}
+				loader.nextLine();
+			}
+			loader.close();
+		} catch (FileNotFoundException e) {
+			addEntity(new Player(this, new Point2D.Double()));
+		}
 	}
 
 	public int getLevel() {
@@ -132,13 +161,11 @@ public class World implements Drawable, Temporal {
 	@Override
 	public void die() {
 		// Do nothing
-
 	}
 
 	@Override
 	public void setIsPaused(boolean isPaused) {
 		this.isPaused = isPaused;
-
 	}
 
 	@Override
