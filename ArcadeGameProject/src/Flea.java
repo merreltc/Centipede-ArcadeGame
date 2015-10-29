@@ -59,7 +59,7 @@ public class Flea extends Entity{
 	}
 
 	@Override
-	public void checkCollision(Entity entity) {
+	public void checkCollision() {
 		// TODO Auto-generated method stub.
 		
 	}

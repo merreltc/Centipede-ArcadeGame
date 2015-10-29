@@ -64,7 +64,7 @@ public abstract class Weapon extends Entity {
 	}
 
 	@Override
-	public void checkCollision(Entity entity) {
+	public void checkCollision() {
 		// TODO Auto-generated method stub.
 
 	}

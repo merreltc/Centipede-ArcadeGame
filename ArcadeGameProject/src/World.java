@@ -121,6 +121,7 @@ public class World implements Drawable, Temporal {
 		return this.level;
 	}
 	
+	
 	/**
 	 * Will reset score or augment score by a given value.
 	 * 
@@ -175,6 +176,12 @@ public class World implements Drawable, Temporal {
 	@Override
 	public Shape getShape() {
 		return this.background;
+	}
+
+	@Override
+	public void updatePosition() {
+		// Do something
+		
 	}
 
 }
