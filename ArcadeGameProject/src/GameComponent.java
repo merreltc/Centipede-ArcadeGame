@@ -98,7 +98,7 @@ public class GameComponent extends JComponent implements Drawable {
 	}
 
 	/**
-	 * Displays an error message explaining that the Ball's color/shape was null
+	 * Displays an error message explaining that the Entity's color/shape was null
 	 * so it could not be drawn. Show the message only once per component.
 	 */
 	private void showNullPointerMessage(String nullAttribute, Drawable d) {
