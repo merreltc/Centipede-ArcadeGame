@@ -15,6 +15,7 @@ public abstract class Entity extends GameComponent implements Drawable, Temporal
 	private int health;
 	private Color color;
 	private Shape shape;
+	private boolean paused;
 	
 	public Entity(World world, Point2D centerPoint) {
 		super(world);
@@ -38,6 +39,16 @@ public abstract class Entity extends GameComponent implements Drawable, Temporal
 	public World getWorld() {
 		return this.world;
 		
+	}
+	
+	@Override
+	public boolean getIsPaused(){
+		return this.paused;
+	}
+	
+	@Override
+	public void setIsPaused(boolean paused){
+		this.paused = paused;
 	}
 	
 	public abstract void updatePosition();
