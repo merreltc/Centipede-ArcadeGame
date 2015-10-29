@@ -31,8 +31,10 @@ public class GameComponent extends JComponent implements Drawable {
 	public GameComponent(World world) {
 		this.world = world;
 
+		LevelChangeListener levelHandler = new LevelChangeListener(world);
+		addKeyListener(levelHandler);
 		ArrowListener arrowHandler = new ArrowListener();
-		addKeyListener (arrowHandler);
+		addKeyListener(arrowHandler);
 
 		// Creates a separate "thread of execution" to trigger periodic
 		// repainting of this component.

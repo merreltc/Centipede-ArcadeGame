@@ -24,8 +24,8 @@ public class Main extends JFrame {
 		frame.setTitle("Centipede");
 
 		World world = new World();
-		world.loadLevel(1);
 		GameComponent component = new GameComponent(world);
+		world.loadLevel(1);
 		frame.add(component);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 400);
