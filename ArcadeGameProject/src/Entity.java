@@ -55,9 +55,7 @@ public abstract class Entity implements Drawable, Temporal {
 		this.paused = paused;
 	}
 	
-	public abstract void checkCollision() {
-		
-	}
+	public abstract void checkCollision();
 	
 	public abstract void updatePosition();
 
