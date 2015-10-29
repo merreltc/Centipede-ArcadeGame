@@ -8,7 +8,7 @@ import java.awt.geom.Point2D;
  * @author Trinity Merrell and Walter Panfil.
  *         Created Oct 28, 2015.
  */
-public abstract class Entity extends CentipedeComponent implements Drawable, Temporal {
+public abstract class Entity extends GameComponent implements Drawable, Temporal {
 	
 	private Point2D centerPoint;
 	private World world;

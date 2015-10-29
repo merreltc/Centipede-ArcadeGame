@@ -144,6 +144,24 @@ public class World implements Drawable, Temporal {
 	public int getLevel() {
 		return this.level;
 	}
+	
+	/**
+	 * Will reset score or augment score by a given value.
+	 * 
+	 * @param value
+	 * 			Either 0 or an additional value.
+	 */
+	public void setScore(int value) {
+		if(value == 0) {
+			this.score = 0;
+		} else {
+			this.score += value;
+		}
+	}
+	
+	public int getScore() {
+		return this.score;
+	}
 
 	@Override
 	public void timePassed() {
