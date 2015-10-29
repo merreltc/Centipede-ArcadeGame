@@ -29,10 +29,11 @@ public class GameComponent extends JComponent implements Drawable {
 	 */
 	public GameComponent(World world) {
 		this.world = world;
-
+		
+		setFocusable(true);
 		LevelChangeListener levelHandler = new LevelChangeListener(world);
 		addKeyListener(levelHandler);
-		ArrowListener arrowHandler = new ArrowListener();
+		ArrowListener arrowHandler = new ArrowListener(world);
 		addKeyListener(arrowHandler);
 
 		// Creates a separate "thread of execution" to trigger periodic

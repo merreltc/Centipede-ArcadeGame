@@ -16,18 +16,17 @@ public class LevelChangeListener implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("P");
+		// Do nothing
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("O");
 		int newLevel = this.world.getLevel();
+		
 		if (e.getKeyCode() == 85) { // "u" key
 			newLevel++;
 			this.world.loadLevel(newLevel);
-		}
-		if (e.getKeyCode() == 68) { // "d" key
+		}else if(e.getKeyCode() == 68) { // "d" key
 			newLevel--;
 			this.world.loadLevel(newLevel);
 		}
