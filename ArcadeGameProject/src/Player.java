@@ -48,7 +48,7 @@ public class Player extends Entity {
 		Weapon weapon = new RapidFire(world, this.getCenterPoint());
 		this.currentWeapon = weapon;
 		ArrowListener move = new ArrowListener();
-		addKeyListener(move);
+		//addKeyListener(move);
 	}
 	
 	public void fire() {
