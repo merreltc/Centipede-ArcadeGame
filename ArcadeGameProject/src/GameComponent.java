@@ -2,8 +2,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -33,8 +31,8 @@ public class GameComponent extends JComponent implements Drawable {
 	public GameComponent(World world) {
 		this.world = world;
 
-		KeyboardHandler keyhandler = new KeyboardHandler();
-		addKeyListener(keyhandler);
+		ArrowListener arrowHandler = new ArrowListener();
+		addKeyListener (arrowHandler);
 
 		// Creates a separate "thread of execution" to trigger periodic
 		// repainting of this component.
@@ -110,31 +108,6 @@ public class GameComponent extends JComponent implements Drawable {
 		}
 	}
 
-	/**
-	 * This inner class handles keyboard events on the outer class's world.
-	 */
-	public class KeyboardHandler implements KeyListener {
-
-		public void keyClicked(KeyEvent e) {
-		}
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-			System.out.println("Key pressed");
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e) {
-			// Do nothing
-
-		}
-
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// Do nothing
-		}
-	}
-
 	@Override
 	public Color getColor() {
 		return getColor();
@@ -143,6 +116,12 @@ public class GameComponent extends JComponent implements Drawable {
 	@Override
 	public Shape getShape() {
 		return getShape();
+	}
+
+	@Override
+	public void updatePosition() {
+		// Do something
+		
 	}
 
 }

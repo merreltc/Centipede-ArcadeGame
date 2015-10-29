@@ -16,6 +16,7 @@ public abstract class Entity implements Drawable, Temporal {
 	private Color color;
 	private Shape shape;
 	private boolean paused;
+	private double radius;
 	
 	public Entity(World world, Point2D centerPoint) {
 		this.centerPoint = centerPoint;
@@ -40,6 +41,10 @@ public abstract class Entity implements Drawable, Temporal {
 		
 	}
 	
+	public double getRadius() {
+		return this.radius;
+	}
+	
 	@Override
 	public boolean getIsPaused(){
 		return this.paused;
@@ -50,7 +55,11 @@ public abstract class Entity implements Drawable, Temporal {
 		this.paused = paused;
 	}
 	
+	public abstract void checkCollision() {
+		
+	}
+	
 	public abstract void updatePosition();
-	public abstract void checkCollision(Entity entity);
+
 
 }
