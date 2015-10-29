@@ -18,6 +18,10 @@ public abstract class Entity implements Drawable, Temporal {
 	
 	public Entity(World world, Point2D centerPoint) {
 		this.centerPoint = centerPoint;
+		this.world = world;
+		this.health = 100;
+		this.color = getColor();
+		this.shape = getShape();
 		
 	}
 	
@@ -26,12 +30,12 @@ public abstract class Entity implements Drawable, Temporal {
 	}
 	
 	public Point2D getCenterPoint() {
-		return centerPoint;
+		return this.centerPoint;
 		
 	}
 	
 	public World getWorld() {
-		return world;
+		return this.world;
 		
 	}
 	
