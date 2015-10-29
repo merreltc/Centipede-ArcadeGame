@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  *         Created Oct 28, 2015. 
  *
  */
-public class Main {
+public class Main extends JFrame {
 
 	/**
 	 * @param args
@@ -20,7 +20,7 @@ public class Main {
 	public static void main(String[] args) {
 		World world = new World();
 		JFrame frame = new JFrame();
-		frame.add(world);
+		//frame.add(world);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
