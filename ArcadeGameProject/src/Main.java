@@ -1,3 +1,5 @@
+import javax.swing.JFrame;
+
 /**
  * The main class for your arcade game.
  * 
@@ -15,7 +17,11 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Write your cool arcade game here!");
+		//Component world = new World();
+		JFrame frame = new JFrame();
+		//frame.add(world);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 
 }
