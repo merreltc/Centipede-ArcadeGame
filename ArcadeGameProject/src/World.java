@@ -1,0 +1,112 @@
+import java.awt.Color;
+import java.awt.Shape;
+import java.util.List;
+
+/**
+ * Creates the game board, handles level change, and addition/removal of entities.
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Oct 28, 2015.
+ */
+public class World implements Drawable, Temporal, Runnable {
+	private final int CELL_WIDTH = 20;
+	private final int ROWS = 20;
+	private final int COLUMNS = 20;
+	private final int PLAYER_REGION_BOUND = 300;
+	private Color BG_COLOR = Color.BLACK;
+	
+	private Shape background;
+	private boolean isPaused;
+	private int score;
+	private int level;
+
+	public World() {
+		
+	}
+	
+	/**
+	 * Adds the given ball to this world.
+	 * 
+	 * @param ball
+	 *            the ball to add, must not be null
+	 */
+	void addEntity(Entity entity) {
+		
+	}
+
+	/**
+	 * Removes the given ball from this world, if it is in the world at all.
+	 * Otherwise silently does nothing.
+	 * 
+	 * @param ball
+	 *            the ball to remove
+	 */
+	void removeEntity(Entity entity) {
+		
+	}
+
+	/**
+	 * Returns a list of the drawable parts in this environment.
+	 * 
+	 * @return a possibly-empty list
+	 */
+	public List<Drawable> getDrawableParts() {
+		return null;
+		
+	}
+
+	/**
+	 * Returns the center point of the world
+	 * 
+	 * @return the center point
+	 */
+	public void loadLevel() {
+		
+	}
+	
+	public int getLevel() {
+		return this.level;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub.
+		
+	}
+
+	@Override
+	public void timePassed() {
+		// TODO Auto-generated method stub.
+		
+	}
+
+	@Override
+	public void die() {
+		// TODO Auto-generated method stub.
+		
+	}
+
+	@Override
+	public void setIsPaused(boolean isPaused) {
+		// TODO Auto-generated method stub.
+		
+	}
+
+	@Override
+	public boolean getIsPaused() {
+		// TODO Auto-generated method stub.
+		return false;
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub.
+		return null;
+	}
+
+	@Override
+	public Shape getShape() {
+		// TODO Auto-generated method stub.
+		return null;
+	}
+}
