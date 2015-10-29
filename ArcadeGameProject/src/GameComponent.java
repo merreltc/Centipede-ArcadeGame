@@ -10,8 +10,7 @@ import javax.swing.JOptionPane;
 /**
  * TODO Put here a description of what this class does.
  *
- * @author merreltc.
- *         Created Oct 28, 2015.
+ * @author merreltc. Created Oct 28, 2015.
  */
 public class GameComponent extends JComponent implements Drawable {
 
@@ -98,8 +97,8 @@ public class GameComponent extends JComponent implements Drawable {
 	}
 
 	/**
-	 * Displays an error message explaining that the Entity's color/shape was null
-	 * so it could not be drawn. Show the message only once per component.
+	 * Displays an error message explaining that the Entity's color/shape was
+	 * null so it could not be drawn. Show the message only once per component.
 	 */
 	private void showNullPointerMessage(String nullAttribute, Drawable d) {
 		if (!this.hasShownNullErrorMessage) {
@@ -123,7 +122,7 @@ public class GameComponent extends JComponent implements Drawable {
 	@Override
 	public void updatePosition() {
 		// Do something
-		
+
 	}
 
 }
