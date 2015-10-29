@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
 public class Mushroom extends Entity {
@@ -22,13 +23,13 @@ public class Mushroom extends Entity {
 	@Override
 	public Color getColor() {
 		// TODO Auto-generated method stub.
-		return null;
+		return Color.CYAN;
 	}
 
 	@Override
 	public Shape getShape() {
 		// TODO Auto-generated method stub.
-		return null;
+		return new Ellipse2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY(), 20, 20);
 	}
 
 	@Override
