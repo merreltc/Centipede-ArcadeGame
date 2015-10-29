@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Shape;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 /**
@@ -19,6 +21,28 @@ public class World implements Drawable, Temporal, Runnable {
 	private boolean isPaused;
 	private int score;
 	private int level;
+	
+	public class LevelChangeListener implements KeyListener{
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			//Unused
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			//Unused
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			if(e.getKeyChar()=='u')
+				loadLevel(getLevel()+1);
+			if(e.getKeyChar()=='d')
+				loadLevel(getLevel()-1);
+		}
+		
+	}
 
 	public World() {
 		
@@ -60,8 +84,8 @@ public class World implements Drawable, Temporal, Runnable {
 	 * 
 	 * @return the center point
 	 */
-	public void loadLevel() {
-		
+	public void loadLevel(int level) {
+		//FIX MEEEEE
 	}
 	
 	public int getLevel() {
