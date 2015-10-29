@@ -2,15 +2,13 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 
-import javax.swing.JComponent;
-
 /**
  * Represents the player, weapons, mushrooms, and monsters in the game.
  *
  * @author Trinity Merrell and Walter Panfil.
  *         Created Oct 28, 2015.
  */
-public abstract class Entity extends JComponent implements Drawable, Temporal {
+public abstract class Entity extends CentipedeComponent implements Drawable, Temporal {
 	
 	private Point2D centerPoint;
 	private World world;
@@ -19,6 +17,7 @@ public abstract class Entity extends JComponent implements Drawable, Temporal {
 	private Shape shape;
 	
 	public Entity(World world, Point2D centerPoint) {
+		super(world);
 		this.centerPoint = centerPoint;
 		this.world = world;
 		this.health = 100;

@@ -6,8 +6,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JComponent;
-
 /**
  * Creates the game board, handles level change, and addition/removal of
  * entities.
@@ -15,7 +13,7 @@ import javax.swing.JComponent;
  * @author Trinity Merrell and Walter Panfil.
  *         Created Oct 28, 2015.
  */
-public class World extends JComponent implements Drawable, Temporal {
+public class World implements Drawable, Temporal {
 	protected static final long UPDATE_INTERVAL_MS = 10;
 	private final int CELL_WIDTH = 20;
 	private final int ROWS = 20;
