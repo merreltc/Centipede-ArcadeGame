@@ -18,9 +18,15 @@ public class Main extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		World world = new World();
 		JFrame frame = new JFrame();
-		//frame.add(world);
+
+		frame.setSize(WIDTH, HEIGHT);
+		frame.setTitle("Centipede");
+
+		//ArrayList<Coordinates> coordList = getGliderList();
+		World world = new World();
+		GameComponent component = new GameComponent(world);
+		frame.add(component);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}

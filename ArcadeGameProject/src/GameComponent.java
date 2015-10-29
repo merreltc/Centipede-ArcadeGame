@@ -15,8 +15,7 @@ import javax.swing.JOptionPane;
  * @author merreltc.
  *         Created Oct 28, 2015.
  */
-@SuppressWarnings("serial")
-public class CentipedeComponent extends JComponent implements Drawable {
+public class GameComponent extends JComponent implements Drawable {
 
 	private static final int FRAMES_PER_SECOND = 30;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
@@ -31,7 +30,7 @@ public class CentipedeComponent extends JComponent implements Drawable {
 	 * 
 	 * @param world
 	 */
-	public CentipedeComponent(World world) {
+	public GameComponent(World world) {
 		this.world = world;
 
 		KeyboardHandler keyhandler = new KeyboardHandler();
