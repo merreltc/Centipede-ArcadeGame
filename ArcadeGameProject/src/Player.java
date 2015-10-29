@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 /**
@@ -25,13 +26,15 @@ public class Player extends Entity {
 	@Override
 	public Color getColor() {
 		// TODO Auto-generated method stub.
-		return null;
+		return Color.GREEN;
 	}
 
 	@Override
 	public Shape getShape() {
 		// TODO Auto-generated method stub.
-		return null;
+		return new Polygon(new int[]{(int)getCenterPoint().getX(), (int)getCenterPoint().getX()+20,
+				(int)getCenterPoint().getX()+10}, new int[]{(int)getCenterPoint().getY(), (int)getCenterPoint().getY(),
+						(int)getCenterPoint().getY()+20}, 3);
 	}
 
 	@Override

@@ -88,7 +88,7 @@ public class World implements Drawable, Temporal {
 	/**
 	 * Loads a predesigned level from a file.
 	 */
-	public void loadLevel(int levelToLoad) {
+	public String loadLevel(int levelToLoad) {
 		try {
 			Scanner loader = new Scanner(new File("C:\\EclipseWorkspaces\\csse220\\ArcadeGameProject\\Level Files\\level" + levelToLoad));
 			for (int y = 0; y < 20; y++) {
@@ -115,6 +115,7 @@ public class World implements Drawable, Temporal {
 		} catch (FileNotFoundException e) {
 			addEntity(new Player(this, new Point2D.Double()));
 		}
+		return "";
 	}
 
 	public int getLevel() {
