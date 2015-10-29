@@ -9,12 +9,12 @@ public interface Temporal {
 	 * Signals to this object that an "moment" of time has passed and the object
 	 * should update to its next state in time.
 	 */
-	void timePassed();
+	public void timePassed();
 
 	/**
 	 * Signals to this object that it's useful life is over.
 	 */
-	void die();
+	public void die();
 
 	/**
 	 * Sets whether this object should be paused. When paused, the object
@@ -23,12 +23,12 @@ public interface Temporal {
 	 * @param isPaused
 	 *            pause the object if true
 	 */
-	void setIsPaused(boolean isPaused);
+	public void setIsPaused(boolean isPaused);
 
 	/**
 	 * Returns whether or not this object is paused.
 	 * 
 	 * @return paused status
 	 */
-	boolean getIsPaused();
+	public boolean getIsPaused();
 }

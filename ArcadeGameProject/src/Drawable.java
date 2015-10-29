@@ -14,14 +14,14 @@ public interface Drawable {
 	 * 
 	 * @return the fill color
 	 */
-	Color getColor();
+	public Color getColor();
 
 	/**
 	 * Returns the shape the should be drawn to represent this object.
 	 * 
 	 * @return the shape to draw
 	 */
-	Shape getShape();
+	public Shape getShape();
 
-	void updatePosition();
+	public void updatePosition();
 }
