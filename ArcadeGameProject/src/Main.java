@@ -23,11 +23,12 @@ public class Main extends JFrame {
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setTitle("Centipede");
 
-		//ArrayList<Coordinates> coordList = getGliderList();
 		World world = new World();
+		world.loadLevel(1);
 		GameComponent component = new GameComponent(world);
 		frame.add(component);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(400, 400);
 		frame.setVisible(true);
 	}
 
