@@ -1,23 +1,29 @@
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
 /**
  * 
- * TODO Put here a description of what this class does.
+ * Represents a bullet that fires three times when player hits the "Z" key
  *
  * @author Trinity Merrell and Walter Panfil.
  *         Created Oct 28, 2015.
  */
 public class RapidFire extends Weapon {
-
+	private Ellipse2D.Double bullet;
+	
 	public RapidFire(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		// TODO Auto-generated constructor stub.
+		this.bullet = new Ellipse2D.Double(centerPoint.getX(), centerPoint.getY(), 2, 3);
 	}
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub.
-
+		updatePosition();
 	}
 
+	@Override
+	public Shape getShape() {
+		return this.bullet;
+	}
 }
