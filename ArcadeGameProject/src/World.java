@@ -31,7 +31,7 @@ public class World implements Drawable, Temporal {
 	private final List<Entity> entitiesToRemove = new ArrayList<Entity>();
 
 	public World() {
-		this.background = new Rectangle2D.Double(0, 0, this.CELL_WIDTH * this.ROWS, this.CELL_WIDTH * this.COLUMNS);
+		this.background = new Rectangle2D.Double(0, 0, 400, 400);
 		this.score = 0;
 		this.level = 1;
 
@@ -91,6 +91,7 @@ public class World implements Drawable, Temporal {
 	public void loadLevel(int levelToLoad) {
 		this.setIsPaused(true);
 		this.entities.clear();
+
 		try {
 			Scanner loader = new Scanner(
 					new File("C:\\EclipseWorkspaces\\csse220\\ArcadeGameProject\\Level Files\\level" + levelToLoad));
@@ -153,7 +154,11 @@ public class World implements Drawable, Temporal {
 			this.entitiesToRemove.clear();
 			this.entities.addAll(this.entitiesToAdd);
 			this.entitiesToAdd.clear();
-		}
+		}		
+		this.entities.removeAll(this.entitiesToRemove);
+		this.entitiesToRemove.clear();
+		this.entities.addAll(this.entitiesToAdd);
+		this.entitiesToAdd.clear();
 	}
 
 	@Override
