@@ -55,6 +55,16 @@ public abstract class Entity implements Drawable, Temporal {
 		this.paused = paused;
 	}
 	
+	@Override
+	public void timePassed() {
+		updatePosition();
+	}
+
+	@Override
+	public void die() {
+		this.world.removeEntity(this);
+	}
+	
 	public abstract void checkCollision();
 	
 	public abstract void updatePosition();

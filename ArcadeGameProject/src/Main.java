@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 /**
@@ -19,8 +21,6 @@ public class Main extends JFrame {
 	 */
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-
-		frame.setSize(WIDTH, HEIGHT);
 		frame.setTitle("Centipede");
 
 		World world = new World();
@@ -28,7 +28,7 @@ public class Main extends JFrame {
 		world.loadLevel(2);
 		frame.add(component);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(400, 400);
+		frame.setSize(new Dimension(415, 445));
 		frame.setVisible(true);
 	}
 

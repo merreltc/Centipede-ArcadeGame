@@ -38,18 +38,6 @@ public class Player extends Entity {
 	}
 
 	@Override
-	public void timePassed() {
-		// TODO Auto-generated method stub.
-		
-	}
-
-	@Override
-	public void die() {
-		// TODO Auto-generated method stub.
-		
-	}
-
-	@Override
 	public void updatePosition() {
 		// TODO Auto-generated method stub.
 		
