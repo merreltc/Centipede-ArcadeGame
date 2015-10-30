@@ -3,7 +3,7 @@ import java.awt.geom.Point2D;
 
 /**
  * 
- * TODO Put here a description of what this class does.
+ * Represents an abstract weapon that can be shot and moves through the field.
  *
  * @author Trinity Merrell and Walter Panfil.
  *         Created Oct 28, 2015.
@@ -15,11 +15,11 @@ public abstract class Weapon extends Entity {
 
 	public Weapon(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		velocity = 10;
+		velocity = 1;
 		rateOfFire = 1;
 	}
 
-	public abstract void shoot();
+	public abstract void shoot(Point2D centerPoint);
 
 	@Override
 	public Color getColor() {
@@ -28,12 +28,11 @@ public abstract class Weapon extends Entity {
 
 	@Override
 	public void updatePosition() {
-		double currX = getCenterPoint().getX();
 		double currY = getCenterPoint().getY();
 		if (currY >= 0) {
 			// Update new position.
 			currY -= (this.velocity);
-			setCenterPoint(new Point2D.Double(currX, currY));
+			setCenterPoint(new Point2D.Double(getCenterPoint().getX(), currY));
 		} else {
 			die();
 		}

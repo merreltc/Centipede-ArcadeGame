@@ -15,12 +15,12 @@ public class Player extends Entity {
 
 	public Player(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		Weapon weapon = new RapidFire(world, new Point2D.Double(this.getCenterPoint().getX()+7.5, this.getCenterPoint().getY()+5));
+		Weapon weapon = new RapidFire(world, new Point2D.Double(this.getCenterPoint().getX()+7.5, this.getCenterPoint().getY()-10));
 		this.currentWeapon = weapon;
 	}
 
 	public void fire() {
-		this.currentWeapon.shoot();
+		this.currentWeapon.shoot(new Point2D.Double(this.getCenterPoint().getX()+7.5, this.getCenterPoint().getY()-10));
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class Player extends Entity {
 
 	@Override
 	public void updatePosition() {
-		
+		// do nothing
 	}
 	
 	

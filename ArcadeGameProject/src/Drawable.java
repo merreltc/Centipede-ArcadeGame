@@ -22,6 +22,4 @@ public interface Drawable {
 	 * @return the shape to draw
 	 */
 	public Shape getShape();
-
-	public void updatePosition();
 }
