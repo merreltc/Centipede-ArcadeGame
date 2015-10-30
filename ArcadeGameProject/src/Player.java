@@ -37,6 +37,22 @@ public class Player extends Entity {
 
 	@Override
 	public void updatePosition() {
-		
+		// Do nothing
+	}
+	public void move(boolean vertical, boolean positive) {
+		if(vertical && positive && this.getCenterPoint().getY() > 50) { // Up
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(),
+					this.getCenterPoint().getY() + 5));
+		} else if (vertical && !positive && this.getCenterPoint().getY() < 400) { // Down
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(),
+					this.getCenterPoint().getY() - 5));
+		} else if (!vertical && positive && this.getCenterPoint().getX() < 375) { // Right
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 5,
+					this.getCenterPoint().getY()));
+		} else if (!vertical && !positive && this.getCenterPoint().getX() > 5) { // Left
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() - 5,
+					this.getCenterPoint().getY()));
+		}
+	
 	}
 }

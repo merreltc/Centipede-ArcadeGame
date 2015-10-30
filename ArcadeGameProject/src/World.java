@@ -160,7 +160,7 @@ public class World implements Drawable, Temporal {
 			this.entitiesToRemove.clear();
 			this.entities.addAll(this.entitiesToAdd);
 			this.entitiesToAdd.clear();
-		}		
+		}
 	}
 
 	@Override
