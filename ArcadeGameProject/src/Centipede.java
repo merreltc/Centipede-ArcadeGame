@@ -62,10 +62,4 @@ public class Centipede extends Entity{
 		// TODO Auto-generated method stub.
 		
 	}
-
-	@Override
-	public void checkCollision() {
-		// TODO Auto-generated method stub.
-		
-	}
 }

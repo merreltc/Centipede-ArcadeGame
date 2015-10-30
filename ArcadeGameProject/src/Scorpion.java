@@ -44,10 +44,5 @@ public class Scorpion extends Entity{
 		// TODO Auto-generated method stub.
 		
 	}
-	@Override
-	public void checkCollision() {
-		// TODO Auto-generated method stub.
-		
-	}
 
 }

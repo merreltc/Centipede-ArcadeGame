@@ -5,19 +5,19 @@ import java.awt.geom.Point2D;
 /**
  * Represents the player, weapons, mushrooms, and monsters in the game.
  *
- * @author Trinity Merrell and Walter Panfil.
- *         Created Oct 28, 2015.
+ * @author Trinity Merrell and Walter Panfil. Created Oct 28, 2015.
  */
 public abstract class Entity implements Drawable, Temporal {
-	private final double RADIUS = 10.0;
-	
+
+	private final double RADIUS = 20;
+
 	private Point2D centerPoint;
 	private World world;
 	private int health;
 	private Color color;
 	private Shape shape;
 	private boolean paused;
-	
+
 	
 	public Entity(World world, Point2D centerPoint) {
 		this.centerPoint = centerPoint;
@@ -26,35 +26,33 @@ public abstract class Entity implements Drawable, Temporal {
 		this.color = getColor();
 		this.shape = getShape();
 	}
-	
 	public double getRadius(double r) {
 		return this.RADIUS;
 	}
-	
+
 	public void setCenterPoint(Point2D point) {
 		this.centerPoint = point;
 	}
-	
+
 	public Point2D getCenterPoint() {
 		return this.centerPoint;
-		
+
 	}
-	
+
 	public World getWorld() {
 		return this.world;
-		
+
 	}
-	
 	@Override
-	public boolean getIsPaused(){
+	public boolean getIsPaused() {
 		return this.paused;
 	}
-	
+
 	@Override
-	public void setIsPaused(boolean paused){
+	public void setIsPaused(boolean paused) {
 		this.paused = paused;
 	}
-	
+
 	@Override
 	public void timePassed() {
 		updatePosition();
@@ -64,10 +62,17 @@ public abstract class Entity implements Drawable, Temporal {
 	public void die() {
 		this.world.removeEntity(this);
 	}
-	
-	public abstract void checkCollision();
-	
-	public abstract void updatePosition();
 
+	public boolean checkCollision() {
+		for (Drawable e : this.world.getDrawableParts()) {
+			if (((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX() <= this.RADIUS
+					|| ((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY() <= this.RADIUS) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public abstract void updatePosition();
 
 }
