@@ -76,7 +76,7 @@ getIsPaused: boolean
       <x>440</x>
       <y>390</y>
       <w>150</w>
-      <h>120</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Drawable
