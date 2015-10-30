@@ -1,10 +1,10 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class ArrowListener implements KeyListener {
+public class PlayerListener implements KeyListener {
 	private World world;
 
-	public ArrowListener(World world) {
+	public PlayerListener(World world) {
 		this.world = world;
 	}
 	
