@@ -30,6 +30,7 @@ public class Main extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(415, 445));
 		frame.setVisible(true);
+		System.out.println(world.getPlayer().checkCollision());
 	}
 
 }

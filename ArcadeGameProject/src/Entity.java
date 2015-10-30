@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
  */
 public abstract class Entity implements Drawable, Temporal {
 
-	private final double RADIUS = 20;
+	private final double RADIUS = 10;
 
 	private Point2D centerPoint;
 	private World world;
@@ -65,41 +65,12 @@ public abstract class Entity implements Drawable, Temporal {
 
 	public boolean checkCollision() {
 		for (Drawable e : this.world.getDrawableParts()) {
-			if (((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX() <= this.RADIUS
-					|| ((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY() <= this.RADIUS) {
+			if (e != this &&
+					(Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
+					|| Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS)) {
+					
 				return true;
 			}
-		}
-		return false;
-	}
-	
-	public boolean checkCollisionRight(){
-		for (Drawable e : this.world.getDrawableParts()){
-			if(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX() < 5)
-				return true;
-		}
-		return false;
-	}
-	
-	public boolean checkCollisionLeft(){
-		for (Drawable e : this.world.getDrawableParts()){
-			if(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX() > -5)
-				return true;
-		}
-		return false;
-	}
-	public boolean checkCollisionTop(){
-		for (Drawable e : this.world.getDrawableParts()){
-			if(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX() > -5)
-				return true;
-		}
-		return false;
-	}
-	
-	public boolean checkCollisionBottom(){
-		for (Drawable e : this.world.getDrawableParts()){
-			if(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY() < 5)
-				return true;
 		}
 		return false;
 	}
