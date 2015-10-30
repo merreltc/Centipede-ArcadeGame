@@ -29,7 +29,6 @@ public class GameComponent extends JComponent implements Drawable {
 	 */
 	public GameComponent(World world) {
 		this.world = world;
-		
 		setFocusable(true);
 		LevelChangeListener levelHandler = new LevelChangeListener(world);
 		addKeyListener(levelHandler);
