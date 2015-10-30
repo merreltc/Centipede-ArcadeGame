@@ -25,8 +25,7 @@ public class Main extends JFrame {
 
 		World world = new World();
 		GameComponent component = new GameComponent(world);
-		world.loadLevel(1);
-		//world.loadLevel(2);
+		world.loadLevel(2);
 		frame.add(component);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 400);
