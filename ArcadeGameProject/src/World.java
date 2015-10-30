@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author Trinity Merrell and Walter Panfil. Created Oct 28, 2015.
  */
 public class World implements Drawable, Temporal {
-	protected static final long UPDATE_INTERVAL_MS = 10;
+	protected static final long UPDATE_INTERVAL_MS = 5;
 	private final int CELL_WIDTH = 20;
 	private final int ROWS = 20;
 	private final int COLUMNS = 20;
@@ -89,6 +89,7 @@ public class World implements Drawable, Temporal {
 	 * Loads a predesigned level from a file.
 	 */
 	public String loadLevel(int levelToLoad) {
+		this.entities.clear();
 		try {
 			Scanner loader = new Scanner(new File("C:\\EclipseWorkspaces\\csse220\\ArcadeGameProject\\Level Files\\level" + levelToLoad));
 			for (int y = 0; y < 20; y++) {

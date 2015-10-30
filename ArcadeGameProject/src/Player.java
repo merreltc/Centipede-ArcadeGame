@@ -32,8 +32,8 @@ public class Player extends Entity {
 	@Override
 	public Shape getShape() {
 		// TODO Auto-generated method stub.
-		return new Polygon(new int[]{(int)getCenterPoint().getX(), (int)getCenterPoint().getX()+20,
-				(int)getCenterPoint().getX()+10}, new int[]{(int)getCenterPoint().getY(), (int)getCenterPoint().getY(),
+		return new Polygon(new int[]{(int)getCenterPoint().getX(), (int)getCenterPoint().getX()+10,
+				(int)getCenterPoint().getX()+20}, new int[]{(int)getCenterPoint().getY()+20, (int)getCenterPoint().getY(),
 						(int)getCenterPoint().getY()+20}, 3);
 	}
 
