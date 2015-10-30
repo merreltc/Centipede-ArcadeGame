@@ -25,12 +25,11 @@ public class Main extends JFrame {
 
 		World world = new World();
 		GameComponent component = new GameComponent(world);
-		world.loadLevel(2);
+		world.loadLevel(1);
 		frame.add(component);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(415, 445));
 		frame.setVisible(true);
-		System.out.println(world.getPlayer().checkCollision());
 	}
 
 }

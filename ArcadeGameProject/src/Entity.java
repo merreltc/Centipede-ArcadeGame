@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
  */
 public abstract class Entity implements Drawable, Temporal {
 
-	private final double RADIUS = 10;
+	private final double RADIUS = 5;
 
 	private Point2D centerPoint;
 	private World world;
