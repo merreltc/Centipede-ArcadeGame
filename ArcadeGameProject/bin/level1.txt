@@ -1,0 +1,2 @@
+Because Eclipse wouldn't shut up about it
+This file is useless
