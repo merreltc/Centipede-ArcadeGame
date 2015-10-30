@@ -1,3 +1,5 @@
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
 /**
@@ -8,16 +10,22 @@ import java.awt.geom.Point2D;
  *         Created Oct 28, 2015.
  */
 public class Pierce extends Weapon {
+	private Ellipse2D.Double bullet;
 
 	public Pierce(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		// TODO Auto-generated constructor stub.
+		this.bullet = new Ellipse2D.Double(centerPoint.getX(), centerPoint.getY(), 2, 3);
 	}
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub.
+		this.getWorld().addEntity(this);
 
+	}
+
+	@Override
+	public Shape getShape() {
+		return this.bullet;
 	}
 
 }

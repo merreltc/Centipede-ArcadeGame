@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
  *         Created Oct 28, 2015.
  */
 public abstract class Weapon extends Entity {
-	
+
 	private int rateOfFire;
 	private int velocity;
 
@@ -18,7 +18,7 @@ public abstract class Weapon extends Entity {
 		velocity = 10;
 		rateOfFire = 1;
 	}
-	
+
 	public abstract void shoot();
 
 	@Override
@@ -30,18 +30,12 @@ public abstract class Weapon extends Entity {
 	public void updatePosition() {
 		double currX = getCenterPoint().getX();
 		double currY = getCenterPoint().getY();
-		// Check whether the mover is paused or not.
-		if (!this.getIsPaused()) {
-			if(!(currY < 0)) {
+		if (currY >= 0) {
 			// Update new position.
-			currX -= (this.velocity);
 			currY -= (this.velocity);
 			setCenterPoint(new Point2D.Double(currX, currY));
-			}
 		} else {
 			die();
 		}
-
 	}
-
 }
