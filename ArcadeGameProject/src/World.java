@@ -34,7 +34,7 @@ public class World implements Drawable, Temporal {
 		this.background = new Rectangle2D.Double(0, 0, this.CELL_WIDTH * this.ROWS, this.CELL_WIDTH * this.COLUMNS);
 		this.score = 0;
 		this.level = 1;
-		
+
 		// Creates a separate "thread of execution" to inform this world of the
 		// passage of time.
 		Runnable tickTock = new Runnable() {
@@ -88,10 +88,12 @@ public class World implements Drawable, Temporal {
 	/**
 	 * Loads a predesigned level from a file.
 	 */
-	public String loadLevel(int levelToLoad) {
+	public void loadLevel(int levelToLoad) {
+		this.setIsPaused(true);
 		this.entities.clear();
 		try {
-			Scanner loader = new Scanner(new File("C:\\EclipseWorkspaces\\csse220\\ArcadeGameProject\\Level Files\\level" + levelToLoad));
+			Scanner loader = new Scanner(
+					new File("C:\\EclipseWorkspaces\\csse220\\ArcadeGameProject\\Level Files\\level" + levelToLoad));
 			for (int y = 0; y < 20; y++) {
 				for (int x = 0; x < 20; x++) {
 					switch (loader.nextInt()) {
@@ -116,28 +118,27 @@ public class World implements Drawable, Temporal {
 		} catch (FileNotFoundException e) {
 			addEntity(new Player(this, new Point2D.Double()));
 		}
-		return "";
+		this.setIsPaused(false);
 	}
 
 	public int getLevel() {
 		return this.level;
 	}
-	
-	
+
 	/**
 	 * Will reset score or augment score by a given value.
 	 * 
 	 * @param value
-	 * 			Either 0 or an additional value.
+	 *            Either 0 or an additional value.
 	 */
 	public void setScore(int value) {
-		if(value == 0) {
+		if (value == 0) {
 			this.score = 0;
 		} else {
 			this.score += value;
 		}
 	}
-	
+
 	public int getScore() {
 		return this.score;
 	}
@@ -148,11 +149,11 @@ public class World implements Drawable, Temporal {
 			for (Temporal t : this.entities) {
 				t.timePassed();
 			}
+			this.entities.removeAll(this.entitiesToRemove);
+			this.entitiesToRemove.clear();
+			this.entities.addAll(this.entitiesToAdd);
+			this.entitiesToAdd.clear();
 		}
-		this.entities.removeAll(this.entitiesToRemove);
-		this.entitiesToRemove.clear();
-		this.entities.addAll(this.entitiesToAdd);
-		this.entitiesToAdd.clear();
 	}
 
 	@Override
@@ -183,7 +184,7 @@ public class World implements Drawable, Temporal {
 	@Override
 	public void updatePosition() {
 		// Do something
-		
+
 	}
 
 }
