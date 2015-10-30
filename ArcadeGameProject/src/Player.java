@@ -39,10 +39,4 @@ public class Player extends Entity {
 	public void updatePosition() {
 		
 	}
-
-	@Override
-	public void checkCollision() {
-		// Do something
-		
-	}
 }

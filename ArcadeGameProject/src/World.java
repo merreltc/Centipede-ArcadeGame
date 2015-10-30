@@ -108,8 +108,8 @@ public class World implements Drawable, Temporal {
 						break;
 
 					case 3:
-						player = new Player(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH));
-						addEntity(player);
+						this.player = new Player(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH));
+						addEntity(this.player);
 						break;
 
 					default:
@@ -161,10 +161,6 @@ public class World implements Drawable, Temporal {
 			this.entities.addAll(this.entitiesToAdd);
 			this.entitiesToAdd.clear();
 		}		
-		this.entities.removeAll(this.entitiesToRemove);
-		this.entitiesToRemove.clear();
-		this.entities.addAll(this.entitiesToAdd);
-		this.entitiesToAdd.clear();
 	}
 
 	@Override
