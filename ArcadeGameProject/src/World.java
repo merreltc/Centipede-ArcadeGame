@@ -91,6 +91,7 @@ public class World implements Drawable, Temporal {
 	 */
 	public void loadLevel(int levelToLoad) {
 		this.setIsPaused(true);
+		this.level = levelToLoad;
 		this.entities.clear();
 
 		try {
