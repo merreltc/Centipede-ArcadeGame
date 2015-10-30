@@ -11,7 +11,7 @@ public class ArrowListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == 38) {
-			// up
+			this.world.getPlayer().updatePosition();
 		} else if (e.getKeyCode() == 40) {
 			// down
 		} else if (e.getKeyCode() == 37) {

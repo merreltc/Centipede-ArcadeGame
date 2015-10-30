@@ -21,14 +21,15 @@ public class World implements Drawable, Temporal {
 	private final int COLUMNS = 20;
 	private final int PLAYER_REGION_BOUND = 300;
 	private Color BG_COLOR = Color.BLACK;
-
+	private final List<Entity> entities = new ArrayList<Entity>();
+	private final List<Entity> entitiesToAdd = new ArrayList<Entity>();
+	private final List<Entity> entitiesToRemove = new ArrayList<Entity>();
+	
 	private Shape background;
 	private boolean isPaused = false;
 	private int score;
 	private int level;
-	private final List<Entity> entities = new ArrayList<Entity>();
-	private final List<Entity> entitiesToAdd = new ArrayList<Entity>();
-	private final List<Entity> entitiesToRemove = new ArrayList<Entity>();
+	private Player player;
 
 	public World() {
 		this.background = new Rectangle2D.Double(0, 0, 400, 400);
@@ -107,7 +108,8 @@ public class World implements Drawable, Temporal {
 						break;
 
 					case 3:
-						addEntity(new Player(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH)));
+						player = new Player(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH));
+						addEntity(player);
 						break;
 
 					default:
@@ -124,6 +126,10 @@ public class World implements Drawable, Temporal {
 
 	public int getLevel() {
 		return this.level;
+	}
+	
+	public Player getPlayer() {
+		return this.player;
 	}
 
 	/**
@@ -188,8 +194,7 @@ public class World implements Drawable, Temporal {
 
 	@Override
 	public void updatePosition() {
-		// Do something
-
+		// Do nothing
 	}
 
 }
