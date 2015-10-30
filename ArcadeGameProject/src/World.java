@@ -38,7 +38,7 @@ public class World implements Drawable, Temporal {
 
 		// Creates a separate "thread of execution" to inform this world of the
 		// passage of time.
-		Runnable tickTock = new Runnable() {
+		Runnable r1 = new Runnable() {
 			@Override
 			public void run() {
 				try {
@@ -51,7 +51,7 @@ public class World implements Drawable, Temporal {
 				}
 			}
 		};
-		new Thread(tickTock).start();
+		new Thread(r1).start();
 	}
 
 	/**
@@ -91,25 +91,24 @@ public class World implements Drawable, Temporal {
 	 */
 	public void loadLevel(int levelToLoad) {
 		this.setIsPaused(true);
-		this.level = levelToLoad;
 		this.entities.clear();
 
 		try {
 			Scanner loader = new Scanner(
 					new File("C:\\EclipseWorkspaces\\csse220\\ArcadeGameProject\\Level Files\\level" + levelToLoad));
-			for (int y = 0; y < 20; y++) {
-				for (int x = 0; x < 20; x++) {
+			for (int row = 0; row < 20; row++) {
+				for (int column = 0; column < 20; column++) {
 					switch (loader.nextInt()) {
 					case 1:
-						addEntity(new Mushroom(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH)));
+						addEntity(new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH, row * this.CELL_WIDTH)));
 						break;
 
 					case 2:
-						addEntity(new Centipede(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH)));
+						addEntity(new Centipede(this, new Point2D.Double(column * this.CELL_WIDTH, row * this.CELL_WIDTH)));
 						break;
 
 					case 3:
-						this.player = new Player(this, new Point2D.Double(x * this.CELL_WIDTH, y * this.CELL_WIDTH));
+						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH, row * this.CELL_WIDTH));
 						addEntity(this.player);
 						break;
 
@@ -119,8 +118,9 @@ public class World implements Drawable, Temporal {
 				loader.nextLine();
 			}
 			loader.close();
+			this.level = levelToLoad;
 		} catch (FileNotFoundException e) {
-			addEntity(new Player(this, new Point2D.Double()));
+			loadLevel(this.level);
 		}
 		this.setIsPaused(false);
 	}

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author merreltc. Created Oct 28, 2015.
  */
-public class GameComponent extends JComponent implements Drawable {
+public class GameComponent extends JComponent {
 
 	private static final int FRAMES_PER_SECOND = 100;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
@@ -87,12 +87,7 @@ public class GameComponent extends JComponent implements Drawable {
 			showNullPointerMessage("shape", d);
 			return;
 		}
-
-		if (d == this.selectedEntity) {
-			g2.setColor(Color.BLACK);
-		} else {
-			g2.setColor(color);
-		}
+		g2.setColor(color);
 		g2.fill(shape);
 	}
 
@@ -107,15 +102,5 @@ public class GameComponent extends JComponent implements Drawable {
 					+ nullAttribute + " is null.\n";
 			JOptionPane.showMessageDialog(null, message, "Null pointer exception", JOptionPane.ERROR_MESSAGE);
 		}
-	}
-
-	@Override
-	public Color getColor() {
-		return getColor();
-	}
-
-	@Override
-	public Shape getShape() {
-		return getShape();
 	}
 }
