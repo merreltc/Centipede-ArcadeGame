@@ -26,7 +26,7 @@ public abstract class Entity implements Drawable, Temporal {
 		this.color = getColor();
 		this.shape = getShape();
 	}
-	public double getRadius(double r) {
+	public double getRadius() {
 		return this.RADIUS;
 	}
 

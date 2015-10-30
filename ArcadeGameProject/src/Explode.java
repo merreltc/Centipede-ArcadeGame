@@ -1,3 +1,5 @@
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
 /**
@@ -10,16 +12,21 @@ import java.awt.geom.Point2D;
 public class Explode extends Weapon {
 	
 	private final int RADIUS = 60;
+	private Ellipse2D.Double bullet;
 
 	public Explode(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		// TODO Auto-generated constructor stub.
+		this.bullet = new Ellipse2D.Double(centerPoint.getX(), centerPoint.getY(), 2, 3);
 	}
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub.
+		this.getWorld().addEntity(this);
+	}
 
+	@Override
+	public Shape getShape() {
+		return this.bullet;
 	}
 
 }

@@ -11,15 +11,20 @@ import java.awt.geom.Point2D;
  */
 public class RapidFire extends Weapon {
 	private Ellipse2D.Double bullet;
-	
+
 	public RapidFire(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		this.bullet = new Ellipse2D.Double(centerPoint.getX(), centerPoint.getY(), 2, 3);
 	}
+	
+//	@Override
+//	public double getRadius() {
+//		return 5.0;
+//	}
 
 	@Override
 	public void shoot() {
-		updatePosition();
+		this.bullet = new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
+		this.getWorld().addEntity(this);
 	}
 
 	@Override

@@ -18,6 +18,8 @@ public class ArrowListener implements KeyListener {
 			this.world.getPlayer().move(false,false);
 		} else if (e.getKeyCode() == 39) { // moves right
 			this.world.getPlayer().move(false,true);
+		} else if (e.getKeyCode() == 90) {
+			this.world.getPlayer().fire();
 		}
 	}
 
