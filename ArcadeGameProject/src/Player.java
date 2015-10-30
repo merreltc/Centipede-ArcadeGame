@@ -42,16 +42,16 @@ public class Player extends Entity {
 	
 	
 	public void move(boolean vertical, boolean positive) {
-		if(vertical && positive && this.getCenterPoint().getY() > 310 && checkCollision()) { // Up
+		if(vertical && positive && this.getCenterPoint().getY() > 310 && !checkCollisionTop()) { // Up
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(),
 					this.getCenterPoint().getY() - 5));
-		} else if (vertical && !positive && this.getCenterPoint().getY() < 380 && checkCollision()) { // Down
+		} else if (vertical && !positive && this.getCenterPoint().getY() < 380 && !checkCollisionBottom()) { // Down
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(),
 					this.getCenterPoint().getY() + 5));
-		} else if (!vertical && positive && this.getCenterPoint().getX() < 375 && checkCollision()) { // Right
+		} else if (!vertical && positive && this.getCenterPoint().getX() < 375 && !checkCollisionRight()) { // Right
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 5,
 					this.getCenterPoint().getY()));
-		} else if (!vertical && !positive && this.getCenterPoint().getX() > 5 && checkCollision()) { // Left
+		} else if (!vertical && !positive && this.getCenterPoint().getX() > 5 && !checkCollisionLeft()) { // Left
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() - 5,
 					this.getCenterPoint().getY()));
 		}
