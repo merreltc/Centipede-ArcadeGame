@@ -10,22 +10,20 @@ import java.awt.geom.Point2D;
  *         Created Oct 28, 2015.
  */
 public class Pierce extends Weapon {
-	private Ellipse2D.Double bullet;
 
 	public Pierce(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		this.bullet = new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
-		this.getWorld().addEntity(this);
 	}
 
 	@Override
 	public void shoot(Point2D centerPoint) {
 		RapidFire shot = new RapidFire(this.getWorld(), centerPoint);
+		this.getWorld().addEntity(shot);
 	}
 
 	@Override
 	public Shape getShape() {
-		return this.bullet;
+		return new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
 	}
 
 }
