@@ -24,7 +24,10 @@ public abstract class Entity implements Drawable, Temporal {
 		this.health = 100;
 		this.color = getColor();
 		this.shape = getShape();
-		
+	}
+	
+	public void setRadius(double r) {
+		this.radius = radius;
 	}
 	
 	public void setCenterPoint(Point2D point) {

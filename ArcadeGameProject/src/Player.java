@@ -17,6 +17,7 @@ public class Player extends Entity {
 		super(world, centerPoint);
 		Weapon weapon = new RapidFire(world, this.getCenterPoint());
 		this.currentWeapon = weapon;
+		setRadius(10.0);
 	}
 
 	public void fire() {
@@ -25,7 +26,6 @@ public class Player extends Entity {
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub.
 		return Color.GREEN;
 	}
 
@@ -39,7 +39,6 @@ public class Player extends Entity {
 
 	@Override
 	public void updatePosition() {
-		// TODO Auto-generated method stub.
 		
 	}
 
