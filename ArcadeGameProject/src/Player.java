@@ -17,7 +17,6 @@ public class Player extends Entity {
 		super(world, centerPoint);
 		Weapon weapon = new RapidFire(world, this.getCenterPoint());
 		this.currentWeapon = weapon;
-		setRadius(10.0);
 	}
 
 	public void fire() {
@@ -31,7 +30,6 @@ public class Player extends Entity {
 
 	@Override
 	public Shape getShape() {
-		// TODO Auto-generated method stub.
 		return new Polygon(new int[]{(int)getCenterPoint().getX(), (int)getCenterPoint().getX()+10,
 				(int)getCenterPoint().getX()+20}, new int[]{(int)getCenterPoint().getY()+20, (int)getCenterPoint().getY(),
 						(int)getCenterPoint().getY()+20}, 3);
@@ -44,7 +42,7 @@ public class Player extends Entity {
 
 	@Override
 	public void checkCollision() {
-		// TODO Auto-generated method stub.
+		// Do something
 		
 	}
 }

@@ -9,6 +9,7 @@ import java.awt.geom.Point2D;
  *         Created Oct 28, 2015.
  */
 public abstract class Entity implements Drawable, Temporal {
+	private final double RADIUS = 10.0;
 	
 	private Point2D centerPoint;
 	private World world;
@@ -16,7 +17,7 @@ public abstract class Entity implements Drawable, Temporal {
 	private Color color;
 	private Shape shape;
 	private boolean paused;
-	private double radius;
+	
 	
 	public Entity(World world, Point2D centerPoint) {
 		this.centerPoint = centerPoint;
@@ -26,8 +27,8 @@ public abstract class Entity implements Drawable, Temporal {
 		this.shape = getShape();
 	}
 	
-	public void setRadius(double r) {
-		this.radius = radius;
+	public double getRadius(double r) {
+		return this.RADIUS;
 	}
 	
 	public void setCenterPoint(Point2D point) {
@@ -42,10 +43,6 @@ public abstract class Entity implements Drawable, Temporal {
 	public World getWorld() {
 		return this.world;
 		
-	}
-	
-	public double getRadius() {
-		return this.radius;
 	}
 	
 	@Override
