@@ -11,13 +11,10 @@ import java.awt.geom.Point2D;
  */
 public class Explode extends Weapon {
 	
-	private final int RADIUS = 60;
-	private Ellipse2D.Double bullet;
+	private final int RADIUS = 5;
 
 	public Explode(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		this.bullet = new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
-		this.getWorld().addEntity(this);
 	}
 
 	@Override
@@ -28,7 +25,7 @@ public class Explode extends Weapon {
 
 	@Override
 	public Shape getShape() {
-		return this.bullet;
+		return new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
 	}
 
 }
