@@ -1,0 +1,29 @@
+Documentation is not complete.  We did not budget enough time for this.
+
+• Levels loading from files
+Approx Work Time: 1/2 hour
+Report:
+Loading levels from a text file was simple, butgetting the program to delete the previous one before
+loading a new one was more difficult
+
+• Mushrooms that the player cannot move through
+Approx Work Time: 1 1/2 hours
+Report:
+Finding the correct conditions to register a collision took time, but them we had to implement
+directional collision detection so this took longer than expected
+There is still a persistent bug where you cannot move along the edge of a mushroom, only away from it.
+
+• A hero that can move and fire 1 kind of gun
+Approx Work Time: 2 1/2 hours
+Report:
+Code was borrowed from previous projects to display hero and bullets as well as update their position
+according to time.
+This allowed for an easier time in implementing both the hero and the gun.
+The gun does not have any collision detectors because that was not specified in this cycle and we did
+not have enough time to implement that once the gun was working.
+
+• Switching between loaded levels with U and D
+Approx Work Time: 2 hours 
+Report: Implementing a KeyListener to change levels presented several problems which are inherent to
+KeyListeners.
+
