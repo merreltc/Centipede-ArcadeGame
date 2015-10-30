@@ -188,10 +188,4 @@ public class World implements Drawable, Temporal {
 	public Shape getShape() {
 		return this.background;
 	}
-
-	@Override
-	public void updatePosition() {
-		// Do nothing
-	}
-
 }

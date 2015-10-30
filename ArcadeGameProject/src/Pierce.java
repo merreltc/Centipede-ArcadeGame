@@ -14,13 +14,13 @@ public class Pierce extends Weapon {
 
 	public Pierce(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		this.bullet = new Ellipse2D.Double(centerPoint.getX(), centerPoint.getY(), 2, 3);
+		this.bullet = new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
+		this.getWorld().addEntity(this);
 	}
 
 	@Override
-	public void shoot() {
-		this.getWorld().addEntity(this);
-
+	public void shoot(Point2D centerPoint) {
+		RapidFire shot = new RapidFire(this.getWorld(), centerPoint);
 	}
 
 	@Override

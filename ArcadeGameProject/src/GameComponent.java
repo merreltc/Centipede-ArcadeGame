@@ -8,13 +8,13 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 /**
- * TODO Put here a description of what this class does.
+ * Renders a centipede world on the GUI.
  *
  * @author merreltc. Created Oct 28, 2015.
  */
 public class GameComponent extends JComponent implements Drawable {
 
-	private static final int FRAMES_PER_SECOND = 30;
+	private static final int FRAMES_PER_SECOND = 100;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 
 	private World world;
@@ -118,11 +118,4 @@ public class GameComponent extends JComponent implements Drawable {
 	public Shape getShape() {
 		return getShape();
 	}
-
-	@Override
-	public void updatePosition() {
-		// Do something
-
-	}
-
 }
