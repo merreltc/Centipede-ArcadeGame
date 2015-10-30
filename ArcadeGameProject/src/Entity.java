@@ -72,6 +72,37 @@ public abstract class Entity implements Drawable, Temporal {
 		}
 		return false;
 	}
+	
+	public boolean checkCollisionRight(){
+		for (Drawable e : this.world.getDrawableParts()){
+			if(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX() < 5)
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean checkCollisionLeft(){
+		for (Drawable e : this.world.getDrawableParts()){
+			if(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX() > -5)
+				return true;
+		}
+		return false;
+	}
+	public boolean checkCollisionTop(){
+		for (Drawable e : this.world.getDrawableParts()){
+			if(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX() > -5)
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean checkCollisionBottom(){
+		for (Drawable e : this.world.getDrawableParts()){
+			if(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY() < 5)
+				return true;
+		}
+		return false;
+	}
 
 	public abstract void updatePosition();
 
