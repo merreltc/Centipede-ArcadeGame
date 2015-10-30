@@ -15,7 +15,7 @@ public class Player extends Entity {
 
 	public Player(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		Weapon weapon = new RapidFire(world, this.getCenterPoint());
+		Weapon weapon = new RapidFire(world, new Point2D.Double(this.getCenterPoint().getX()+5, this.getCenterPoint().getY()+5));
 		this.currentWeapon = weapon;
 	}
 
@@ -37,19 +37,21 @@ public class Player extends Entity {
 
 	@Override
 	public void updatePosition() {
-		// Do nothing
+		
 	}
+	
+	
 	public void move(boolean vertical, boolean positive) {
-		if(vertical && positive && this.getCenterPoint().getY() > 310 && !checkCollision()) { // Up
+		if(vertical && positive && this.getCenterPoint().getY() > 310 && checkCollision()) { // Up
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(),
 					this.getCenterPoint().getY() - 5));
-		} else if (vertical && !positive && this.getCenterPoint().getY() < 380 && !checkCollision()) { // Down
+		} else if (vertical && !positive && this.getCenterPoint().getY() < 380 && checkCollision()) { // Down
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(),
 					this.getCenterPoint().getY() + 5));
-		} else if (!vertical && positive && this.getCenterPoint().getX() < 375 && !checkCollision()) { // Right
+		} else if (!vertical && positive && this.getCenterPoint().getX() < 375 && checkCollision()) { // Right
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 5,
 					this.getCenterPoint().getY()));
-		} else if (!vertical && !positive && this.getCenterPoint().getX() > 5 && !checkCollision()) { // Left
+		} else if (!vertical && !positive && this.getCenterPoint().getX() > 5 && checkCollision()) { // Left
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() - 5,
 					this.getCenterPoint().getY()));
 		}

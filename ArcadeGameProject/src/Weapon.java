@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Shape;
 import java.awt.geom.Point2D;
 
 /**
@@ -16,50 +15,32 @@ public abstract class Weapon extends Entity {
 
 	public Weapon(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		// TODO Auto-generated constructor stub.
+		velocity = 10;
+		rateOfFire = 1;
 	}
 	
 	public abstract void shoot();
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub.
-		return null;
-	}
-
-	@Override
-	public Shape getShape() {
-		// TODO Auto-generated method stub.
-		return null;
-	}
-
-	@Override
-	public void timePassed() {
-		// TODO Auto-generated method stub.
-
-	}
-
-	@Override
-	public void die() {
-		// TODO Auto-generated method stub.
-
-	}
-
-	@Override
-	public void setIsPaused(boolean isPaused) {
-		// TODO Auto-generated method stub.
-
-	}
-
-	@Override
-	public boolean getIsPaused() {
-		// TODO Auto-generated method stub.
-		return false;
+		return Color.PINK;
 	}
 
 	@Override
 	public void updatePosition() {
-		// TODO Auto-generated method stub.
+		double currX = getCenterPoint().getX();
+		double currY = getCenterPoint().getY();
+		// Check whether the mover is paused or not.
+		if (!this.getIsPaused()) {
+			if(!(currY < 0)) {
+			// Update new position.
+			currX -= (this.velocity);
+			currY -= (this.velocity);
+			setCenterPoint(new Point2D.Double(currX, currY));
+			}
+		} else {
+			die();
+		}
 
 	}
 
