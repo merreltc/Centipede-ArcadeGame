@@ -11,13 +11,13 @@ public class PlayerListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == 38) { // moves up
-			this.world.getPlayer().move(1);
+			this.world.getPlayer().up(true);
 		} else if (e.getKeyCode() == 40) { // moves down
-			this.world.getPlayer().move(2);
+			this.world.getPlayer().down(true);
 		} else if (e.getKeyCode() == 37) { // moves left
-			this.world.getPlayer().move(3);
+			this.world.getPlayer().left(true);
 		} else if (e.getKeyCode() == 39) { // moves right
-			this.world.getPlayer().move(4);
+			this.world.getPlayer().right(true);
 		} else if (e.getKeyCode() == 90) { // shoots bullet
 			this.world.getPlayer().fire();
 		}
@@ -25,7 +25,15 @@ public class PlayerListener implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// do nothing
+		if (e.getKeyCode() == 38) { // moves up
+			this.world.getPlayer().up(false);
+		} else if (e.getKeyCode() == 40) { // moves down
+			this.world.getPlayer().down(false);
+		} else if (e.getKeyCode() == 37) { // moves left
+			this.world.getPlayer().left(false);
+		} else if (e.getKeyCode() == 39) { // moves right
+			this.world.getPlayer().right(false);
+			}
 	}
 
 	@Override
