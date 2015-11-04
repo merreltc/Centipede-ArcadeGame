@@ -35,10 +35,10 @@ public class Player extends Entity {
 	@Override
 	public Shape getShape() {
 		return new Polygon(
-				new int[] { (int) getCenterPoint().getX(), (int) getCenterPoint().getX() + 10,
-						(int) getCenterPoint().getX() + 20 },
-				new int[] { (int) getCenterPoint().getY() + 20, (int) getCenterPoint().getY(),
-						(int) getCenterPoint().getY() + 20 },
+				new int[] { (int) getCenterPoint().getX() - this.getWorld().CELL_WIDTH/2, (int) getCenterPoint().getX(),
+						(int) getCenterPoint().getX() + this.getWorld().CELL_WIDTH/2 },
+				new int[] { (int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH/2, (int) getCenterPoint().getY() - this.getWorld().CELL_WIDTH/2,
+						(int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH/2 },
 				3);
 	}
 
@@ -46,16 +46,16 @@ public class Player extends Entity {
 	public void updatePosition() {
 		if (this.up && this.getCenterPoint().getY() > 310 && !checkCollisionTop()) { // Move
 																							// up
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 5));
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 2));
 		} else if (this.down && this.getCenterPoint().getY() < 380 && !checkCollisionBottom()) { // Move
 																										// down
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 5));
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 2));
 		} else if (this.left && this.getCenterPoint().getX() > 5 && !checkCollisionLeft()) { // Move
 																									// Left
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() - 5, this.getCenterPoint().getY()));
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() - 2, this.getCenterPoint().getY()));
 		} else if (this.right&& this.getCenterPoint().getX() < 375 && !checkCollisionRight()) { // Move
 																										// Right
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 5, this.getCenterPoint().getY()));
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 2, this.getCenterPoint().getY()));
 		}
 		
 	}

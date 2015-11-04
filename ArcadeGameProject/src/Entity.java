@@ -22,7 +22,7 @@ public abstract class Entity implements Drawable, Temporal {
 	public Entity(World world, Point2D centerPoint) {
 		this.centerPoint = centerPoint;
 		this.world = world;
-		this.health = 100;
+		this.health = 4;
 		this.color = getColor();
 		this.shape = getShape();
 	}
@@ -62,6 +62,14 @@ public abstract class Entity implements Drawable, Temporal {
 	public void die() {
 		this.world.removeEntity(this);
 	}
+	
+	public void takeDamage(){
+		this.health--;
+	}
+	
+	public boolean isDead(){
+		return this.health == 0;
+	}
 
 	public Entity checkCollision() {
 		for (Drawable e : this.world.getDrawableParts()) {
@@ -80,7 +88,8 @@ public abstract class Entity implements Drawable, Temporal {
 			if (e != this &&
 					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
 					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS
-					&&((Entity) e).getCenterPoint().getY() < this.getCenterPoint().getY()) {
+					&&((Entity) e).getCenterPoint().getY() < this.getCenterPoint().getY()
+					&& e.getClass().equals(Mushroom.class)){
 					
 				return true;
 			}
@@ -93,7 +102,8 @@ public abstract class Entity implements Drawable, Temporal {
 			if (e != this &&
 					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
 					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS
-					&&((Entity) e).getCenterPoint().getY() > this.getCenterPoint().getY()) {
+					&&((Entity) e).getCenterPoint().getY() > this.getCenterPoint().getY()
+					&& e.getClass().equals(Mushroom.class)) {
 					
 				return true;
 			}
@@ -106,7 +116,8 @@ public abstract class Entity implements Drawable, Temporal {
 			if (e != this &&
 					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
 					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS
-					&&((Entity) e).getCenterPoint().getX() < this.getCenterPoint().getX()) {
+					&&((Entity) e).getCenterPoint().getX() < this.getCenterPoint().getX()
+					&& e.getClass().equals(Mushroom.class)) {
 					
 				return true;
 			}
@@ -119,7 +130,8 @@ public abstract class Entity implements Drawable, Temporal {
 			if (e != this &&
 					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
 					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS
-					&&((Entity) e).getCenterPoint().getX() > this.getCenterPoint().getX()) {
+					&&((Entity) e).getCenterPoint().getX() > this.getCenterPoint().getX()
+					&& e.getClass().equals(Mushroom.class)) {
 					
 				return true;
 			}

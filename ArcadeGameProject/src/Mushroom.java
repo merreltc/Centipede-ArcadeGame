@@ -9,7 +9,6 @@ public class Mushroom extends Entity {
 	public Mushroom(World world, Point2D centerPoint) {
 		super(world, centerPoint);
 		this.poisoned = false;
-		// TODO Auto-generated constructor stub.
 	}
 	
 	public boolean isPoisoned(){
@@ -29,19 +28,16 @@ public class Mushroom extends Entity {
 	@Override
 	public Shape getShape() {
 		// TODO Auto-generated method stub.
-		return new Ellipse2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY(), 20, 20);
+		return new Ellipse2D.Double(this.getCenterPoint().getX() - this.getWorld().CELL_WIDTH/2, this.getCenterPoint().getY() - this.getWorld().CELL_WIDTH/2, 20, 20);
 	}
 
 	@Override
 	public void timePassed() {
-		// TODO Auto-generated method stub.
-
-	}
-
-	@Override
-	public void die() {
-		// TODO Auto-generated method stub.
-
+		if(this.checkCollision() != null && this.checkCollision().getClass().equals(RapidFire.class)){
+			this.takeDamage();
+		}
+		if(this.isDead())
+			this.die();
 	}
 
 	@Override
