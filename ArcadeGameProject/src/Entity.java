@@ -67,15 +67,16 @@ public abstract class Entity implements Drawable, Temporal {
 		this.health--;
 	}
 	
-	public boolean isDead(){
-		return this.health == 0;
+	public int getHealth(){
+		return this.health;
 	}
 
 	public Entity checkCollision() {
 		for (Drawable e : this.world.getDrawableParts()) {
 			if (e != this &&
 					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
-					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS) {
+					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS
+					&& !e.getClass().equals(this.getClass())) {
 					
 				return (Entity) e;
 			}
