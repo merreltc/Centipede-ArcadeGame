@@ -16,10 +16,10 @@ import java.util.Scanner;
  */
 public class World implements Drawable, Temporal {
 	protected static final long UPDATE_INTERVAL_MS = 10;
-	private final int CELL_WIDTH = 20;
-	private final int ROWS = 20;
-	private final int COLUMNS = 20;
-	private final int PLAYER_REGION_BOUND = 300;
+	public final int CELL_WIDTH = 20;
+	public final int ROWS = 20;
+	public final int COLUMNS = 20;
+	public final int PLAYER_REGION_BOUND = 300;
 	private Color BG_COLOR = Color.BLACK;
 	private final List<Entity> entities = new ArrayList<Entity>();
 	private final List<Entity> entitiesToAdd = new ArrayList<Entity>();
@@ -100,15 +100,15 @@ public class World implements Drawable, Temporal {
 				for (int column = 0; column < 20; column++) {
 					switch (loader.nextInt()) {
 					case 1:
-						addEntity(new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH, row * this.CELL_WIDTH)));
+						addEntity(new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
 						break;
 
 					case 2:
-						addEntity(new Centipede(this, new Point2D.Double(column * this.CELL_WIDTH, row * this.CELL_WIDTH)));
+						addEntity(new Centipede(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
 						break;
 
 					case 3:
-						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH, row * this.CELL_WIDTH));
+						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2));
 						addEntity(this.player);
 						break;
 
