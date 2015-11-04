@@ -3,8 +3,9 @@ Approx Work Time:
 Report:
 
 • Killing the hero
-Approx Work Time:
-Report:
+Approx Work Time: 10 minutes
+Report: Had an issue where I forgot to use the getClass method to check the type of entity
+the player was colliding with
 
 • Killing the centipede
 Approx Work Time:
