@@ -76,6 +76,6 @@ public class Centipede extends Entity {
 			}
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() * velocity, this.getCenterPoint().getY()));
 		}
-		//System.out.println("X is: " + this.getCenterPoint().getX() + "Y is: " + this.getCentPoint().get());
+		//System.out.println("X is: " + this.getCenterPoint().getX() + "Y is: " + this.getCenterPoint().getY());
 	}
 }
