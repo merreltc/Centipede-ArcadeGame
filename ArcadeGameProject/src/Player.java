@@ -44,17 +44,13 @@ public class Player extends Entity {
 
 	@Override
 	public void updatePosition() {
-		if (this.up && this.getCenterPoint().getY() > 310 && !checkCollisionTop()) { // Move
-																							// up
+		if (this.up && this.getCenterPoint().getY() > 310 && !checkCollisionTop()) { // Move Up
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 2));
-		} else if (this.down && this.getCenterPoint().getY() < 380 && !checkCollisionBottom()) { // Move
-																										// down
+		} else if (this.down && this.getCenterPoint().getY() < 380 && !checkCollisionBottom()) { // Move down
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 2));
-		} else if (this.left && this.getCenterPoint().getX() > 5 && !checkCollisionLeft()) { // Move
-																									// Left
+		} else if (this.left && this.getCenterPoint().getX() > 10 && !checkCollisionLeft()) { // Move Left
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() - 2, this.getCenterPoint().getY()));
-		} else if (this.right&& this.getCenterPoint().getX() < 375 && !checkCollisionRight()) { // Move
-																										// Right
+		} else if (this.right&& this.getCenterPoint().getX() < 385 && !checkCollisionRight()) { // Move Right
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 2, this.getCenterPoint().getY()));
 		}
 		
