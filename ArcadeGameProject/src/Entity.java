@@ -13,7 +13,7 @@ public abstract class Entity implements Drawable, Temporal {
 
 	private Point2D centerPoint;
 	private World world;
-	private int health;
+	protected int health;
 	private Color color;
 	private Shape shape;
 	private boolean paused;
@@ -22,7 +22,7 @@ public abstract class Entity implements Drawable, Temporal {
 	public Entity(World world, Point2D centerPoint) {
 		this.centerPoint = centerPoint;
 		this.world = world;
-		this.health = 4;
+		this.health = 1;
 		this.color = getColor();
 		this.shape = getShape();
 	}

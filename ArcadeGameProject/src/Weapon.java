@@ -15,8 +15,9 @@ public abstract class Weapon extends Entity {
 
 	public Weapon(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		velocity = 1;
-		rateOfFire = 1;
+		this.velocity = 3;
+		this.rateOfFire = 1;
+		this.health = 1;
 	}
 
 	public abstract void shoot(Point2D centerPoint);
@@ -33,10 +34,12 @@ public abstract class Weapon extends Entity {
 			// Update new position.
 			currY -= (this.velocity);
 			setCenterPoint(new Point2D.Double(getCenterPoint().getX(), currY));
-		} else if(checkCollisionTop()) {
-			die();
+			if(this.getHealth()==0)
+				this.die();
+			if(this.checkCollisionTop())
+				this.takeDamage();
 		} else {
-			die();
+			this.die();
 		}
 	}
 }
