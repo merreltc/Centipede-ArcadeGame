@@ -21,8 +21,7 @@ public class Mushroom extends Entity {
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub.
-		return Color.CYAN;
+		return new Color(255/this.getHealth(), 255/(5-this.getHealth()), 0);
 	}
 
 	@Override
@@ -36,7 +35,7 @@ public class Mushroom extends Entity {
 		if(this.checkCollision() != null && this.checkCollision().getClass().equals(RapidFire.class)){
 			this.takeDamage();
 		}
-		if(this.isDead())
+		if(this.getHealth()==0)
 			this.die();
 	}
 
