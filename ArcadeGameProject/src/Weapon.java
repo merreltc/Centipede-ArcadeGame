@@ -33,6 +33,8 @@ public abstract class Weapon extends Entity {
 			// Update new position.
 			currY -= (this.velocity);
 			setCenterPoint(new Point2D.Double(getCenterPoint().getX(), currY));
+		} else if(checkCollisionTop()) {
+			die();
 		} else {
 			die();
 		}
