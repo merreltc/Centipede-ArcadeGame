@@ -9,10 +9,10 @@ public class Centipede extends Entity {
 	public Centipede(World world, Point2D centerPoint) {
 		super(world, centerPoint);
 		this.moveVert = 0;
-		this.moveHoriz = 3;
+		this.moveHoriz = 1;
 	}
 
-	private final int velocity = 3;
+	private final double velocity = 0.3;
 	private int scoreValue = 100;
 	private int length;
 	private int moveVert; // 0 = stationary, 1 = up, 2 = down
@@ -55,28 +55,31 @@ public class Centipede extends Entity {
 		}
 		
 		if (this.moveVert == 1 && this.getCenterPoint().getY() > 425) { // Move up
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 1));
-			if(checkCollisionTop()) {
-				
+			if(!checkCollisionTop()) {
+				setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() * (-velocity)));
 			}
 			this.moveVert = 0; 
-		} else if (this.moveVert == 2 && this.getCenterPoint().getY() < 0 && checkCollisionBottom()) { // Move down
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 1));
+		} else if (this.moveVert == 2 && this.getCenterPoint().getY() < 10 && checkCollisionBottom()) { // Move down
+			if(!checkCollisionBottom()) {
+				setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() * velocity));
+			}
 			this.moveVert = 0; 
-		} else if (this.moveHoriz == 1 && this.getCenterPoint().getX() > 0) { // Move left
+			
+		} else if (this.moveHoriz == 1 && this.getCenterPoint().getX() > 10) { // Move left
 			if (checkCollisionLeft()) {
 				this.moveVert = 2;
 				this.moveHoriz = 2;
 				return;
 			}
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() - 1, this.getCenterPoint().getY()));
-		} else if (this.moveVert == 4 && this.getCenterPoint().getX() < 375 && !checkCollisionRight()) { // Move right
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() * (-velocity), this.getCenterPoint().getY()));
+		} else if (this.moveVert == 2 && this.getCenterPoint().getX() < 395 && !checkCollisionRight()) { // Move right
 			if (checkCollisionRight()) {
 				this.moveVert = 2;
 				this.moveHoriz = 1;
 				return;
 			}
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 1, this.getCenterPoint().getY()));
+			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() * velocity, this.getCenterPoint().getY()));
 		}
+		System.out.println("X is: " + this.getCenterPoint().getX() + "Y is: " + this.getCenterPoint().getY());
 	}
 }
