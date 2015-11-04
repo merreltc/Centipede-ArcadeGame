@@ -54,24 +54,27 @@ public class Centipede extends Entity {
 			this.moveVert = 0;
 		}
 		
-		if (this.moveVert == 1 && this.getCenterPoint().getY() > 435) { // Move up
+		if (this.moveVert == 1 && this.getCenterPoint().getY() > 425) { // Move up
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 1));
-			// if(checkCollisionTop()) {
-			//}
+			if(checkCollisionTop()) {
+				
+			}
 			this.moveVert = 0; 
-		} else if (this.moveVert == 2 && this.getCenterPoint().getY() < 380 && checkCollisionBottom()) { // Move down
+		} else if (this.moveVert == 2 && this.getCenterPoint().getY() < 0 && checkCollisionBottom()) { // Move down
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 1));
 			this.moveVert = 0; 
-		} else if (this.moveHoriz == 1 && this.getCenterPoint().getX() > 5) { // Move left
+		} else if (this.moveHoriz == 1 && this.getCenterPoint().getX() > 0) { // Move left
 			if (checkCollisionLeft()) {
 				this.moveVert = 2;
 				this.moveHoriz = 2;
+				return;
 			}
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() - 1, this.getCenterPoint().getY()));
 		} else if (this.moveVert == 4 && this.getCenterPoint().getX() < 375 && !checkCollisionRight()) { // Move right
 			if (checkCollisionRight()) {
 				this.moveVert = 2;
 				this.moveHoriz = 1;
+				return;
 			}
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 1, this.getCenterPoint().getY()));
 		}
