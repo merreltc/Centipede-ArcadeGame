@@ -14,11 +14,12 @@ public class RapidFire extends Weapon {
 
 	public RapidFire(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		radius = 2.5;
 	}
 	
 	@Override
 	public double getRadius() {
-		return 5.0;
+		return this.radius;
 	}
 
 	@Override

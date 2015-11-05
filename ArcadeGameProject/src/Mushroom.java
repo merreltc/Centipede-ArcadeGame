@@ -8,6 +8,7 @@ public class Mushroom extends Entity {
 
 	public Mushroom(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		this.radius = 10;
 		this.health = 4;
 		this.poisoned = false;
 	}

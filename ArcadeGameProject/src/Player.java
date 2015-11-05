@@ -54,8 +54,10 @@ public class Player extends Entity {
 			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 2, this.getCenterPoint().getY()));
 		}
 		
-		if(this.checkCollision() != null && this.checkCollision().getClass().equals(Centipede.class))
+		if(this.checkCollision() != null && this.checkCollision().getClass().equals(Centipede.class)){
+			this.currentWeapon = null;
 			this.die();
+		}
 	}
 
 	public void right(boolean right){
