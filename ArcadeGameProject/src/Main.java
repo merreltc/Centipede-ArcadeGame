@@ -28,7 +28,7 @@ public class Main extends JFrame {
 		world.loadLevel(1);
 		frame.add(component);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(415, 445));
+		frame.setSize(new Dimension(417, 445));
 		frame.setVisible(true);
 	}
 
