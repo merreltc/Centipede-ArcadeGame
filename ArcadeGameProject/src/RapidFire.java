@@ -23,7 +23,7 @@ public class RapidFire extends Weapon {
 
 	@Override
 	public Shape getShape() {
-		return new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
+		return new Ellipse2D.Double(getCenterPoint().getX() - 10, getCenterPoint().getY(), 5, 10);
 	}
 
 	@Override

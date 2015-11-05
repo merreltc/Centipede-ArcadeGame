@@ -27,7 +27,6 @@ public class Mushroom extends Entity {
 
 	@Override
 	public Shape getShape() {
-		// TODO Auto-generated method stub.
 		return new Ellipse2D.Double(this.getCenterPoint().getX() - this.getWorld().CELL_WIDTH/2, this.getCenterPoint().getY() - this.getWorld().CELL_WIDTH/2, 20, 20);
 	}
 

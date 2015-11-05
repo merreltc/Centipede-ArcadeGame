@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
  */
 public abstract class Entity implements Drawable, Temporal {
 
-	private final double RADIUS = 20;
+	private final double RADIUS = 22;
 
 	private Point2D centerPoint;
 	private World world;
@@ -87,7 +87,7 @@ public abstract class Entity implements Drawable, Temporal {
 	public boolean checkCollisionTop(){
 		for (Drawable e : this.world.getDrawableParts()) {
 			if (e != this &&
-					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
+					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) == 0
 					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS
 					&&((Entity) e).getCenterPoint().getY() < this.getCenterPoint().getY()
 					&& e.getClass().equals(Mushroom.class)){
@@ -101,7 +101,7 @@ public abstract class Entity implements Drawable, Temporal {
 	public boolean checkCollisionBottom(){
 		for (Drawable e : this.world.getDrawableParts()) {
 			if (e != this &&
-					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
+					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) == 0
 					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS
 					&&((Entity) e).getCenterPoint().getY() > this.getCenterPoint().getY()
 					&& e.getClass().equals(Mushroom.class)) {
@@ -116,7 +116,7 @@ public abstract class Entity implements Drawable, Temporal {
 		for (Drawable e : this.world.getDrawableParts()) {
 			if (e != this &&
 					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
-					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS
+					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= 0
 					&&((Entity) e).getCenterPoint().getX() < this.getCenterPoint().getX()
 					&& e.getClass().equals(Mushroom.class)) {
 					
@@ -130,7 +130,7 @@ public abstract class Entity implements Drawable, Temporal {
 		for (Drawable e : this.world.getDrawableParts()) {
 			if (e != this &&
 					Math.abs(((Entity) e).getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.RADIUS
-					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.RADIUS
+					&& Math.abs(((Entity) e).getCenterPoint().getY() - this.getCenterPoint().getY()) <= 0
 					&&((Entity) e).getCenterPoint().getX() > this.getCenterPoint().getX()
 					&& e.getClass().equals(Mushroom.class)) {
 					
