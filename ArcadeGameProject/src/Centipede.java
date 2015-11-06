@@ -64,12 +64,16 @@ public class Centipede extends Entity {
 			this.left = false;
 			this.right = false;
 		}
-		
 		if (this.down && getCenterPoint().getY() < 425) {
-			setCenterPoint(new Point2D.Double(getCenterPoint().getX(), getCenterPoint().getY() + 1));
-			if (checkCollisionBottom() || (getCenterPoint().getY() - 10) % 20 == 0) {
+			if((getCenterPoint().getY() - 10) % 20 == 0){
 				this.down = false;
 				this.lastDown = true;
+			}
+			if (checkCollisionBottom()) {
+				this.down = false;
+				this.lastDown = true;
+			}else{
+				setCenterPoint(new Point2D.Double(getCenterPoint().getX(), getCenterPoint().getY() + 1));
 			}
 //			if(getCenterPoint().getY() < 70) {
 //				System.out.println("\nCOLLIDE WITH " + checkCollision() + "\nBOTTOM: " + checkCollisionBottom()
@@ -88,8 +92,8 @@ public class Centipede extends Entity {
 				this.right = true;
 				this.down = this.lastDown;
 				this.up = !this.lastDown;
-				System.out.println(getCenterPoint().getX());
-			}
+				//System.out.println(getCenterPoint().getX());
+			}else
 			setCenterPoint(new Point2D.Double(getCenterPoint().getX() - 1, getCenterPoint().getY()));
 		} else if (this.right && getCenterPoint().getX() <= 388) {
 			if (checkCollisionRight() || getCenterPoint().getX() == 388) {
@@ -97,7 +101,7 @@ public class Centipede extends Entity {
 				this.right = false;
 				this.down = this.lastDown;
 				this.up = !this.lastDown;
-			}
+			}else
 			setCenterPoint(new Point2D.Double(getCenterPoint().getX() + 1, getCenterPoint().getY()));
 		}
 
