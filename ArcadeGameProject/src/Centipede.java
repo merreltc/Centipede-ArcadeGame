@@ -64,6 +64,7 @@ public class Centipede extends Entity {
 			this.left = false;
 			this.right = false;
 		}
+		
 		if (this.down && getCenterPoint().getY() < 425) {
 			if((getCenterPoint().getY() - 10) % 20 == 0){
 				this.down = false;
