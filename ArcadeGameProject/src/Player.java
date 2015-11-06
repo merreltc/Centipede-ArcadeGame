@@ -17,6 +17,7 @@ public class Player extends Entity {
 
 	public Player(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		radius = 10;
 		Weapon weapon = new RapidFire(world,
 				new Point2D.Double(this.getCenterPoint().getX() + 7.5, this.getCenterPoint().getY() - 10));
 		this.currentWeapon = weapon;

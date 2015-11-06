@@ -82,16 +82,30 @@ public abstract class Entity implements Drawable, Temporal {
 				return (Entity) e;
 			}
 		}
-		return null;
+		return this;
+	}
+	
+	public Entity checkCollision(int deltaX, int deltaY) {
+		for (Drawable d : this.world.getDrawableParts()) {
+			Entity e = (Entity) d;
+			if (e != this &&
+					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX() - deltaX) <= this.getRadius() + e.getRadius()
+					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY() - deltaY) <= this.getRadius() + e.getRadius()
+					&& !e.getClass().equals(this.getClass())) {
+					
+				return (Entity) e;
+			}
+		}
+		return this;
 	}
 	
 	public boolean checkCollisionTop(){
 		for (Drawable d : this.world.getDrawableParts()) {
 			Entity e = (Entity) d;
 			if (e != this &&
-					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.getRadius() + e.getRadius()
+					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) < this.getRadius() + e.getRadius()
 					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.getRadius() + e.getRadius()
-					&&e.getCenterPoint().getY() < this.getCenterPoint().getY()
+					&& e.getCenterPoint().getY() < this.getCenterPoint().getY() 
 					&& e.getClass().equals(Mushroom.class)){
 					
 				return true;
@@ -104,7 +118,7 @@ public abstract class Entity implements Drawable, Temporal {
 		for (Drawable d : this.world.getDrawableParts()) {
 			Entity e = (Entity) d;
 			if (e != this &&
-					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.getRadius() + e.getRadius()
+					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) < this.getRadius() + e.getRadius()
 					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.getRadius() + e.getRadius()
 					&&e.getCenterPoint().getY() > this.getCenterPoint().getY()
 					&& e.getClass().equals(Mushroom.class)) {
@@ -120,7 +134,7 @@ public abstract class Entity implements Drawable, Temporal {
 			Entity e = (Entity) d;
 			if (e != this &&
 					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.getRadius() + e.getRadius()
-					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.getRadius() + e.getRadius()
+					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) < this.getRadius() + e.getRadius()
 					&&e.getCenterPoint().getX() < this.getCenterPoint().getX()
 					&& e.getClass().equals(Mushroom.class)) {
 					
@@ -135,7 +149,7 @@ public abstract class Entity implements Drawable, Temporal {
 			Entity e = (Entity) d;
 			if (e != this &&
 					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.getRadius() + e.getRadius()
-					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.getRadius() + e.getRadius()
+					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) < this.getRadius() + e.getRadius()
 					&&e.getCenterPoint().getX() > this.getCenterPoint().getX()
 					&& e.getClass().equals(Mushroom.class)) {
 					
