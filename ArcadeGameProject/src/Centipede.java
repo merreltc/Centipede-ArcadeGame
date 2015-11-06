@@ -12,6 +12,7 @@ public class Centipede extends Entity {
 
 	public Centipede(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		this.radius = 10;
 		this.left = true;
 		this.right = false;
 		this.up = false;
