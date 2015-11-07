@@ -12,49 +12,39 @@ public class Mushroom extends Entity {
 		this.health = 4;
 		this.poisoned = false;
 	}
-	
-	public boolean isPoisoned(){
+
+	public boolean isPoisoned() {
 		return poisoned;
 	}
-	
-	public void setPoisoned(boolean poisoned){
+
+	public void setPoisoned(boolean poisoned) {
 		this.poisoned = poisoned;
 	}
 
 	@Override
 	public Color getColor() {
-		return new Color(255/this.getHealth(), 255/(5-this.getHealth()), 0);
+		if(this.poisoned) {
+			return Color.CYAN;
+		}
+		return new Color(255 / this.getHealth(), 255 / (5 - this.getHealth()), 0);
 	}
 
 	@Override
 	public Shape getShape() {
-		return new Ellipse2D.Double(this.getCenterPoint().getX() - this.getWorld().CELL_WIDTH/2, this.getCenterPoint().getY() - this.getWorld().CELL_WIDTH/2, 20, 20);
-	}
-
-	@Override
-	public void timePassed() {
-		if(this.checkCollision() != null && this.checkCollision().getClass().equals(RapidFire.class)){
-			this.takeDamage();
-		}
-		if(this.getHealth()==0)
-			this.die();
-	}
-
-	@Override
-	public void setIsPaused(boolean isPaused) {
-		// TODO Auto-generated method stub.
-
-	}
-
-	@Override
-	public boolean getIsPaused() {
-		// TODO Auto-generated method stub.
-		return false;
+		return new Ellipse2D.Double(this.getCenterPoint().getX() - this.getWorld().CELL_WIDTH / 2,
+				this.getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2, 20, 20);
 	}
 
 	@Override
 	public void updatePosition() {
-		// TODO Auto-generated method stub.
-
+		if (checkCollision(getCenterPoint()) != null
+				&& checkCollisionBottom(getCenterPoint())
+				&& checkCollision(getCenterPoint()).getClass().equals(RapidFire.class)) {
+			System.out.println("I have been hit");
+			this.takeDamage();
+		}
+		if (this.getHealth() == 0) {
+			die();
+		}
 	}
 }

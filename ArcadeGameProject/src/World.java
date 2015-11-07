@@ -100,15 +100,15 @@ public class World implements Drawable, Temporal {
 				for (int column = 0; column < 20; column++) {
 					switch (loader.nextInt()) {
 					case 1:
-						addEntity(new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						addEntity(new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2 - 1, row * this.CELL_WIDTH + CELL_WIDTH/2 - 1)));
 						break;
 
 					case 2:
-						addEntity(new Centipede(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						addEntity(new Centipede(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2 - 1, row * this.CELL_WIDTH + CELL_WIDTH/2 - 1)));
 						break;
 
 					case 3:
-						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2));
+						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2 - 1, row * this.CELL_WIDTH + CELL_WIDTH/2 - 1));
 						addEntity(this.player);
 						break;
 
