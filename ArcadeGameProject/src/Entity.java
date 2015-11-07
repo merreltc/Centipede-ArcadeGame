@@ -18,7 +18,6 @@ public abstract class Entity implements Drawable, Temporal {
 	private Shape shape;
 	private boolean paused;
 
-	
 	public Entity(World world, Point2D centerPoint) {
 		this.centerPoint = centerPoint;
 		this.world = world;
@@ -26,6 +25,7 @@ public abstract class Entity implements Drawable, Temporal {
 		this.color = getColor();
 		this.shape = getShape();
 	}
+
 	public double getRadius() {
 		return this.radius;
 	}
@@ -43,6 +43,7 @@ public abstract class Entity implements Drawable, Temporal {
 		return this.world;
 
 	}
+
 	@Override
 	public boolean getIsPaused() {
 		return this.paused;
@@ -62,97 +63,52 @@ public abstract class Entity implements Drawable, Temporal {
 	public void die() {
 		this.world.removeEntity(this);
 	}
-	
-	public void takeDamage(){
+
+	public void takeDamage() {
 		this.health--;
 	}
-	
-	public int getHealth(){
+
+	public int getHealth() {
 		return this.health;
 	}
 
-	public Entity checkCollision() {
+	public Entity checkCollision(Point2D testMove) {
 		for (Drawable d : this.world.getDrawableParts()) {
 			Entity e = (Entity) d;
-			if (e != this &&
-					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.getRadius() + e.getRadius()
-					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.getRadius() + e.getRadius()
+			if (e != this && Math.abs(e.getCenterPoint().getX() - testMove.getX()) <= this.getRadius() + e.getRadius()
+					&& Math.abs(e.getCenterPoint().getY() - testMove.getY()) <= this.getRadius() + e.getRadius()
 					&& !e.getClass().equals(this.getClass())) {
-					
+
 				return (Entity) e;
 			}
 		}
-		return this;
+		return null;
 	}
-	
-	public Entity checkCollision(int deltaX, int deltaY) {
+
+	public boolean checkCollisionBottom(Point2D testMove) {
 		for (Drawable d : this.world.getDrawableParts()) {
 			Entity e = (Entity) d;
-			if (e != this &&
-					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX() - deltaX) <= this.getRadius() + e.getRadius()
-					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY() - deltaY) <= this.getRadius() + e.getRadius()
-					&& !e.getClass().equals(this.getClass())) {
-					
-				return (Entity) e;
-			}
-		}
-		return this;
-	}
-	
-	public boolean checkCollisionTop(){
-		for (Drawable d : this.world.getDrawableParts()) {
-			Entity e = (Entity) d;
-			if (e != this &&
-					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) < this.getRadius() + e.getRadius()
-					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.getRadius() + e.getRadius()
-					&& e.getCenterPoint().getY() < this.getCenterPoint().getY() 
-					&& e.getClass().equals(Mushroom.class)){
-					
+			if (e != this && Math.abs(e.getCenterPoint().getX() - testMove.getX()) == 0
+					&& Math.abs(e.getCenterPoint().getY() - testMove.getY()) <= this.getRadius() + e.getRadius()
+					&& e.getCenterPoint().getY() > testMove.getY()) {
+
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public boolean checkCollisionBottom(){
+
+	public boolean checkCollisionTop(Point2D testMove) {
 		for (Drawable d : this.world.getDrawableParts()) {
 			Entity e = (Entity) d;
-			if (e != this &&
-					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) < this.getRadius() + e.getRadius()
-					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) <= this.getRadius() + e.getRadius()
-					&&e.getCenterPoint().getY() > this.getCenterPoint().getY()
+			if (e != this
+					&& Math.abs(e.getCenterPoint().getX() - testMove.getX()) <= this.getRadius()
+							+ e.getRadius()
+					&& Math.abs(e.getCenterPoint().getY() - testMove.getY()) <= this.getRadius()
+							+ e.getRadius()
+					&& e.getCenterPoint().getY() < testMove.getY()
 					&& e.getClass().equals(Mushroom.class)) {
-					
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean checkCollisionLeft(){
-		for (Drawable d : this.world.getDrawableParts()) {
-			Entity e = (Entity) d;
-			if (e != this &&
-					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.getRadius() + e.getRadius()
-					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) < this.getRadius() + e.getRadius()
-					&&e.getCenterPoint().getX() < this.getCenterPoint().getX()
-					&& e.getClass().equals(Mushroom.class)) {
-					
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean checkCollisionRight(){
-		for (Drawable d : this.world.getDrawableParts()) {
-			Entity e = (Entity) d;
-			if (e != this &&
-					Math.abs(e.getCenterPoint().getX() - this.getCenterPoint().getX()) <= this.getRadius() + e.getRadius()
-					&& Math.abs(e.getCenterPoint().getY() - this.getCenterPoint().getY()) < this.getRadius() + e.getRadius()
-					&&e.getCenterPoint().getX() > this.getCenterPoint().getX()
-					&& e.getClass().equals(Mushroom.class)) {
-					
+
 				return true;
 			}
 		}

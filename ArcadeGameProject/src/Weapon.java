@@ -11,13 +11,14 @@ import java.awt.geom.Point2D;
 public abstract class Weapon extends Entity {
 
 	private int rateOfFire;
-	private int velocity;
+	private double velocity;
 
 	public Weapon(World world, Point2D centerPoint) {
 		super(world, centerPoint);
 		this.velocity = 3;
 		this.rateOfFire = 1;
 		this.health = 1;
+		this.radius = 7;
 	}
 
 	public abstract void shoot(Point2D centerPoint);
@@ -29,17 +30,30 @@ public abstract class Weapon extends Entity {
 
 	@Override
 	public void updatePosition() {
+		if (this.getHealth() == 0)
+			this.die();
+
+		Point2D nextMove;
 		double currY = getCenterPoint().getY();
 		if (currY >= 0) {
 			// Update new position.
 			currY -= (this.velocity);
-			setCenterPoint(new Point2D.Double(getCenterPoint().getX(), currY));
-			if(this.getHealth()==0)
-				this.die();
-			if(this.checkCollisionTop())
+			nextMove = new Point2D.Double(getCenterPoint().getX(), currY);
+
+			if (canMoveUp(nextMove)) {
+				setCenterPoint(nextMove);
+			} else {
 				this.takeDamage();
+			}
 		} else {
-			this.die();
+			die();
 		}
+	}
+
+	public boolean canMoveUp(Point2D nextMove) {
+		if (checkCollision(nextMove) != null) {
+			return !checkCollisionTop(nextMove);
+		}
+		return true;
 	}
 }

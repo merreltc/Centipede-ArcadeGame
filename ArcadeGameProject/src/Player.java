@@ -45,19 +45,33 @@ public class Player extends Entity {
 
 	@Override
 	public void updatePosition() {
-		if (this.up && this.getCenterPoint().getY() > 310 && !checkCollisionTop()) { // Move Up
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 2));
-		} else if (this.down && this.getCenterPoint().getY() < 380 && !checkCollisionBottom()) { // Move down
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 2));
-		} else if (this.left && this.getCenterPoint().getX() > 10 && !checkCollisionLeft()) { // Move Left
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() - 2, this.getCenterPoint().getY()));
-		} else if (this.right&& this.getCenterPoint().getX() < 385 && !checkCollisionRight()) { // Move Right
-			setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 2, this.getCenterPoint().getY()));
-		}
-		
-		if(this.checkCollision() != null && this.checkCollision().getClass().equals(Centipede.class)){
+		if(this.checkCollision(getCenterPoint()) != null && this.checkCollision(getCenterPoint()).getClass().equals(Centipede.class)){
 			this.currentWeapon = null;
 			this.die();
+		}
+		
+		Point2D.Double nextMove;
+		
+		if (this.up && this.getCenterPoint().getY() > 310) { // Move Up
+			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 1);
+			if(checkCollision(nextMove) == null) {
+				setCenterPoint(nextMove);
+			}
+		} else if (this.down && this.getCenterPoint().getY() < 389) { // Move down
+			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 1);
+			if(checkCollision(nextMove) == null) {
+				setCenterPoint(nextMove);
+			}
+		} else if (this.left && this.getCenterPoint().getX() > 10) { // Move Left
+			nextMove = new Point2D.Double(this.getCenterPoint().getX() - 1, this.getCenterPoint().getY());
+			if(checkCollision(nextMove) == null) {
+				setCenterPoint(nextMove);
+			}
+		} else if (this.right && this.getCenterPoint().getX() < 387) { // Move Right
+			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 1, this.getCenterPoint().getY());
+			if(checkCollision(nextMove) == null) {
+				setCenterPoint(nextMove);
+			}
 		}
 	}
 
