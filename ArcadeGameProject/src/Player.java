@@ -28,7 +28,7 @@ public class Player extends Entity {
 
 	public void fire() {
 		this.currentWeapon
-				.shoot(new Point2D.Double(this.getCenterPoint().getX() + 7.5, this.getCenterPoint().getY() - 10));
+				.shoot(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 10));
 	}
 
 	@Override
