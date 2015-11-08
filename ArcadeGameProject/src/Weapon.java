@@ -5,8 +5,7 @@ import java.awt.geom.Point2D;
  * 
  * Represents an abstract weapon that can be shot and moves through the field.
  *
- * @author Trinity Merrell and Walter Panfil.
- *         Created Oct 28, 2015.
+ * @author Trinity Merrell and Walter Panfil. Created Oct 28, 2015.
  */
 public abstract class Weapon extends Entity {
 
@@ -51,7 +50,7 @@ public abstract class Weapon extends Entity {
 
 	public boolean canMoveUp(Point2D nextMove) {
 		if (checkCollision(nextMove) != null) {
-			return !checkCollisionTop(nextMove);
+			return false;
 		}
 		return true;
 	}

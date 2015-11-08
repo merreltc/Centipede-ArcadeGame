@@ -14,7 +14,7 @@ public class Centipede extends Entity {
 		super(world, centerPoint);
 		this.color = Color.MAGENTA;
 		this.radius = 9;
-		this.health = 4;
+		this.health = 1;
 		this.right = false;
 		this.down = false;
 		this.up = false;
@@ -78,7 +78,7 @@ public class Centipede extends Entity {
 			this.up = false;
 		} else if (this.right && !getIsPaused()) { // Go right
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 1, this.getCenterPoint().getY());
-			if (checkCollision(nextMove) == null && nextMove.getX() <= 391) {
+			if ((checkCollision(nextMove) == null || !checkCollision(nextMove).getClass().equals(Mushroom.class)) && nextMove.getX() <= 391) {
 				setCenterPoint(nextMove);
 			} else if (checkCollision(nextMove) != null && checkCollision(nextMove).getClass().equals(Player.class)) {
 				setCenterPoint(nextMove);
@@ -89,7 +89,7 @@ public class Centipede extends Entity {
 			}
 		} else if (!this.right && !getIsPaused()) { // Go left
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() - 1, this.getCenterPoint().getY());
-			if (checkCollision(nextMove) == null && nextMove.getX() >= 10) {
+			if ((checkCollision(nextMove) == null || !checkCollision(nextMove).getClass().equals(Mushroom.class)) && nextMove.getX() >= 10) {
 				setCenterPoint(nextMove);
 			} else if (checkCollision(nextMove) != null && checkCollision(nextMove).getClass().equals(Player.class)) {
 				setCenterPoint(nextMove);
