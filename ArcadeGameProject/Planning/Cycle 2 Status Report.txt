@@ -1,5 +1,4 @@
-Centipede still has a weird bug where it tunnels through vertical mushrooms and goes
-through the player.
+Centipede still has a weird bug where it tunnels through vertical mushroom stacks.
 
 Documentation still not complete.
 
@@ -25,3 +24,5 @@ Approx Work Time: 1 Hour
 Report: Originally had an issue where bullet was killed before doing damage to mushroom
 or bullet was not killed and instagibbed all mushrooms in its path, fixed by checking whether
 the bullet should die the tick after checking its collision
+We're going to implement a better way to show they've lost health later. Probably if
+we have time to make them images.
