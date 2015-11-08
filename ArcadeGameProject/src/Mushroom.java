@@ -38,9 +38,7 @@ public class Mushroom extends Entity {
 	@Override
 	public void updatePosition() {
 		if (checkCollision(getCenterPoint()) != null
-				&& checkCollisionBottom(getCenterPoint())
 				&& checkCollision(getCenterPoint()).getClass().equals(RapidFire.class)) {
-			System.out.println("I have been hit");
 			this.takeDamage();
 		}
 		if (this.getHealth() == 0) {

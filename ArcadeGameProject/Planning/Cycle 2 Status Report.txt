@@ -1,11 +1,13 @@
 • Classic centipede monster, with classic motion
-Approx Work Time: Ouch... rather not record but esaily 3 days worth of time
-Report:
+Approx Work Time: Ouch... rather not record but easily 4 days worth of time
+Report: Original collision detection methods were not working, so they were changed.
+Got centipede working/moving as a single head, then implemented an add head method.
 
 • Killing the hero
-Approx Work Time: 10 minutes
+Approx Work Time: 20 minutes
 Report: Had an issue where I forgot to use the getClass method to check the type of entity
-the player was colliding with
+the player was colliding with.  Also had to add an if-statement that allows centipede to move through
+player to allow collision.
 
 • Killing the centipede
 Approx Work Time:

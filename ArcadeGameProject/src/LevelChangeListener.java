@@ -19,6 +19,12 @@ public class LevelChangeListener implements KeyListener {
 		} else if (e.getKeyCode() == 68) { // "d" key
 			newLevel--;
 			this.world.loadLevel(newLevel);
+		} else if (e.getKeyCode() == 80) { // "p" key
+			if (!this.world.getIsPaused()) {
+				this.world.setIsPaused(true);
+			} else if (this.world.getIsPaused()) {
+				this.world.setIsPaused(false);
+			}
 		}
 	}
 
