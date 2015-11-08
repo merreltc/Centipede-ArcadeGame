@@ -97,7 +97,7 @@ public class Player extends Entity {
 	
 	public boolean collisionCentipede(Point2D nextMove) {
 		if(checkCollision(nextMove) != null 
-				&& checkCollision(nextMove).getClass().equals(Centipede.class)){
+				&& checkCollision(nextMove).getClass().equals(CentipedeSegment.class)){
 			return true;
 		}
 		return false;

@@ -107,5 +107,4 @@ public class CentipedeSegment extends Entity {
 		// "\nY = " + getCenterPoint().getY());
 
 	}
-
 }
