@@ -40,9 +40,8 @@ public abstract class Weapon extends Entity {
 			currY -= (this.velocity);
 			nextMove = new Point2D.Double(getCenterPoint().getX(), currY);
 
-			if (canMoveUp(nextMove)) {
-				setCenterPoint(nextMove);
-			} else {
+			setCenterPoint(nextMove);
+			if (!canMoveUp(nextMove)) {
 				this.takeDamage();
 			}
 		} else {
