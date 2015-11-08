@@ -1,45 +1,41 @@
 import java.awt.Color;
 import java.awt.geom.Point2D;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Centipede {
 
 	private Color color;
 	private boolean right, down, up, lastVert, moveRight;
-	private LinkedList<CentipedeSegment> centipede;
+	private ArrayList<CentipedeSegment> centipede;
 	private World world;
 
 	public Centipede(World world, boolean moveRight) {
-		this.centipede = new LinkedList<CentipedeSegment>();
+		this.centipede = new ArrayList<CentipedeSegment>();
 		this.world = world;
 		this.moveRight = moveRight;
 	}
 
 	public void split(CentipedeSegment segment) {
 		int index = this.centipede.indexOf(segment);
-		Centipede firstHalf = new Centipede(this.world, !this.moveRight);
-		Centipede secondHalf = new Centipede(this.world, this.moveRight);
+		Centipede firstHalf = new Centipede(this.world, true);
+		Centipede secondHalf = new Centipede(this.world, false);
+		
 		for (int k = 0; k < index; k++) {
 			firstHalf.addHead(this.centipede.get(k).getCenterPoint());
+			this.centipede.get(k).die();
 		}
 		for (int k = index + 1; k < this.centipede.size(); k++) {
 			secondHalf.addHead(this.centipede.get(k).getCenterPoint());
+			this.world.removeEntity(this.centipede.get(k));
 		}
-		die();
 	}
 
 	public void addHead(Point2D center) {
 		CentipedeSegment segment = new CentipedeSegment(this.world, center, this);
 		this.centipede.add(segment);
-		this.centipede.get(0).setDirection(this.moveRight);
+		this.centipede.get(this.centipede.size()-1).setDirection(this.moveRight);
 		this.world.addEntity(segment);
 	}
-
-	public void die() {
-		for (int k = 0; k < this.centipede.size(); k++) {
-			CentipedeSegment head = this.centipede.get(k);
-			this.world.removeEntity(head);
-		}
-
-	}
+	
+	
 }
