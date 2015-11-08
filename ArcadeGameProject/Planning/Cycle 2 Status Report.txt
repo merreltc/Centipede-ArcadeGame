@@ -1,3 +1,8 @@
+Centipede still has a weird bug where it tunnels through vertical mushrooms and goes
+through the player.
+
+Documentation still not complete.
+
 • Classic centipede monster, with classic motion
 Approx Work Time: Ouch... rather not record but easily 4 days worth of time
 Report: Original collision detection methods were not working, so they were changed.
@@ -10,8 +15,10 @@ the player was colliding with.  Also had to add an if-statement that allows cent
 player to allow collision.
 
 • Killing the centipede
-Approx Work Time:
-Report:
+Approx Work Time: 2 hours
+Report: We had some trouble with the splitting of the centipede.  We decided to make
+a new class to represent centipede segments and a centipede class to hold those
+segments. 
 
 • Destroying the mushrooms
 Approx Work Time: 1 Hour
