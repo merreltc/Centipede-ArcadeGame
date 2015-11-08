@@ -104,7 +104,7 @@ public class World implements Drawable, Temporal {
 						break;
 
 					case 2:
-						addEntity(new Centipede(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						addEntity(new CentipedeSegment(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2), new Centipede(this, true)));
 						break;
 
 					case 3:
@@ -121,6 +121,35 @@ public class World implements Drawable, Temporal {
 			this.level = levelToLoad;
 		} catch (FileNotFoundException e) {
 			loadLevel(this.level);
+		}
+		
+		if(levelToLoad == 1) {
+			Centipede centipede = new Centipede(this, true);
+			centipede.addHead(new Point2D.Double(30,10));
+			centipede.addHead(new Point2D.Double(50,10));
+			centipede.addHead(new Point2D.Double(70,10));
+			centipede.addHead(new Point2D.Double(90,10));
+			centipede.addHead(new Point2D.Double(110,10));
+		} else if(levelToLoad == 2) {
+			Centipede centipede = new Centipede(this, true);
+			centipede.addHead(new Point2D.Double(30,10));
+			centipede.addHead(new Point2D.Double(50,10));
+			centipede.addHead(new Point2D.Double(70,10));
+			
+			Centipede head = new Centipede(this, false);
+			head.addHead(new Point2D.Double(90,10));
+		
+		} else if(levelToLoad == 3) {
+			Centipede centipede = new Centipede(this, true);
+			centipede.addHead(new Point2D.Double(30,10));
+			centipede.addHead(new Point2D.Double(50,10));
+			centipede.addHead(new Point2D.Double(70,10));
+			
+			Centipede head1 = new Centipede(this, false);
+			head1.addHead(new Point2D.Double(90,10));
+			
+			Centipede head2 = new Centipede(this, true);
+			head2.addHead(new Point2D.Double(110,50));
 		}
 		this.setIsPaused(false);
 	}
