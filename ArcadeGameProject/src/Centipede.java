@@ -6,14 +6,15 @@ import java.awt.geom.Point2D;
 public class Centipede extends Entity {
 
 	private Color color;
-	private boolean right, down;
-
+	private boolean right, down, up, lastVert;
 	public Centipede(World world, Point2D centerPoint) {
 		super(world, centerPoint);
 		this.color = Color.MAGENTA;
-		this.radius = 10;
-		this.right = false;
-		this.down = true;
+		this.radius = 9;
+		this.right = true;
+		this.down = false;
+		this.up = false;
+		this.lastVert = true; // true = down, false = up
 	}
 
 	@Override
@@ -30,40 +31,47 @@ public class Centipede extends Entity {
 	public void updatePosition() {
 		Point2D nextMove;
 
-		if (this.down && this.getCenterPoint().getY() <= 425) {
-			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 1);
-			if (!checkCollisionBottom(nextMove)) {
+		if (this.down && this.lastVert) { // Go down
+			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 20);
+			if (!checkCollisionBottom(nextMove) && nextMove.getY() <= 395) {
 				setCenterPoint(nextMove);
-			} else {
-				this.down = true;
+			} else if(nextMove.getY() > 405) {
+				this.up = true;
+				this.lastVert = !this.lastVert;
 			}
-		} else if (this.right && this.getCenterPoint().getX() <= 389) { // Go
-																		// right
-			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 1, this.getCenterPoint().getY());
-			if (checkCollision(nextMove) == null) {
+			this.down = false;
+		} else if (this.up && !this.lastVert) {
+			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 20);
+			if (!checkCollisionTop(nextMove) && nextMove.getY() >= 10) {
+				setCenterPoint(nextMove);
+			} else if(nextMove.getY() < 10) {
+				this.down = true;
+				this.lastVert = !this.lastVert;
+			}
+			this.up = false;
+		} else if (this.right) { // Go right
+			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 3, this.getCenterPoint().getY());
+			if (checkCollision(nextMove) == null && nextMove.getX() <= 391) {
 				setCenterPoint(nextMove);
 			} else {
 				this.right = false;
-				// this.down = true;
+				this.down = this.lastVert;
+				this.up = !this.lastVert;
 			}
-		}
-		// } else if (!this.right && this.getCenterPoint().getX() >= 10) { // Go
-		// left
-		// nextMove = new Point2D.Double(this.getCenterPoint().getX() - 1,
-		// this.getCenterPoint().getY());
-		// if (checkCollision(nextMove) == null) {
-		// setCenterPoint(nextMove);
-		// } else {
-		// this.right = true;
-		// // this.down = true;
-		// }
-		// }
-	}
-
-	public boolean canMoveDown(Point2D nextMove) {
-		if (checkCollision(nextMove) != null) {
-			return !checkCollisionBottom(nextMove);
-		}
-		return true;
+		} else if (!this.right) { // Go left
+			nextMove = new Point2D.Double(this.getCenterPoint().getX() - 3, this.getCenterPoint().getY());
+			if (checkCollision(nextMove) == null && nextMove.getX() >= 10) {
+				setCenterPoint(nextMove);
+			} else {
+				this.right = true;
+				this.down = this.lastVert;
+				this.up = !this.lastVert;
+			}
+		 }
+//		System.out.println("Collision? " + checkCollision(getCenterPoint()) +
+//				"\nCollision bottom? " + checkCollisionBottom(getCenterPoint()) +
+//				"\nCollision top? " + checkCollisionTop(getCenterPoint()) +
+//				"\nX = " + getCenterPoint().getX() +
+//				"\nY = " + getCenterPoint().getY());
 	}
 }
