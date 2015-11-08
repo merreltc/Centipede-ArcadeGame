@@ -90,7 +90,7 @@ public abstract class Entity implements Drawable, Temporal {
 			Entity e = (Entity) d;
 			if (e != this && Math.abs(e.getCenterPoint().getX() - testMove.getX()) == 0
 					&& Math.abs(e.getCenterPoint().getY() - testMove.getY()) <= this.getRadius() + e.getRadius()
-					&& e.getCenterPoint().getY() > testMove.getY()) {
+					&& e.getCenterPoint().getY() > testMove.getY() && e.getClass().equals(Mushroom.class)) {
 
 				return true;
 			}

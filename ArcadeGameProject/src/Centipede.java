@@ -12,8 +12,8 @@ public class Centipede extends Entity {
 		super(world, centerPoint);
 		this.color = Color.MAGENTA;
 		this.radius = 10;
-		this.right = true;
-		this.down = false;
+		this.right = false;
+		this.down = true;
 	}
 
 	@Override
@@ -30,21 +30,34 @@ public class Centipede extends Entity {
 	public void updatePosition() {
 		Point2D nextMove;
 
-		if (this.right && this.getCenterPoint().getX() < 389) { // Go right
-			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 1, this.getCenterPoint().getY());
-			if (checkCollision(nextMove) == null) {
-				this.setCenterPoint(nextMove);
-				return;
+		if (this.down && this.getCenterPoint().getY() <= 425) {
+			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 1);
+			if (!checkCollisionBottom(nextMove)) {
+				setCenterPoint(nextMove);
 			} else {
 				this.down = true;
 			}
-		} else if (this.down && this.getCenterPoint().getY() < 389) {
-			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 20);
-			if (canMoveDown(nextMove)) {
+		} else if (this.right && this.getCenterPoint().getX() <= 389) { // Go
+																		// right
+			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 1, this.getCenterPoint().getY());
+			if (checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
+			} else {
+				this.right = false;
+				// this.down = true;
 			}
-			this.down = false;
 		}
+		// } else if (!this.right && this.getCenterPoint().getX() >= 10) { // Go
+		// left
+		// nextMove = new Point2D.Double(this.getCenterPoint().getX() - 1,
+		// this.getCenterPoint().getY());
+		// if (checkCollision(nextMove) == null) {
+		// setCenterPoint(nextMove);
+		// } else {
+		// this.right = true;
+		// // this.down = true;
+		// }
+		// }
 	}
 
 	public boolean canMoveDown(Point2D nextMove) {
