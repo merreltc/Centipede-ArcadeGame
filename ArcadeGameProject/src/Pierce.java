@@ -1,29 +1,32 @@
+import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
-/**
- * 
- * TODO Put here a description of what this class does.
- *
- * @author Trinity Merrell and Walter Panfil.
- *         Created Oct 28, 2015.
- */
 public class Pierce extends Weapon {
-
+	
 	public Pierce(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		this.velocity = 15;
+		this.health = 20;
+		this.rateOfFire = 30;
+		this.radius = 2.5;
+	}
+
+	@Override
+	public Color getColor() {
+		return Color.YELLOW;
+	}
+	
+	@Override
+	public Shape getShape() {
+		return new Ellipse2D.Double(getCenterPoint().getX() - 5, getCenterPoint().getY()-2.5, 5, 20);
 	}
 
 	@Override
 	public void shoot(Point2D centerPoint) {
-		RapidFire shot = new RapidFire(this.getWorld(), centerPoint);
+		Pierce shot = new Pierce(this.getWorld(), centerPoint);
 		this.getWorld().addEntity(shot);
-	}
-
-	@Override
-	public Shape getShape() {
-		return new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
 	}
 
 }
