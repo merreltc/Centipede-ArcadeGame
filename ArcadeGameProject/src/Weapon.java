@@ -9,13 +9,14 @@ import java.awt.geom.Point2D;
  */
 public abstract class Weapon extends Entity {
 
-	private int rateOfFire;
+	protected int rateOfFire;
+	private int cooldown;
 	private double velocity;
 
 	public Weapon(World world, Point2D centerPoint) {
 		super(world, centerPoint);
 		this.velocity = 3;
-		this.rateOfFire = 1;
+		this.cooldown = 0;
 		this.health = 1;
 		this.radius = 7;
 	}
@@ -47,8 +48,20 @@ public abstract class Weapon extends Entity {
 			die();
 		}
 	}
+	
+	public boolean readyToFire(){
+		return this.cooldown == 0;
+	}
+	
+	public void cooldown(){
+		this.cooldown --;
+	}
+	
+	public void overheat(){
+		this.cooldown = this.rateOfFire;
+	}
 
-	public boolean canMoveUp(Point2D nextMove) {
+	private boolean canMoveUp(Point2D nextMove) {
 		if (checkCollision(nextMove) != null) {
 			return false;
 		}
