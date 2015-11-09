@@ -100,7 +100,10 @@ public class World implements Drawable, Temporal {
 				for (int column = 0; column < 20; column++) {
 					switch (loader.nextInt()) {
 					case 1:
-						addEntity(new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						Mushroom m = new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2));
+						if(Math.random() > 0.85)
+							m.setPoisoned(true);
+						addEntity(m);
 						break;
 
 					case 2:
