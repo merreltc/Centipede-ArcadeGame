@@ -22,7 +22,7 @@ public class GameComponent extends JComponent {
 	private Entity selectedEntity = null;
 
 	/**
-	 * Constructs a component for rendering the given ball environment on the
+	 * Constructs a component for rendering the Centipede environment on the
 	 * GUI.
 	 * 
 	 * @param world
@@ -34,6 +34,7 @@ public class GameComponent extends JComponent {
 		addKeyListener(levelHandler);
 		PlayerListener playerHandler = new PlayerListener(world);
 		addKeyListener(playerHandler);
+
 
 		// Creates a separate "thread of execution" to trigger periodic
 		// repainting of this component.

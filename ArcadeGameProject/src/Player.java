@@ -32,6 +32,10 @@ public class Player extends Entity {
 			this.currentWeapon.overheat();
 		}
 	}
+	
+	public int getLives() {
+		return this.lives;
+	}
 
 	@Override
 	public Color getColor() {
@@ -58,6 +62,7 @@ public class Player extends Entity {
 
 		if (getHealth() == 0) {
 			die();
+			this.lives--;
 			this.getWorld().setIsPaused(true);
 		}
 

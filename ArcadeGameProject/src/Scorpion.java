@@ -3,12 +3,15 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 
 public class Scorpion extends Entity{
+	
+	private final int VELOCITY = 1;
+	private int VALUE = 1000;
+	
 	public Scorpion(World world, Point2D centerPoint) {
 		super(world, centerPoint);
 		// TODO Auto-generated constructor stub.
 	}
-	private final int VELOCITY = 1;
-	private int SCORE_VALUE = 1000;
+
 	@Override
 	public Color getColor() {
 		// TODO Auto-generated method stub.

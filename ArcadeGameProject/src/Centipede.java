@@ -38,5 +38,9 @@ public class Centipede {
 		this.world.addEntity(segment);
 	}
 	
+	public ArrayList<CentipedeSegment> getList() {
+		return this.centipede;
+	}
+	
 	
 }

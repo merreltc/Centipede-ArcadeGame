@@ -3,13 +3,14 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 
 public class Flea extends Entity{
+	
+	private final int VELOCITY = 2;
+	private final int VALUE = 500;
+	
 	public Flea(World world, Point2D centerPoint) {
 		super(world, centerPoint);
 		// TODO Auto-generated constructor stub.
 	}
-
-	private final int VELOCITY = 2;
-	private final int SCORE_VALUE = 500;
 	
 	public void spawnMushroom(){
 		if(Math.random() > .75)
