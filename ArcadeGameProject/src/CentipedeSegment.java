@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 
 public class CentipedeSegment extends Entity {
 
+	private final int VALUE = 100;
 	private Color color;
 	private boolean right, down, up, lastVert;
 	private Centipede centipede;
@@ -39,8 +40,11 @@ public class CentipedeSegment extends Entity {
 
 	@Override
 	public void updatePosition() {
-		if (this.getHealth() == 0)
+		if (this.getHealth() == 0) {
+			this.getWorld().setScore(this.VALUE);
 			this.die();
+			this.getWorld().decreaseCentipedesLeft();
+		}
 		
 		if (checkCollision(getCenterPoint()) != null
 				&& checkCollision(getCenterPoint()).getClass().equals(RapidFire.class)) {
@@ -53,7 +57,7 @@ public class CentipedeSegment extends Entity {
 
 		if (this.down && this.lastVert && !getIsPaused()) { // Go down
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 20);
-			if (!checkCollisionBottom(nextMove) && nextMove.getY() <= 405) {
+			if (nextMove.getY() <= 405) {
 				setCenterPoint(nextMove);
 			} else if (nextMove.getY() >= 405) {
 				this.up = true;
@@ -63,7 +67,7 @@ public class CentipedeSegment extends Entity {
 		} else if (this.up && !this.lastVert && !getIsPaused()) { // Go up
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 20);
 
-			if (!checkCollisionTop(nextMove) && nextMove.getY() >= 10) {
+			if (nextMove.getY() >= 10) {
 				setCenterPoint(nextMove);
 			} else if (checkCollisionTop(nextMove)) {
 				if (this.right) { // Go right
@@ -75,7 +79,6 @@ public class CentipedeSegment extends Entity {
 				this.down = true;
 				this.lastVert = !this.lastVert;
 			}
-
 			this.up = false;
 		} else if (this.right && !getIsPaused()) { // Go right
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 4, this.getCenterPoint().getY());

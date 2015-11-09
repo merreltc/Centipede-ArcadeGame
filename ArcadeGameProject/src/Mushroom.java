@@ -43,6 +43,7 @@ public class Mushroom extends Entity {
 			this.takeDamage();
 		}
 		if (this.getHealth() == 0) {
+			this.getWorld().setScore(10);
 			die();
 		}
 	}
