@@ -36,6 +36,19 @@ public class Player extends Entity {
 	public int getLives() {
 		return this.lives;
 	}
+	
+	public void setCurrentWeapon(int weapon) {
+		if(weapon == 1 ) {
+			this.currentWeapon = new RapidFire(getWorld(),
+					new Point2D.Double(this.getCenterPoint().getX() + 7.5, this.getCenterPoint().getY() - 10));
+		} else if (weapon == 2) {
+			this.currentWeapon = new Pierce(getWorld(),
+					new Point2D.Double(this.getCenterPoint().getX() + 7.5, this.getCenterPoint().getY() - 10));
+		} else if (weapon == 3) {
+			this.currentWeapon = new Explode(getWorld(),
+					new Point2D.Double(this.getCenterPoint().getX() + 7.5, this.getCenterPoint().getY() - 10));
+		}
+	}
 
 	@Override
 	public Color getColor() {

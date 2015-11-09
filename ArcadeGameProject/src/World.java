@@ -36,6 +36,7 @@ public class World implements Drawable, Temporal {
 		this.background = new Rectangle2D.Double(0, 0, 400, 400);
 		this.score = 0;
 		this.level = 1;
+		this.centipedesLeft = 10;
 
 		// Creates a separate "thread of execution" to inform this world of the
 		// passage of time.
@@ -132,28 +133,26 @@ public class World implements Drawable, Temporal {
 			centipede.addHead(new Point2D.Double(30,10));
 			centipede.addHead(new Point2D.Double(50,10));
 			centipede.addHead(new Point2D.Double(70,10));
-//			centipede.addHead(new Point2D.Double(90,10));
-//			centipede.addHead(new Point2D.Double(110,10));
-//			centipede.addHead(new Point2D.Double(130,10));
-//			centipede.addHead(new Point2D.Double(150,10));
-//			centipede.addHead(new Point2D.Double(170,10));
-			this.centipedesLeft = centipede.getList().size();
+			centipede.addHead(new Point2D.Double(90,10));
+			centipede.addHead(new Point2D.Double(110,10));
+			centipede.addHead(new Point2D.Double(130,10));
+			centipede.addHead(new Point2D.Double(150,10));
+			centipede.addHead(new Point2D.Double(170,10));
 			
 		} else if(levelToLoad == 2) {
 			Centipede centipede = new Centipede(this, true);
 			centipede.addHead(new Point2D.Double(10,10));
 			centipede.addHead(new Point2D.Double(30,10));
 			centipede.addHead(new Point2D.Double(50,10));
-//			centipede.addHead(new Point2D.Double(70,10));
-//			centipede.addHead(new Point2D.Double(90,10));
-//			centipede.addHead(new Point2D.Double(110,10));
-//			centipede.addHead(new Point2D.Double(130,10));
-//			centipede.addHead(new Point2D.Double(150,10));
-//			centipede.addHead(new Point2D.Double(170,10));
+			centipede.addHead(new Point2D.Double(70,10));
+			centipede.addHead(new Point2D.Double(90,10));
+			centipede.addHead(new Point2D.Double(110,10));
+			centipede.addHead(new Point2D.Double(130,10));
+			centipede.addHead(new Point2D.Double(150,10));
+			centipede.addHead(new Point2D.Double(170,10));
 			
 			Centipede head = new Centipede(this, false);
-			head.addHead(new Point2D.Double(70,10));
-			this.centipedesLeft += head.getList().size();
+			head.addHead(new Point2D.Double(190,10));
 		
 		} else if(levelToLoad == 3) {
 			Centipede centipede = new Centipede(this, true);
@@ -165,15 +164,12 @@ public class World implements Drawable, Temporal {
 			centipede.addHead(new Point2D.Double(130,10));
 			centipede.addHead(new Point2D.Double(150,10));
 			centipede.addHead(new Point2D.Double(170,10));
-			this.centipedesLeft = centipede.getList().size();
 			
 			Centipede head1 = new Centipede(this, false);
 			head1.addHead(new Point2D.Double(190,10));
-			this.centipedesLeft += head1.getList().size();
 			
 			Centipede head2 = new Centipede(this, true);
 			head2.addHead(new Point2D.Double(210,10));
-			this.centipedesLeft = head2.getList().size();
 		}
 		this.setIsPaused(false);
 	}
@@ -218,6 +214,10 @@ public class World implements Drawable, Temporal {
 			this.entitiesToRemove.clear();
 			this.entities.addAll(this.entitiesToAdd);
 			this.entitiesToAdd.clear();
+		}
+		System.out.println(this.centipedesLeft);
+		if(this.centipedesLeft == 0) {
+			loadLevel(this.level + 1);
 		}
 	}
 
