@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.geom.Point2D;
 
 /**
@@ -11,22 +10,15 @@ public abstract class Weapon extends Entity {
 
 	protected int rateOfFire;
 	private int cooldown;
-	private double velocity;
+	protected double velocity;
 
 	public Weapon(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		this.velocity = 3;
 		this.cooldown = 0;
-		this.health = 1;
 		this.radius = 7;
 	}
 
 	public abstract void shoot(Point2D centerPoint);
-
-	@Override
-	public Color getColor() {
-		return Color.PINK;
-	}
 
 	@Override
 	public void updatePosition() {
@@ -47,6 +39,11 @@ public abstract class Weapon extends Entity {
 		} else {
 			die();
 		}
+	}
+	
+	@Override
+	public double getRadius() {
+		return this.radius;
 	}
 	
 	public boolean readyToFire(){

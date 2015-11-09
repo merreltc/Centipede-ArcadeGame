@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -26,6 +27,12 @@ public class Explode extends Weapon {
 	@Override
 	public Shape getShape() {
 		return new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub.
+		return null;
 	}
 
 }

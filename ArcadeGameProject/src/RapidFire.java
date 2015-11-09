@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -14,13 +15,15 @@ public class RapidFire extends Weapon {
 
 	public RapidFire(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		this.velocity = 3;
+		this.health = 1;
 		this.rateOfFire = 10;
 		this.radius = 2.5;
 	}
 	
 	@Override
-	public double getRadius() {
-		return this.radius;
+	public Color getColor() {
+		return Color.PINK;
 	}
 
 	@Override
