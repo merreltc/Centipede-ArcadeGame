@@ -12,27 +12,34 @@ import java.awt.geom.Point2D;
  */
 public class Explode extends Weapon {
 	
-	private final int RADIUS = 5;
 
 	public Explode(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		this.velocity = 2;
+		this.health = 1;
+		this.radius = 5;
+		this.rateOfFire = 30;
 	}
 
 	@Override
 	public void shoot(Point2D centerPoint) {
-		RapidFire shot = new RapidFire(this.getWorld(), centerPoint);
+		Explode shot = new Explode(this.getWorld(), centerPoint);
 		this.getWorld().addEntity(shot);
 	}
 
 	@Override
 	public Shape getShape() {
-		return new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 5, 10);
+		return new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 10, 10);
 	}
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub.
-		return null;
+		return Color.RED;
 	}
 
+	@Override
+	public void die(){
+		this.getWorld().addEntity(new Explosion(this.getWorld(), this.getCenterPoint()));
+		super.die();
+	}
 }

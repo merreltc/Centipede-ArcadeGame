@@ -59,7 +59,7 @@ public abstract class Weapon extends Entity {
 	}
 
 	private boolean canMoveUp(Point2D nextMove) {
-		if (checkCollision(nextMove) != null) {
+		if (checkCollision(nextMove) != null && !checkCollision(nextMove).getClass().equals(Player.class)) {
 			return false;
 		}
 		return true;
