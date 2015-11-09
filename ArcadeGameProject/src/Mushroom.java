@@ -23,10 +23,11 @@ public class Mushroom extends Entity {
 
 	@Override
 	public Color getColor() {
+		int poisonColor = 0;
 		if(this.poisoned) {
-			return Color.CYAN;
+			poisonColor = 200;
 		}
-		return new Color(255 / this.getHealth(), 255 / (5 - this.getHealth()), 0);
+		return new Color(255 / this.getHealth(),poisonColor, 255 / (5 - this.getHealth()));
 	}
 
 	@Override
