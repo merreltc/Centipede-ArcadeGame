@@ -14,7 +14,7 @@ public class Mushroom extends Entity {
 	}
 
 	public boolean isPoisoned() {
-		return poisoned;
+		return this.poisoned;
 	}
 
 	public void setPoisoned(boolean poisoned) {
@@ -39,7 +39,7 @@ public class Mushroom extends Entity {
 	@Override
 	public void updatePosition() {
 		if (checkCollision(getCenterPoint()) != null
-				&& checkCollision(getCenterPoint()).getClass().equals(RapidFire.class)) {
+				&& Weapon.class.isAssignableFrom(checkCollision(getCenterPoint()).getClass())) {
 			this.takeDamage();
 		}
 		if (this.getHealth() == 0) {
