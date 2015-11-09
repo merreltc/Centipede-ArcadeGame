@@ -14,7 +14,8 @@ public class RapidFire extends Weapon {
 
 	public RapidFire(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		radius = 2.5;
+		this.rateOfFire = 10;
+		this.radius = 2.5;
 	}
 	
 	@Override
