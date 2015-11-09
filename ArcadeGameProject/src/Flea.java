@@ -9,7 +9,7 @@ public class Flea extends Entity{
 	
 	public Flea(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		// TODO Auto-generated constructor stub.
+		
 	}
 	
 	public void spawnMushroom(){
