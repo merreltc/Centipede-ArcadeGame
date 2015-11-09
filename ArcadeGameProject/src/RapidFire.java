@@ -15,7 +15,7 @@ public class RapidFire extends Weapon {
 
 	public RapidFire(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		this.velocity = 3;
+		this.velocity = 10;
 		this.health = 1;
 		this.rateOfFire = 10;
 		this.radius = 2.5;

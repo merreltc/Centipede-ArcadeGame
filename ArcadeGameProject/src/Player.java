@@ -20,7 +20,7 @@ public class Player extends Entity {
 		this.radius = 9;
 		this.health = 1;
 		this.lives = 3;
-		Weapon weapon = new Pierce(world,
+		Weapon weapon = new RapidFire(world,
 				new Point2D.Double(this.getCenterPoint().getX() + 7.5, this.getCenterPoint().getY() - 10));
 		this.currentWeapon = weapon;
 	}
@@ -69,9 +69,6 @@ public class Player extends Entity {
 		if (!this.currentWeapon.readyToFire()) {
 			this.currentWeapon.cooldown();
 		}
-		
-		if(checkCollision(getCenterPoint()) != null && checkCollision(getCenterPoint()).getClass().equals(Mushroom.class) && ((Mushroom) checkCollision(getCenterPoint())).isPoisoned())
-			this.takeDamage();
 
 		Point2D.Double nextMove;
 
@@ -79,25 +76,29 @@ public class Player extends Entity {
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 3);
 			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
-			}
+			}else if(checkCollision(nextMove).getClass().equals(Mushroom.class) && ((Mushroom) checkCollision(nextMove)).isPoisoned())
+				this.takeDamage();
 		}
 		if (this.down && this.getCenterPoint().getY() < 389) { // Move down
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 3);
 			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
-			}
+			}else if(checkCollision(nextMove).getClass().equals(Mushroom.class) && ((Mushroom) checkCollision(nextMove)).isPoisoned())
+				this.takeDamage();
 		}
 		if (this.left && this.getCenterPoint().getX() > 10) { // Move Left
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() - 3, this.getCenterPoint().getY());
 			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
-			}
+			}else if(checkCollision(nextMove).getClass().equals(Mushroom.class) && ((Mushroom) checkCollision(nextMove)).isPoisoned())
+				this.takeDamage();
 		}
 		if (this.right && this.getCenterPoint().getX() < 387) { // Move Right
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 3, this.getCenterPoint().getY());
 			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
-			}
+			}else if(checkCollision(nextMove).getClass().equals(Mushroom.class) && ((Mushroom) checkCollision(nextMove)).isPoisoned())
+				this.takeDamage();
 		}
 
 		if (collisionCentipede(this.getCenterPoint())) {
