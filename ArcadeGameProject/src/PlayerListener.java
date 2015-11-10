@@ -20,11 +20,11 @@ public class PlayerListener implements KeyListener {
 			this.world.getPlayer().right(true);
 		} else if (e.getKeyCode() == 90) { // shoots bullet
 			this.world.getPlayer().fire();
-		} else if (e.getKeyCode() == 49) { // shoots bullet
+		} else if (e.getKeyCode() == 49) { // switches weapon to RapidFire
 			this.world.getPlayer().setCurrentWeapon(1);
-		} else if (e.getKeyCode() == 50) { // shoots bullet
+		} else if (e.getKeyCode() == 50) { // switches weapon to Pierce
 			this.world.getPlayer().setCurrentWeapon(2);
-		} else if (e.getKeyCode() == 51) { // shoots bullet
+		} else if (e.getKeyCode() == 51) { // switches weapon to Explode
 			this.world.getPlayer().setCurrentWeapon(3);
 		}
 	}
