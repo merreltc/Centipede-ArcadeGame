@@ -59,11 +59,11 @@ public class Player extends Entity {
 	public Shape getShape() {
 		return new Polygon(
 				new int[] { (int) getCenterPoint().getX() - this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getX(), (int) getCenterPoint().getX() + this.getWorld().CELL_WIDTH / 2 },
+						(int) getCenterPoint().getX(),
+						(int) getCenterPoint().getX() + this.getWorld().CELL_WIDTH / 2 },
 				new int[] { (int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH / 2,
 						(int) getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH / 2 },
-				3);
+						(int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH / 2 }, 3);
 	}
 
 	@Override

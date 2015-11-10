@@ -118,6 +118,14 @@ public class World implements Drawable, Temporal {
 					case 4:
 						addEntity(new Flea(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
 						break;
+						
+					case 5:
+						addEntity(new Scorpion(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						break;
+						
+					case 6:
+						addEntity(new Spider(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						break;
 
 					default:
 					}
@@ -223,6 +231,7 @@ public class World implements Drawable, Temporal {
 			}
 		}
 	}
+
 
 	@Override
 	public void die() {
