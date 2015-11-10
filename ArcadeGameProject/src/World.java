@@ -30,7 +30,6 @@ public class World implements Drawable, Temporal {
 	private int score;
 	private int level;
 	private Player player;
-	private int centipedesLeft;
 
 	public World() {
 		this.background = new Rectangle2D.Double(0, 0, 400, 400);
@@ -143,7 +142,6 @@ public class World implements Drawable, Temporal {
 			centipede.addHead(new Point2D.Double(150,10));
 			centipede.addHead(new Point2D.Double(170,10));
 			centipede.addHead(new Point2D.Double(190,10));
-			this.centipedesLeft = 10;
 			
 		} else if(levelToLoad == 2) {
 			Centipede centipede = new Centipede(this, true);
@@ -159,7 +157,6 @@ public class World implements Drawable, Temporal {
 			
 			Centipede head = new Centipede(this, false);
 			head.addHead(new Point2D.Double(190,10));
-			this.centipedesLeft = 10;
 		
 		} else if(levelToLoad == 3) {
 			Centipede centipede = new Centipede(this, true);
@@ -177,7 +174,6 @@ public class World implements Drawable, Temporal {
 			
 			Centipede head2 = new Centipede(this, true);
 			head2.addHead(new Point2D.Double(210,10));
-			this.centipedesLeft = 10;
 		}
 		this.setIsPaused(false);
 	}
@@ -211,19 +207,20 @@ public class World implements Drawable, Temporal {
 	@Override
 	public synchronized void timePassed() {
 		if (!this.isPaused) {
-			for (Temporal t : this.entities) {
-				t.timePassed();
-				if (t.getClass().equals(CentipedeSegment.class)) {
-					centipedesLeft++;
-				}
-			}
-			if(this.centipedesLeft == 0) {
-				System.out.println("LEVELUP!");
-			}
 			this.entities.removeAll(this.entitiesToRemove);
 			this.entitiesToRemove.clear();
 			this.entities.addAll(this.entitiesToAdd);
 			this.entitiesToAdd.clear();
+			
+			boolean centipedesRemain = false;
+			for (Temporal t : this.entities) {
+				t.timePassed();
+				if(t.getClass().equals(CentipedeSegment.class))
+					centipedesRemain = true;
+			}
+			if(!centipedesRemain) {
+				this.loadLevel(this.getLevel()+1);
+			}
 		}
 	}
 
