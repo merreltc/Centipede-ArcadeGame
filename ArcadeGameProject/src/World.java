@@ -116,6 +116,10 @@ public class World implements Drawable, Temporal {
 						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2));
 						addEntity(this.player);
 						break;
+						
+					case 4:
+						addEntity(new Flea(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						break;
 
 					default:
 					}

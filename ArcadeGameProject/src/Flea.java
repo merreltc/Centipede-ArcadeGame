@@ -1,10 +1,10 @@
 import java.awt.Color;
+import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 
 public class Flea extends Entity{
 	
-	private final int VELOCITY = 2;
 	private final int VALUE = 500;
 	
 	public Flea(World world, Point2D centerPoint) {
@@ -13,50 +13,37 @@ public class Flea extends Entity{
 	}
 	
 	public void spawnMushroom(){
-		if(Math.random() > .75)
-			new Mushroom(this.getWorld(), this.getCenterPoint());
+		if(Math.random() > .75){
+			Mushroom m = new Mushroom(this.getWorld(), this.getCenterPoint());
+			this.getWorld().addEntity(m);
+		}
 	}
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub.
-		return null;
+		return Color.PINK;
 	}
 
 	@Override
 	public Shape getShape() {
-		// TODO Auto-generated method stub.
-		return null;
-	}
-
-	@Override
-	public void timePassed() {
-		// TODO Auto-generated method stub.
-		
-	}
-
-	@Override
-	public void die() {
-		// TODO Auto-generated method stub.
-		
-	}
-
-	@Override
-	public void setIsPaused(boolean isPaused) {
-		// TODO Auto-generated method stub.
-		
-	}
-
-	@Override
-	public boolean getIsPaused() {
-		// TODO Auto-generated method stub.
-		return false;
+		return new Polygon(
+				new int[] { (int) getCenterPoint().getX() - this.getWorld().CELL_WIDTH / 2,
+						(int) getCenterPoint().getX(), (int) getCenterPoint().getX() + this.getWorld().CELL_WIDTH / 2 },
+				new int[] { (int) getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2,
+						(int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH / 2,
+						(int) getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2 },
+				3);
 	}
 
 	@Override
 	public void updatePosition() {
-		// TODO Auto-generated method stub.
-		
+		this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY()+5));
+		if(this.checkCollision(getCenterPoint()) != null && Weapon.class.isAssignableFrom(checkCollision(getCenterPoint()).getClass()))
+			this.die();
+		if(this.getCenterPoint().getY() % 20 == 10)
+			this.spawnMushroom();
+		if(this.getCenterPoint().getY() > 400)
+			this.die();
 	}
 }
 

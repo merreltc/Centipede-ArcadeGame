@@ -1,10 +1,10 @@
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 public class Scorpion extends Entity{
 	
-	private final int VELOCITY = 1;
 	private int VALUE = 1000;
 	
 	public Scorpion(World world, Point2D centerPoint) {
@@ -15,36 +15,15 @@ public class Scorpion extends Entity{
 	@Override
 	public Color getColor() {
 		// TODO Auto-generated method stub.
-		return null;
+		return Color.WHITE;
 	}
 	@Override
 	public Shape getShape() {
-		// TODO Auto-generated method stub.
-		return null;
-	}
-	@Override
-	public void timePassed() {
-		// TODO Auto-generated method stub.
-		
-	}
-	@Override
-	public void die() {
-		// TODO Auto-generated method stub.
-		
-	}
-	@Override
-	public void setIsPaused(boolean isPaused) {
-		// TODO Auto-generated method stub.
-		
-	}
-	@Override
-	public boolean getIsPaused() {
-		// TODO Auto-generated method stub.
-		return false;
+		return new Rectangle2D.Double(this.getCenterPoint().getX() - this.getWorld().CELL_WIDTH / 2,
+				this.getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2, 20, 20);
 	}
 	@Override
 	public void updatePosition() {
-		// TODO Auto-generated method stub.
 		
 	}
 

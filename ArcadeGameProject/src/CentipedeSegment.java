@@ -48,7 +48,7 @@ public class CentipedeSegment extends Entity {
 		if (checkCollision(getCenterPoint()) != null
 				&& Weapon.class.isAssignableFrom(checkCollision(getCenterPoint()).getClass())) {
 			this.takeDamage();
-			this.getWorld().decreaseCentipedesLeft();
+			//this.getWorld().decreaseCentipedesLeft();
 			this.centipede.split(this);
 			return;
 		}
