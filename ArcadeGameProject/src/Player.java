@@ -76,7 +76,7 @@ public class Player extends Entity {
 		if (getHealth() == 0) {
 			die();
 			this.lives--;
-			this.getWorld().setIsPaused(true);
+			getWorld().loadLevel(this.getWorld().getLevel());
 		}
 
 		if (!this.currentWeapon.readyToFire()) {
