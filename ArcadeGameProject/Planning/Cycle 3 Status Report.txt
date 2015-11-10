@@ -3,16 +3,19 @@ Approx Work Time:
 Report: 
 
 • All kinds of guns
-Approx Work Time: 
-Report: 
+Approx Work Time: 1.5 hours
+Report: Used inheritence checks to make all guns do damage which worked with no issues
+Modified bullet collisions to cause large bullets to not break on player
+Maded exploding bullets create a secondary weapon that is another subclass of weapon
 
 • Poison mushrooms
 Approx Work Time: 
 Report: 
 
 • Going between levels on victory
-Approx Work Time: 
-Report: 
+Approx Work Time: 1 hour 
+Report: Tried to implement counter with number of centipede segments remaining
+That failed so implemented a check if any were still on the board instead
 
 • Everything else in the basic game
 Approx Work Time: 
