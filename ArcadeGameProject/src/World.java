@@ -36,7 +36,6 @@ public class World implements Drawable, Temporal {
 		this.background = new Rectangle2D.Double(0, 0, 400, 400);
 		this.score = 0;
 		this.level = 1;
-		this.centipedesLeft = 10;
 
 		// Creates a separate "thread of execution" to inform this world of the
 		// passage of time.
@@ -134,6 +133,7 @@ public class World implements Drawable, Temporal {
 		
 		if(levelToLoad == 1) {
 			Centipede centipede = new Centipede(this, true);
+			centipede.addHead(new Point2D.Double(10,10));
 			centipede.addHead(new Point2D.Double(30,10));
 			centipede.addHead(new Point2D.Double(50,10));
 			centipede.addHead(new Point2D.Double(70,10));
@@ -142,6 +142,8 @@ public class World implements Drawable, Temporal {
 			centipede.addHead(new Point2D.Double(130,10));
 			centipede.addHead(new Point2D.Double(150,10));
 			centipede.addHead(new Point2D.Double(170,10));
+			centipede.addHead(new Point2D.Double(190,10));
+			this.centipedesLeft = 10;
 			
 		} else if(levelToLoad == 2) {
 			Centipede centipede = new Centipede(this, true);
@@ -157,6 +159,7 @@ public class World implements Drawable, Temporal {
 			
 			Centipede head = new Centipede(this, false);
 			head.addHead(new Point2D.Double(190,10));
+			this.centipedesLeft = 10;
 		
 		} else if(levelToLoad == 3) {
 			Centipede centipede = new Centipede(this, true);
@@ -174,6 +177,7 @@ public class World implements Drawable, Temporal {
 			
 			Centipede head2 = new Centipede(this, true);
 			head2.addHead(new Point2D.Double(210,10));
+			this.centipedesLeft = 10;
 		}
 		this.setIsPaused(false);
 	}
@@ -203,25 +207,26 @@ public class World implements Drawable, Temporal {
 	public int getScore() {
 		return this.score;
 	}
-	
-	public void decreaseCentipedesLeft() {
-		this.centipedesLeft--;
-	}
 
 	@Override
 	public void timePassed() {
 		if (!this.isPaused) {
+			centipedesLeft = 0;
 			for (Temporal t : this.entities) {
 				t.timePassed();
+				if (t.getClass().equals(CentipedeSegment.class)) {
+					centipedesLeft++;
+				}
+			}
+			System.out.println("Actual centipedes: " + centipedesLeft + "Supposed centipedes left: " + this.centipedesLeft);
+			this.centipedesLeft = centipedesLeft;
+			if(getPlayer() == null || this.centipedesLeft == 0) {
+				
 			}
 			this.entities.removeAll(this.entitiesToRemove);
 			this.entitiesToRemove.clear();
 			this.entities.addAll(this.entitiesToAdd);
 			this.entitiesToAdd.clear();
-		}
-		System.out.println(this.centipedesLeft);
-		if(this.centipedesLeft == 0) {
-			loadLevel(this.level + 1);
 		}
 	}
 

@@ -17,7 +17,7 @@ public class Centipede {
 
 	public void split(CentipedeSegment segment) {
 		int index = this.centipede.indexOf(segment);
-		this.world.addEntity(new Mushroom(world, segment.getCenterPoint()));
+		this.world.addEntity(new Mushroom(this.world, segment.getCenterPoint()));
 		Centipede firstHalf = new Centipede(this.world, true);
 		Centipede secondHalf = new Centipede(this.world, false);
 		
