@@ -209,19 +209,16 @@ public class World implements Drawable, Temporal {
 	}
 
 	@Override
-	public void timePassed() {
+	public synchronized void timePassed() {
 		if (!this.isPaused) {
-			centipedesLeft = 0;
 			for (Temporal t : this.entities) {
 				t.timePassed();
 				if (t.getClass().equals(CentipedeSegment.class)) {
 					centipedesLeft++;
 				}
 			}
-			System.out.println("Actual centipedes: " + centipedesLeft + "Supposed centipedes left: " + this.centipedesLeft);
-			this.centipedesLeft = centipedesLeft;
-			if(getPlayer() == null || this.centipedesLeft == 0) {
-				
+			if(this.centipedesLeft == 0) {
+				System.out.println("LEVELUP!");
 			}
 			this.entities.removeAll(this.entitiesToRemove);
 			this.entitiesToRemove.clear();

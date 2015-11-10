@@ -14,7 +14,6 @@ public class Scorpion extends Entity{
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub.
 		return Color.WHITE;
 	}
 	@Override
