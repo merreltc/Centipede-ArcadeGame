@@ -9,6 +9,9 @@ public class Flea extends Entity{
 	
 	public Flea(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		this.health = 1;
+		this.radius = 9;
+		
 		
 	}
 	
@@ -37,13 +40,26 @@ public class Flea extends Entity{
 
 	@Override
 	public void updatePosition() {
-		this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY()+5));
-		if(this.checkCollision(getCenterPoint()) != null && Weapon.class.isAssignableFrom(checkCollision(getCenterPoint()).getClass()))
+		this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 3));
+		
+		if (this.getHealth() == 0) {
+			this.getWorld().setScore(this.VALUE);
 			this.die();
-		if(this.getCenterPoint().getY() % 20 == 10)
+		}
+		
+		if (checkCollision(getCenterPoint()) != null
+				&& Weapon.class.isAssignableFrom(checkCollision(getCenterPoint()).getClass())) {
+			this.takeDamage();
+			return;
+		}
+		
+		if(this.getCenterPoint().getY() % 20 == 10) {
 			this.spawnMushroom();
-		if(this.getCenterPoint().getY() > 400)
+		}
+		
+		if(this.getCenterPoint().getY() > 400) {
 			this.die();
+		}
 	}
 }
 

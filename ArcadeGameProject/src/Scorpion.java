@@ -9,7 +9,8 @@ public class Scorpion extends Entity{
 	
 	public Scorpion(World world, Point2D centerPoint) {
 		super(world, centerPoint);
-		// TODO Auto-generated constructor stub.
+		this.health = 1;
+		this.radius = 9;
 	}
 
 	@Override
@@ -23,7 +24,26 @@ public class Scorpion extends Entity{
 	}
 	@Override
 	public void updatePosition() {
+		this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() + 2, this.getCenterPoint().getY()));
 		
+		if (this.getHealth() == 0) {
+			this.getWorld().setScore(this.VALUE);
+			this.die();
+		}
+		
+		if (checkCollision(getCenterPoint()) != null
+				&& Weapon.class.isAssignableFrom(checkCollision(getCenterPoint()).getClass())) {
+			this.takeDamage();
+			return;
+		}
+		
+		if(checkCollision(getCenterPoint()) != null
+				&& checkCollision(getCenterPoint()).getClass().equals(Mushroom.class)) {			
+			((Mushroom) checkCollision(getCenterPoint())).setPoisoned(true);
+		}
+		
+		if(this.getCenterPoint().getX() > 387)
+			this.die();
 	}
 
 }
