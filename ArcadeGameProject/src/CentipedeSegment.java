@@ -84,6 +84,8 @@ public class CentipedeSegment extends Entity {
 					checkCollision(nextMove).getClass().equals(Player.class)) {
 				setCenterPoint(nextMove);
 			} else {
+				if(((Mushroom)checkCollision(nextMove)).isPoisoned())
+					this.poisoned = true;
 				this.right = false;
 				this.down = this.lastVert;
 				this.up = !this.lastVert;
@@ -99,7 +101,7 @@ public class CentipedeSegment extends Entity {
 				setCenterPoint(nextMove);
 			} else {
 				if(((Mushroom)checkCollision(nextMove)).isPoisoned())
-					
+					this.poisoned = true;
 				this.right = true;
 				this.down = this.lastVert;
 				this.up = !this.lastVert;
