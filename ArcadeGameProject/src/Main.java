@@ -27,15 +27,9 @@ public class Main extends JFrame {
 		GameComponent component = new GameComponent(world);
 		world.loadLevel(1);
 		frame.add(component);
-//	JPanel scoreAndLives = new JPanel();
-//	scoreAndLives.setBackground(Color.BLACK);
-//	JLabel scoreLives = new JLabel("Score: " + world.getScore() + " Lives: " + world.getPlayer().getLives());
-//	scoreLives.setBackground(Color.BLACK);
-//	JPanel.paintComponent(g);
-//	scoreAndLives.add(scoreLives);
-//	frame.add(scoreAndLives, BorderLayout.SOUTH);
+//		frame.add(scoreLabel, BorderLayout.SOUTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(417, 471));
+		frame.setSize(new Dimension(417, 463));
 		frame.setVisible(true);
 	}
 

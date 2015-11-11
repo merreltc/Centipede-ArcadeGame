@@ -5,6 +5,7 @@ import java.awt.Shape;
 import java.util.List;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +21,7 @@ public class GameComponent extends JComponent {
 	private World world;
 	private boolean hasShownNullErrorMessage = false;
 	private Entity selectedEntity = null;
+	private JLabel scoreLabel;
 
 	/**
 	 * Constructs a component for rendering the Centipede environment on the
@@ -34,7 +36,12 @@ public class GameComponent extends JComponent {
 		addKeyListener(levelHandler);
 		PlayerListener playerHandler = new PlayerListener(world);
 		addKeyListener(playerHandler);
-
+		
+		this.scoreLabel = new JLabel("Score: " + world.getScore() + " Lives: " + 3);
+		this.scoreLabel.setBounds(0, 417, 415, 20);
+		if (this.world.getPlayer() != null) {
+			this.scoreLabel.setText("Score: " + this.world.getScore() + " Lives: " + this.world.getPlayer().getLives());
+		}
 
 		// Creates a separate "thread of execution" to trigger periodic
 		// repainting of this component.
