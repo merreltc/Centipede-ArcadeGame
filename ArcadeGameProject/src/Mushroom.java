@@ -23,6 +23,8 @@ public class Mushroom extends Entity {
 
 	@Override
 	public Color getColor() {
+		if(this.getHealth()==0)
+			return Color.BLACK;
 		int poisonColor = 0;
 		if(this.poisoned) {
 			poisonColor = 200;

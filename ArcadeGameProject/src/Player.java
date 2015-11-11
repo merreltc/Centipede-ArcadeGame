@@ -89,29 +89,25 @@ public class Player extends Entity {
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 3);
 			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
-			}else if(checkCollision(nextMove).getClass().equals(Mushroom.class) && ((Mushroom) checkCollision(nextMove)).isPoisoned())
-				this.takeDamage();
+			}
 		}
 		if (this.down && this.getCenterPoint().getY() < 389) { // Move down
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 3);
 			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
-			}else if(checkCollision(nextMove).getClass().equals(Mushroom.class) && ((Mushroom) checkCollision(nextMove)).isPoisoned())
-				this.takeDamage();
+			}
 		}
 		if (this.left && this.getCenterPoint().getX() > 10) { // Move Left
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() - 3, this.getCenterPoint().getY());
 			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
-			}else if(checkCollision(nextMove).getClass().equals(Mushroom.class) && ((Mushroom) checkCollision(nextMove)).isPoisoned())
-				this.takeDamage();
+			}
 		}
 		if (this.right && this.getCenterPoint().getX() < 387) { // Move Right
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 3, this.getCenterPoint().getY());
 			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
-			}else if(checkCollision(nextMove).getClass().equals(Mushroom.class) && ((Mushroom) checkCollision(nextMove)).isPoisoned())
-				this.takeDamage();
+			}
 		}
 
 		if (collisionCentipede(this.getCenterPoint())) {
@@ -121,7 +117,8 @@ public class Player extends Entity {
 	}
 
 	public boolean collisionCentipede(Point2D nextMove) {
-		if (checkCollision(nextMove) != null && checkCollision(nextMove).getClass().equals(CentipedeSegment.class)) {
+		if (checkCollision(nextMove) != null && (checkCollision(nextMove).getClass().equals(CentipedeSegment.class)
+				|| checkCollision(nextMove).getClass().equals(Flea.class) || checkCollision(nextMove).getClass().equals(Spider.class))) {
 			return true;
 		}
 		return false;

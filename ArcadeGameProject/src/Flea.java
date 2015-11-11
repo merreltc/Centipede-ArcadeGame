@@ -9,8 +9,9 @@ public class Flea extends Entity{
 	
 	public Flea(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		this.setCenterPoint(new Point2D.Double(10+((int)(Math.random()*20))*20, this.getCenterPoint().getY()));
 		this.health = 1;
-		this.radius = 9;
+		this.radius = 10;
 		
 		
 	}

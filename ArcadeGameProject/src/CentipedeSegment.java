@@ -7,7 +7,7 @@ public class CentipedeSegment extends Entity {
 
 	private final int VALUE = 100;
 	private Color color;
-	private boolean right, down, up, lastVert;
+	private boolean right, down, up, lastVert, poisoned;
 	private Centipede centipede;
 	
 	public CentipedeSegment(World world, Point2D centerPoint, Centipede centipede) {
@@ -19,6 +19,7 @@ public class CentipedeSegment extends Entity {
 		this.right = false;
 		this.down = false;
 		this.up = false;
+		this.poisoned = false;
 		this.lastVert = true; // true = down, false = up
 		// System.out.println("X: " + centerPoint.getX() + "Y: " +
 		// centerPoint.getY());
@@ -97,6 +98,8 @@ public class CentipedeSegment extends Entity {
 					&& checkCollision(nextMove).getClass().equals(Player.class)) {
 				setCenterPoint(nextMove);
 			} else {
+				if(((Mushroom)checkCollision(nextMove)).isPoisoned())
+					
 				this.right = true;
 				this.down = this.lastVert;
 				this.up = !this.lastVert;
