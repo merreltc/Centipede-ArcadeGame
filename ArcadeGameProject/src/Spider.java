@@ -17,10 +17,10 @@ public class Spider extends Entity {
 		this.deltaH = 2;
 		if(Math.random() <= 0.5) {
 			this.right = true;
-			this.setCenterPoint(new Point2D.Double(0, 300));
+			this.setCenterPoint(new Point2D.Double(10, 300));
 		} else {
 			this.right = false;
-			this.setCenterPoint(new Point2D.Double(400, 300));
+			this.setCenterPoint(new Point2D.Double(389, 300));
 		}
 	}
 
@@ -49,7 +49,7 @@ public class Spider extends Entity {
 				this.deltaH = -this.deltaH;
 		} else if (!this.right) {
 			this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX()-2,
-					this.getCenterPoint().getY()));
+					this.getCenterPoint().getY()+this.deltaH));
 			if(Math.random() > .9)
 				this.deltaH = -this.deltaH;
 		}
@@ -67,7 +67,7 @@ public class Spider extends Entity {
 		
 		if(checkCollision(getCenterPoint()) != null
 				&& checkCollision(getCenterPoint()).getClass().equals(Mushroom.class)) {
-			if(Math.random() < 0.07) {
+			if(Math.random() < 0.03) {
 				getWorld().removeEntity(checkCollision(getCenterPoint()));
 			}
 		}

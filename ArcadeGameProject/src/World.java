@@ -232,6 +232,8 @@ public class World implements Drawable, Temporal {
 		if (!this.isPaused) {
 			if(Math.random() < .001)
 				this.addEntity(new Scorpion(this, new Point2D.Double(0, 0)));
+			if(Math.random() < .005)
+				this.addEntity(new Spider(this, new Point2D.Double(0,0)));
 			this.entities.removeAll(this.entitiesToRemove);
 			this.entitiesToRemove.clear();
 			this.entities.addAll(this.entitiesToAdd);
