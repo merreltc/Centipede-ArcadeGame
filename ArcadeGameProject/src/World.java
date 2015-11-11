@@ -160,6 +160,7 @@ public class World implements Drawable, Temporal {
 			centipede.addHead(new Point2D.Double(150, 10));
 			centipede.addHead(new Point2D.Double(170, 10));
 			centipede.addHead(new Point2D.Double(190, 10));
+			addEntity(this.player);
 
 		} else if (levelToLoad == 2) {
 			Centipede centipede = new Centipede(this, true);
@@ -175,6 +176,8 @@ public class World implements Drawable, Temporal {
 
 			Centipede head = new Centipede(this, false);
 			head.addHead(new Point2D.Double(190, 10));
+			
+			addEntity(this.player);
 
 		} else if (levelToLoad == 3) {
 			Centipede centipede = new Centipede(this, true);
@@ -192,6 +195,8 @@ public class World implements Drawable, Temporal {
 
 			Centipede head2 = new Centipede(this, true);
 			head2.addHead(new Point2D.Double(210, 10));
+			
+			addEntity(this.player);
 		}
 		this.setIsPaused(false);
 	}
@@ -247,7 +252,6 @@ public class World implements Drawable, Temporal {
 			if(this.player != null && this.player.health == 0) {
 				loadLevel(this.level);
 				this.player.setHealth(1);
-				addEntity(this.player);
 			}
 			if(m <= 5 && !flea)
 				this.addEntity(new Flea(this, new Point2D.Double(0, 0)));

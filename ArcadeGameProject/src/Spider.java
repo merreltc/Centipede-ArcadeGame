@@ -74,6 +74,5 @@ public class Spider extends Entity {
 		
 		if(this.getCenterPoint().getX() > 387 || this.getCenterPoint().getX() < 10)
 			this.die();
-		
 	}
 }
