@@ -63,7 +63,10 @@ public class CentipedeSegment extends Entity {
 				this.up = true;
 				this.lastVert = !this.lastVert;
 			}
-			this.down = false;
+			if(!this.poisoned)
+				this.down = false;
+			else if(nextMove.getY() >= 300)
+				this.poisoned = false;
 		} else if (this.up && !this.lastVert && !getIsPaused()) { // Go up
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 20);
 
@@ -74,6 +77,7 @@ public class CentipedeSegment extends Entity {
 				this.lastVert = !this.lastVert;
 			}
 			this.up = false;
+			this.poisoned = false;
 		} else if (this.right && !getIsPaused()) { // Go right
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 1, this.getCenterPoint().getY());
 			if ((checkCollision(nextMove) == null ||
@@ -84,7 +88,7 @@ public class CentipedeSegment extends Entity {
 					checkCollision(nextMove).getClass().equals(Player.class)) {
 				setCenterPoint(nextMove);
 			} else {
-				if(((Mushroom)checkCollision(nextMove)).isPoisoned())
+				if(checkCollision(nextMove) != null &&((Mushroom)checkCollision(nextMove)).isPoisoned())
 					this.poisoned = true;
 				this.right = false;
 				this.down = this.lastVert;
@@ -100,7 +104,7 @@ public class CentipedeSegment extends Entity {
 					&& checkCollision(nextMove).getClass().equals(Player.class)) {
 				setCenterPoint(nextMove);
 			} else {
-				if(((Mushroom)checkCollision(nextMove)).isPoisoned())
+				if(checkCollision(nextMove) != null &&((Mushroom)checkCollision(nextMove)).isPoisoned())
 					this.poisoned = true;
 				this.right = true;
 				this.down = this.lastVert;

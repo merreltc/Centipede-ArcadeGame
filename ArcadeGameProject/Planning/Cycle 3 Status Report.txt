@@ -9,8 +9,9 @@ Modified bullet collisions to cause large bullets to not break on player
 Maded exploding bullets create a secondary weapon that is another subclass of weapon
 
 • Poison mushrooms
-Approx Work Time: 
-Report: 
+Approx Work Time: 15 min
+Report: Added a poisoned field to centipoede and made it keep going down to player
+area when posioned is true then set it to false, worked first try, praise the Java gods
 
 • Going between levels on victory
 Approx Work Time: 1 hour 
