@@ -7,18 +7,20 @@ public class Spider extends Entity {
 	private final int VELOCITY = 3;
 	private final int VALUE = 500;
 
-	private double angle;
+	private int deltaH;
 	private boolean right;
 
 	public Spider(World world, Point2D centerPoint) {
 		super(world, centerPoint);
 		this.health = 1;
 		this.radius = 9;
-		this.angle = Math.PI / 4;
+		this.deltaH = 2;
 		if(Math.random() <= 0.5) {
 			this.right = true;
+			this.setCenterPoint(new Point2D.Double(0, 300));
 		} else {
 			this.right = false;
+			this.setCenterPoint(new Point2D.Double(400, 300));
 		}
 	}
 
@@ -40,16 +42,16 @@ public class Spider extends Entity {
 
 	@Override
 	public void updatePosition() {
-		if(this.right && getCenterPoint().getY() % 20 == 0) {
-		this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() +
-				(2 * Math.cos(this.angle)), this.getCenterPoint().getY() +
-				(2 * Math.sin(this.angle))));
-		this.angle = -this.angle;
-		} else if (!this.right && getCenterPoint().getY() % 20 == 0) {
-			this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX() +
-					(-2 * Math.cos(this.angle)), this.getCenterPoint().getY() +
-					(-2 * Math.sin(this.angle))));
-			this.angle = -this.angle;
+		if(this.right) {
+			this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX()+2,
+					this.getCenterPoint().getY()+this.deltaH));
+			if(Math.random() > .9)
+				this.deltaH = -this.deltaH;
+		} else if (!this.right) {
+			this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX()-2,
+					this.getCenterPoint().getY()));
+			if(Math.random() > .9)
+				this.deltaH = -this.deltaH;
 		}
 		
 		if (this.getHealth() == 0) {
