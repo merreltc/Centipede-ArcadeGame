@@ -222,19 +222,29 @@ public class World implements Drawable, Temporal {
 	@Override
 	public void timePassed() {
 		if (!this.isPaused) {
+			if(Math.random() < .001)
+				this.addEntity(new Scorpion(this, new Point2D.Double(0, 0)));
 			this.entities.removeAll(this.entitiesToRemove);
 			this.entitiesToRemove.clear();
 			this.entities.addAll(this.entitiesToAdd);
 			this.entitiesToAdd.clear();
 
 			boolean centipedesRemain = false;
+			boolean flea = false;
+			int m = 0;
 			for (Temporal t : this.entities) {
 				t.timePassed();
 				if (t.getClass().equals(CentipedeSegment.class))
 					centipedesRemain = true;
+				if(t.getClass().equals(Mushroom.class) && ((Entity) t).getCenterPoint().getY()>300)
+					m++;
+				if(t.getClass().equals(Flea.class))
+					flea = true;
 			}
-			if (!centipedesRemain) {
-				this.loadLevel(this.getLevel() + 1);
+			if(m <= 5 && !flea)
+				this.addEntity(new Flea(this, new Point2D.Double(0, 0)));
+			if(!centipedesRemain) {
+				this.loadLevel(this.getLevel()+1);
 			}
 		}
 	}

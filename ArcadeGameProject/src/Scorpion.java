@@ -9,6 +9,7 @@ public class Scorpion extends Entity{
 	
 	public Scorpion(World world, Point2D centerPoint) {
 		super(world, centerPoint);
+		this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), 10+((int)(Math.random()*15))*20));
 		this.health = 1;
 		this.radius = 9;
 	}
