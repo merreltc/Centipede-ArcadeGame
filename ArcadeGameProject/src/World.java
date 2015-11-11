@@ -35,6 +35,9 @@ public class World implements Drawable, Temporal {
 		this.background = new Rectangle2D.Double(0, 0, 400, 400);
 		this.score = 0;
 		this.level = 1;
+		this.player = new Player(this, new Point2D.Double(9 * this.CELL_WIDTH + CELL_WIDTH / 2,
+				19 * this.CELL_WIDTH + CELL_WIDTH / 2));
+		addEntity(this.player);
 
 		// Creates a separate "thread of execution" to inform this world of the
 		// passage of time.
@@ -240,6 +243,11 @@ public class World implements Drawable, Temporal {
 					m++;
 				if(t.getClass().equals(Flea.class))
 					flea = true;
+			}
+			if(this.player != null && this.player.health == 0) {
+				loadLevel(this.level);
+				this.player.setHealth(1);
+				addEntity(this.player);
 			}
 			if(m <= 5 && !flea)
 				this.addEntity(new Flea(this, new Point2D.Double(0, 0)));

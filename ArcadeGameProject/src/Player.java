@@ -3,6 +3,8 @@ import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 
+import javax.swing.JOptionPane;
+
 /**
  * 
  * TODO Put here a description of what this class does.
@@ -74,9 +76,15 @@ public class Player extends Entity {
 		// + checkCollisionTop(getCenterPoint()));
 
 		if (getHealth() == 0) {
-			die();
+			setCenterPoint(new Point2D.Double(9 * 20 + 20 / 2,
+					19 * 20 + 20 / 2));
 			this.lives--;
-			getWorld().loadLevel(this.getWorld().getLevel());
+		}
+		
+		if(this.lives == 0) {
+			die();
+			this.getWorld().setIsPaused(true);
+			JOptionPane.showMessageDialog(null, "Game Over");
 		}
 
 		if (!this.currentWeapon.readyToFire()) {
@@ -138,5 +146,9 @@ public class Player extends Entity {
 
 	public void down(boolean down) {
 		this.down = down;
+	}
+
+	public void setHealth(int i) {
+		this.health = i;
 	}
 }
