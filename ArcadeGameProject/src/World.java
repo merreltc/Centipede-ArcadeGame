@@ -24,7 +24,7 @@ public class World implements Drawable, Temporal {
 	private final List<Entity> entities = new ArrayList<Entity>();
 	private final List<Entity> entitiesToAdd = new ArrayList<Entity>();
 	private final List<Entity> entitiesToRemove = new ArrayList<Entity>();
-	
+
 	private Shape background;
 	private boolean isPaused = false;
 	private int score;
@@ -100,31 +100,38 @@ public class World implements Drawable, Temporal {
 				for (int column = 0; column < 20; column++) {
 					switch (loader.nextInt()) {
 					case 1:
-						Mushroom m = new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2));
-						if(Math.random() > 0.85)
+						Mushroom m = new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + CELL_WIDTH / 2));
+						if (Math.random() > 0.85)
 							m.setPoisoned(true);
 						addEntity(m);
 						break;
 
 					case 2:
-						addEntity(new CentipedeSegment(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2), new Centipede(this, true)));
+						addEntity(
+								new CentipedeSegment(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
+										row * this.CELL_WIDTH + CELL_WIDTH / 2), new Centipede(this, true)));
 						break;
 
 					case 3:
-						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2));
+						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + CELL_WIDTH / 2));
 						addEntity(this.player);
 						break;
-						
+
 					case 4:
-						addEntity(new Flea(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						addEntity(new Flea(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + CELL_WIDTH / 2)));
 						break;
-						
+
 					case 5:
-						addEntity(new Scorpion(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						addEntity(new Scorpion(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + CELL_WIDTH / 2)));
 						break;
-						
+
 					case 6:
-						addEntity(new Spider(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH/2, row * this.CELL_WIDTH + CELL_WIDTH/2)));
+						addEntity(new Spider(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + CELL_WIDTH / 2)));
 						break;
 
 					default:
@@ -137,51 +144,51 @@ public class World implements Drawable, Temporal {
 		} catch (FileNotFoundException e) {
 			loadLevel(this.level);
 		}
-		
-		if(levelToLoad == 1) {
+
+		if (levelToLoad == 1) {
 			Centipede centipede = new Centipede(this, true);
-			centipede.addHead(new Point2D.Double(10,10));
-			centipede.addHead(new Point2D.Double(30,10));
-			centipede.addHead(new Point2D.Double(50,10));
-			centipede.addHead(new Point2D.Double(70,10));
-			centipede.addHead(new Point2D.Double(90,10));
-			centipede.addHead(new Point2D.Double(110,10));
-			centipede.addHead(new Point2D.Double(130,10));
-			centipede.addHead(new Point2D.Double(150,10));
-			centipede.addHead(new Point2D.Double(170,10));
-			centipede.addHead(new Point2D.Double(190,10));
-			
-		} else if(levelToLoad == 2) {
+			centipede.addHead(new Point2D.Double(10, 10));
+			centipede.addHead(new Point2D.Double(30, 10));
+			centipede.addHead(new Point2D.Double(50, 10));
+			centipede.addHead(new Point2D.Double(70, 10));
+			centipede.addHead(new Point2D.Double(90, 10));
+			centipede.addHead(new Point2D.Double(110, 10));
+			centipede.addHead(new Point2D.Double(130, 10));
+			centipede.addHead(new Point2D.Double(150, 10));
+			centipede.addHead(new Point2D.Double(170, 10));
+			centipede.addHead(new Point2D.Double(190, 10));
+
+		} else if (levelToLoad == 2) {
 			Centipede centipede = new Centipede(this, true);
-			centipede.addHead(new Point2D.Double(10,10));
-			centipede.addHead(new Point2D.Double(30,10));
-			centipede.addHead(new Point2D.Double(50,10));
-			centipede.addHead(new Point2D.Double(70,10));
-			centipede.addHead(new Point2D.Double(90,10));
-			centipede.addHead(new Point2D.Double(110,10));
-			centipede.addHead(new Point2D.Double(130,10));
-			centipede.addHead(new Point2D.Double(150,10));
-			centipede.addHead(new Point2D.Double(170,10));
-			
+			centipede.addHead(new Point2D.Double(10, 10));
+			centipede.addHead(new Point2D.Double(30, 10));
+			centipede.addHead(new Point2D.Double(50, 10));
+			centipede.addHead(new Point2D.Double(70, 10));
+			centipede.addHead(new Point2D.Double(90, 10));
+			centipede.addHead(new Point2D.Double(110, 10));
+			centipede.addHead(new Point2D.Double(130, 10));
+			centipede.addHead(new Point2D.Double(150, 10));
+			centipede.addHead(new Point2D.Double(170, 10));
+
 			Centipede head = new Centipede(this, false);
-			head.addHead(new Point2D.Double(190,10));
-		
-		} else if(levelToLoad == 3) {
+			head.addHead(new Point2D.Double(190, 10));
+
+		} else if (levelToLoad == 3) {
 			Centipede centipede = new Centipede(this, true);
-			centipede.addHead(new Point2D.Double(30,10));
-			centipede.addHead(new Point2D.Double(50,10));
-			centipede.addHead(new Point2D.Double(70,10));
-			centipede.addHead(new Point2D.Double(90,10));
-			centipede.addHead(new Point2D.Double(110,10));
-			centipede.addHead(new Point2D.Double(130,10));
-			centipede.addHead(new Point2D.Double(150,10));
-			centipede.addHead(new Point2D.Double(170,10));
-			
+			centipede.addHead(new Point2D.Double(30, 10));
+			centipede.addHead(new Point2D.Double(50, 10));
+			centipede.addHead(new Point2D.Double(70, 10));
+			centipede.addHead(new Point2D.Double(90, 10));
+			centipede.addHead(new Point2D.Double(110, 10));
+			centipede.addHead(new Point2D.Double(130, 10));
+			centipede.addHead(new Point2D.Double(150, 10));
+			centipede.addHead(new Point2D.Double(170, 10));
+
 			Centipede head1 = new Centipede(this, false);
-			head1.addHead(new Point2D.Double(190,10));
-			
+			head1.addHead(new Point2D.Double(190, 10));
+
 			Centipede head2 = new Centipede(this, true);
-			head2.addHead(new Point2D.Double(210,10));
+			head2.addHead(new Point2D.Double(210, 10));
 		}
 		this.setIsPaused(false);
 	}
@@ -189,7 +196,7 @@ public class World implements Drawable, Temporal {
 	public int getLevel() {
 		return this.level;
 	}
-	
+
 	public Player getPlayer() {
 		return this.player;
 	}
@@ -213,25 +220,24 @@ public class World implements Drawable, Temporal {
 	}
 
 	@Override
-	public synchronized void timePassed() {
+	public void timePassed() {
 		if (!this.isPaused) {
 			this.entities.removeAll(this.entitiesToRemove);
 			this.entitiesToRemove.clear();
 			this.entities.addAll(this.entitiesToAdd);
 			this.entitiesToAdd.clear();
-			
+
 			boolean centipedesRemain = false;
 			for (Temporal t : this.entities) {
 				t.timePassed();
-				if(t.getClass().equals(CentipedeSegment.class))
+				if (t.getClass().equals(CentipedeSegment.class))
 					centipedesRemain = true;
 			}
-			if(!centipedesRemain) {
-				this.loadLevel(this.getLevel()+1);
+			if (!centipedesRemain) {
+				this.loadLevel(this.getLevel() + 1);
 			}
 		}
 	}
-
 
 	@Override
 	public void die() {
