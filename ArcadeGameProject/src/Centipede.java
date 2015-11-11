@@ -15,7 +15,7 @@ public class Centipede {
 		this.moveRight = moveRight;
 	}
 
-	public void split(CentipedeSegment segment) {
+	public synchronized void split(CentipedeSegment segment) {
 		int index = this.centipede.indexOf(segment);
 		this.world.addEntity(new Mushroom(this.world, segment.getCenterPoint()));
 		Centipede firstHalf = new Centipede(this.world, true);
