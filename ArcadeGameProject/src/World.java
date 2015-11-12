@@ -199,6 +199,29 @@ public class World implements Drawable, Temporal {
 			head2.addHead(new Point2D.Double(210, 10));
 			
 			addEntity(this.player);
+		} else if (levelToLoad == 4) {
+			Centipede centipede = new Centipede(this, false);
+			centipede.addHead(new Point2D.Double(30, 10));
+			centipede.addHead(new Point2D.Double(50, 10));
+			centipede.addHead(new Point2D.Double(70, 10));
+			centipede.addHead(new Point2D.Double(90, 10));
+			centipede.addHead(new Point2D.Double(110, 10));
+			centipede.addHead(new Point2D.Double(130, 10));
+			centipede.addHead(new Point2D.Double(150, 10));
+			centipede.addHead(new Point2D.Double(170, 10));
+			centipede.addHead(new Point2D.Double(190, 10));
+			centipede.addHead(new Point2D.Double(210, 10));
+			centipede.addHead(new Point2D.Double(210, 30));
+			centipede.addHead(new Point2D.Double(190, 30));
+			centipede.addHead(new Point2D.Double(170, 30));
+			centipede.addHead(new Point2D.Double(150, 30));
+			centipede.addHead(new Point2D.Double(130, 30));
+			centipede.addHead(new Point2D.Double(110, 30));
+			centipede.addHead(new Point2D.Double(90, 30));
+			centipede.addHead(new Point2D.Double(70, 30));
+			centipede.addHead(new Point2D.Double(50, 30));
+			centipede.addHead(new Point2D.Double(30, 30));
+			addEntity(this.player);
 		}
 		this.setIsPaused(false);
 	}
