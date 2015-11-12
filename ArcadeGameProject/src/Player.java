@@ -25,7 +25,7 @@ public class Player extends Entity {
 		// Load Image.
 		BufferedImage img = ImageIO.read(getClass().getResource("/Ship.png"));
 		this.playerImage = img;
-		
+
 		this.radius = 9;
 		this.health = 1;
 		this.lives = 3;
@@ -76,12 +76,11 @@ public class Player extends Entity {
 		// checkCollisionBottom(getCenterPoint()) + "\nCollide Top: "
 		// + checkCollisionTop(getCenterPoint()));
 
-		if (getHealth() <= 0) {
-			this.lives --;
+		if (getHealth() == 0) {
 			setCenterPoint(new Point2D.Double(9 * 20 + 20 / 2, 19 * 20 + 20 / 2));
 		}
 
-		if (this.lives <= 0) {
+		if (this.lives == 0) {
 			die();
 			this.getWorld().setIsPaused(true);
 			JOptionPane.showMessageDialog(null, "Game Over");
@@ -95,13 +94,19 @@ public class Player extends Entity {
 
 		if (this.up && this.getCenterPoint().getY() > 310) { // Move Up
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 3);
-			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
+			if (checkCollision(nextMove) != null && collisionCentipede(nextMove)) {
+				this.lives--;
+				takeDamage();
+			} else if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
 			}
 		}
 		if (this.down && this.getCenterPoint().getY() < 389) { // Move down
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 3);
-			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
+			if (checkCollision(nextMove) != null && collisionCentipede(nextMove)) {
+				this.lives--;
+				takeDamage();
+			} else if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
 			}
 		}
@@ -111,7 +116,8 @@ public class Player extends Entity {
 				setCenterPoint(nextMove);
 			}
 		}
-		if (this.right && this.getCenterPoint().getX() < 387) { // Move Right
+		if (this.right && this.getCenterPoint().getX() < 387) { // Move
+																// Right
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 3, this.getCenterPoint().getY());
 			if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
@@ -119,13 +125,13 @@ public class Player extends Entity {
 		}
 
 		if (collisionCentipede(this.getCenterPoint())) {
+			this.lives--;
 			takeDamage();
 		}
 	}
 
 	public boolean collisionCentipede(Point2D nextMove) {
-		if (checkCollision(nextMove) != null &&
-				(checkCollision(nextMove).getClass().equals(CentipedeSegment.class)
+		if (checkCollision(nextMove) != null && (checkCollision(nextMove).getClass().equals(CentipedeSegment.class)
 				|| checkCollision(nextMove).getClass().equals(Flea.class)
 				|| checkCollision(nextMove).getClass().equals(Spider.class))) {
 			return true;
