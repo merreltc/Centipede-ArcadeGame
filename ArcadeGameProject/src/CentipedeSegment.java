@@ -12,7 +12,8 @@ public class CentipedeSegment extends Entity {
 	private Color color;
 	private boolean right, down, up, lastVert, poisoned;
 	private Centipede centipede;
-	private BufferedImage headImage;
+	private BufferedImage headLImage;
+	private BufferedImage headRImage;
 	private BufferedImage segmentImage;
 
 	public CentipedeSegment(World world, Point2D centerPoint, Centipede centipede) throws IOException {
@@ -34,8 +35,12 @@ public class CentipedeSegment extends Entity {
 		this.segmentImage = img;
 
 		// Load Image.
-		BufferedImage img1 = ImageIO.read(getClass().getResource("/Head.png"));
-		this.headImage = img1;
+		BufferedImage img1 = ImageIO.read(getClass().getResource("/HeadL.png"));
+		this.headLImage = img1;
+		
+		// Load Image.
+		BufferedImage img2 = ImageIO.read(getClass().getResource("/HeadR.png"));
+		this.headRImage = img2;		
 	}
 
 	@Override
@@ -47,7 +52,11 @@ public class CentipedeSegment extends Entity {
 	public BufferedImage getImage() {
 		if (this.centipede != null &&
 				this.centipede.getList().indexOf(this) == 0) {
-			return this.headImage;
+			if(this.right) {
+				return this.headRImage;
+			} else if(!this.right) {
+				return this.headLImage;
+			}
 		}
 		return this.segmentImage;
 	}
@@ -107,7 +116,9 @@ public class CentipedeSegment extends Entity {
 			} else if (checkCollision(nextMove) != null && checkCollision(nextMove).getClass().equals(Player.class)) {
 				setCenterPoint(nextMove);
 			} else {
-				if (checkCollision(nextMove) != null && ((Mushroom) checkCollision(nextMove)).isPoisoned())
+				if (checkCollision(nextMove) != null &&
+						checkCollision(nextMove).getClass().equals(Mushroom.class) 
+						&& ((Mushroom) checkCollision(nextMove)).isPoisoned())
 					this.poisoned = true;
 				this.right = false;
 				this.down = this.lastVert;
