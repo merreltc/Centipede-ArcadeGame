@@ -1,7 +1,10 @@
 import java.awt.Color;
-import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Spider extends Entity {
 	private final int VELOCITY = 3;
@@ -9,12 +12,18 @@ public class Spider extends Entity {
 
 	private int deltaH;
 	private boolean right;
+	private BufferedImage spiderImage;
 
-	public Spider(World world, Point2D centerPoint) {
+	public Spider(World world, Point2D centerPoint) throws IOException {
 		super(world, centerPoint);
 		this.health = 1;
 		this.radius = 9;
 		this.deltaH = 2;
+		
+		// Load Image.
+		BufferedImage img = ImageIO.read(getClass().getResource("/Spider.png"));
+		this.spiderImage = img;
+		
 		if(Math.random() <= 0.5) {
 			this.right = true;
 			this.setCenterPoint(new Point2D.Double(10, 300));
@@ -30,14 +39,8 @@ public class Spider extends Entity {
 	}
 
 	@Override
-	public Shape getShape() {
-		return new Polygon(
-				new int[] { (int) getCenterPoint().getX() - this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getX(), (int) getCenterPoint().getX() + this.getWorld().CELL_WIDTH / 2 },
-				new int[] { (int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH / 2 },
-				3);
+	public BufferedImage getImage() {
+		return this.spiderImage;
 	}
 
 	@Override
@@ -74,5 +77,10 @@ public class Spider extends Entity {
 		
 		if(this.getCenterPoint().getX() > 387 || this.getCenterPoint().getX() < 10)
 			this.die();
+	}
+
+	@Override
+	public Shape getShape() {
+		return null;
 	}
 }

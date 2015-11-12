@@ -1,7 +1,10 @@
 import java.awt.Color;
 import java.awt.Shape;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class CentipedeSegment extends Entity {
 
@@ -9,8 +12,10 @@ public class CentipedeSegment extends Entity {
 	private Color color;
 	private boolean right, down, up, lastVert, poisoned;
 	private Centipede centipede;
-	
-	public CentipedeSegment(World world, Point2D centerPoint, Centipede centipede) {
+	private BufferedImage headImage;
+	private BufferedImage segmentImage;
+
+	public CentipedeSegment(World world, Point2D centerPoint, Centipede centipede) throws IOException {
 		super(world, centerPoint);
 		this.centipede = centipede;
 		this.color = Color.MAGENTA;
@@ -23,6 +28,14 @@ public class CentipedeSegment extends Entity {
 		this.lastVert = true; // true = down, false = up
 		// System.out.println("X: " + centerPoint.getX() + "Y: " +
 		// centerPoint.getY());
+
+		// Load Image.
+		BufferedImage img = ImageIO.read(getClass().getResource("/Segment.png"));
+		this.segmentImage = img;
+
+		// Load Image.
+		BufferedImage img1 = ImageIO.read(getClass().getResource("/Head.png"));
+		this.headImage = img1;
 	}
 
 	@Override
@@ -31,10 +44,14 @@ public class CentipedeSegment extends Entity {
 	}
 
 	@Override
-	public Shape getShape() {
-		return new Ellipse2D.Double(this.getCenterPoint().getX() - 10, this.getCenterPoint().getY() - 10, 20, 20);
+	public BufferedImage getImage() {
+		if (this.centipede != null &&
+				this.centipede.getList().indexOf(this) == 0) {
+			return this.headImage;
+		}
+		return this.segmentImage;
 	}
-	
+
 	public void setDirection(boolean right) {
 		this.right = right;
 	}
@@ -45,11 +62,15 @@ public class CentipedeSegment extends Entity {
 			this.getWorld().setScore(this.VALUE);
 			this.die();
 		}
-		
+
 		if (checkCollision(getCenterPoint()) != null
 				&& Weapon.class.isAssignableFrom(checkCollision(getCenterPoint()).getClass())) {
 			this.takeDamage();
-			this.centipede.split(this);
+			try {
+				this.centipede.split(this);
+			} catch (IOException exception) {
+				System.out.println("Couldn't split centipede");
+			}
 			return;
 		}
 
@@ -63,9 +84,9 @@ public class CentipedeSegment extends Entity {
 				this.up = true;
 				this.lastVert = !this.lastVert;
 			}
-			if(!this.poisoned)
+			if (!this.poisoned)
 				this.down = false;
-			else if(nextMove.getY() >= 300)
+			else if (nextMove.getY() >= 300)
 				this.poisoned = false;
 		} else if (this.up && !this.lastVert && !getIsPaused()) { // Go up
 			nextMove = new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() - 20);
@@ -80,33 +101,28 @@ public class CentipedeSegment extends Entity {
 			this.poisoned = false;
 		} else if (this.right && !getIsPaused()) { // Go right
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() + 1, this.getCenterPoint().getY());
-			if ((checkCollision(nextMove) == null ||
-					!checkCollision(nextMove).getClass().equals(Mushroom.class))
+			if ((checkCollision(nextMove) == null || !checkCollision(nextMove).getClass().equals(Mushroom.class))
 					&& nextMove.getX() <= 391) {
 				setCenterPoint(nextMove);
-			} else if (checkCollision(nextMove) != null &&
-					checkCollision(nextMove).getClass().equals(Player.class)) {
+			} else if (checkCollision(nextMove) != null && checkCollision(nextMove).getClass().equals(Player.class)) {
 				setCenterPoint(nextMove);
 			} else {
-				if(checkCollision(nextMove) != null
-						&& ((Mushroom)checkCollision(nextMove)).isPoisoned())
-		this.poisoned = true;
+				if (checkCollision(nextMove) != null && ((Mushroom) checkCollision(nextMove)).isPoisoned())
+					this.poisoned = true;
 				this.right = false;
 				this.down = this.lastVert;
 				this.up = !this.lastVert;
 			}
 		} else if (!this.right && !getIsPaused()) { // Go left
 			nextMove = new Point2D.Double(this.getCenterPoint().getX() - 1, this.getCenterPoint().getY());
-			if ((checkCollision(nextMove) == null ||
-					!checkCollision(nextMove).getClass().equals(Mushroom.class)) &&
-					nextMove.getX() >= 10) {
+			if ((checkCollision(nextMove) == null || !checkCollision(nextMove).getClass().equals(Mushroom.class))
+					&& nextMove.getX() >= 10) {
 				setCenterPoint(nextMove);
-			} else if (checkCollision(nextMove) != null
-					&& checkCollision(nextMove).getClass().equals(Player.class)) {
+			} else if (checkCollision(nextMove) != null && checkCollision(nextMove).getClass().equals(Player.class)) {
 				setCenterPoint(nextMove);
 			} else {
-				if(checkCollision(nextMove) != null &&
-						((Mushroom)checkCollision(nextMove)).isPoisoned())
+				if (checkCollision(nextMove) != null && checkCollision(nextMove).getClass().equals(Mushroom.class)
+						&& ((Mushroom) checkCollision(nextMove)).isPoisoned())
 					this.poisoned = true;
 				this.right = true;
 				this.down = this.lastVert;
@@ -119,5 +135,10 @@ public class CentipedeSegment extends Entity {
 		// "\nX = " + getCenterPoint().getX() +
 		// "\nY = " + getCenterPoint().getY());
 
+	}
+
+	@Override
+	public Shape getShape() {
+		return null;
 	}
 }

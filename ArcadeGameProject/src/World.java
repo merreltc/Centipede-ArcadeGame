@@ -2,8 +2,10 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -31,7 +33,7 @@ public class World implements Drawable, Temporal {
 	private int level;
 	private Player player;
 
-	public World() {
+	public World() throws IOException {
 		this.background = new Rectangle2D.Double(0, 0, 400, 400);
 		this.score = 0;
 		this.level = 1;
@@ -49,7 +51,7 @@ public class World implements Drawable, Temporal {
 						Thread.sleep(UPDATE_INTERVAL_MS);
 						timePassed();
 					}
-				} catch (InterruptedException exception) {
+				} catch (InterruptedException | IOException exception) {
 					// Stop when interrupted
 				}
 			}
@@ -92,7 +94,7 @@ public class World implements Drawable, Temporal {
 	/**
 	 * Loads a predesigned level from a file.
 	 */
-	public void loadLevel(int levelToLoad) {
+	public void loadLevel(int levelToLoad) throws IOException {
 		this.setIsPaused(true);
 		this.entities.clear();
 
@@ -149,7 +151,7 @@ public class World implements Drawable, Temporal {
 		}
 
 		if (levelToLoad == 1) {
-			Centipede centipede = new Centipede(this, true);
+			Centipede centipede = new Centipede(this, false);
 			centipede.addHead(new Point2D.Double(10, 10));
 			centipede.addHead(new Point2D.Double(30, 10));
 			centipede.addHead(new Point2D.Double(50, 10));
@@ -163,7 +165,7 @@ public class World implements Drawable, Temporal {
 			addEntity(this.player);
 
 		} else if (levelToLoad == 2) {
-			Centipede centipede = new Centipede(this, true);
+			Centipede centipede = new Centipede(this, false);
 			centipede.addHead(new Point2D.Double(10, 10));
 			centipede.addHead(new Point2D.Double(30, 10));
 			centipede.addHead(new Point2D.Double(50, 10));
@@ -174,13 +176,13 @@ public class World implements Drawable, Temporal {
 			centipede.addHead(new Point2D.Double(150, 10));
 			centipede.addHead(new Point2D.Double(170, 10));
 
-			Centipede head = new Centipede(this, false);
+			Centipede head = new Centipede(this, true);
 			head.addHead(new Point2D.Double(190, 10));
 			
 			addEntity(this.player);
 
 		} else if (levelToLoad == 3) {
-			Centipede centipede = new Centipede(this, true);
+			Centipede centipede = new Centipede(this, false);
 			centipede.addHead(new Point2D.Double(30, 10));
 			centipede.addHead(new Point2D.Double(50, 10));
 			centipede.addHead(new Point2D.Double(70, 10));
@@ -190,10 +192,10 @@ public class World implements Drawable, Temporal {
 			centipede.addHead(new Point2D.Double(150, 10));
 			centipede.addHead(new Point2D.Double(170, 10));
 
-			Centipede head1 = new Centipede(this, false);
+			Centipede head1 = new Centipede(this, true);
 			head1.addHead(new Point2D.Double(190, 10));
 
-			Centipede head2 = new Centipede(this, true);
+			Centipede head2 = new Centipede(this, false);
 			head2.addHead(new Point2D.Double(210, 10));
 			
 			addEntity(this.player);
@@ -228,7 +230,7 @@ public class World implements Drawable, Temporal {
 	}
 
 	@Override
-	public void timePassed() {
+	public void timePassed() throws IOException {
 		if (!this.isPaused) {
 			if(Math.random() < .001)
 				this.addEntity(new Scorpion(this, new Point2D.Double(0, 0)));
@@ -284,6 +286,10 @@ public class World implements Drawable, Temporal {
 	}
 
 	@Override
+	public BufferedImage getImage() {
+		return null;
+	}
+	
 	public Shape getShape() {
 		return this.background;
 	}

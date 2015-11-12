@@ -1,14 +1,23 @@
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Scorpion extends Entity{
 	
 	private int VALUE = 1000;
+	private BufferedImage scorpionImage;
 	
-	public Scorpion(World world, Point2D centerPoint) {
+	public Scorpion(World world, Point2D centerPoint) throws IOException {
 		super(world, centerPoint);
+		
+		// Load Image.
+		BufferedImage img = ImageIO.read(getClass().getResource("/Scorpion.png"));
+		this.scorpionImage = img;
+		
 		this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), 10+((int)(Math.random()*15))*20));
 		this.health = 1;
 		this.radius = 9;
@@ -19,9 +28,8 @@ public class Scorpion extends Entity{
 		return Color.WHITE;
 	}
 	@Override
-	public Shape getShape() {
-		return new Rectangle2D.Double(this.getCenterPoint().getX() - this.getWorld().CELL_WIDTH / 2,
-				this.getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2, 20, 20);
+	public BufferedImage getImage() {
+		return this.scorpionImage;
 	}
 	@Override
 	public void updatePosition() {
@@ -45,6 +53,11 @@ public class Scorpion extends Entity{
 		
 		if(this.getCenterPoint().getX() > 387)
 			this.die();
+	}
+
+	@Override
+	public Shape getShape() {
+		return null;
 	}
 
 }

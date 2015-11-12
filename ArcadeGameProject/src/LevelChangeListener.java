@@ -1,5 +1,6 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 public class LevelChangeListener implements KeyListener {
 
@@ -15,10 +16,18 @@ public class LevelChangeListener implements KeyListener {
 
 		if (e.getKeyCode() == 85) { // "u" key
 			newLevel++;
-			this.world.loadLevel(newLevel);
+			try {
+				this.world.loadLevel(newLevel);
+			} catch (IOException exception) {
+				System.out.println("No files");
+			}
 		} else if (e.getKeyCode() == 68) { // "d" key
 			newLevel--;
-			this.world.loadLevel(newLevel);
+			try {
+				this.world.loadLevel(newLevel);
+			} catch (IOException exception) {
+				System.out.println("No files");
+			}
 		} else if (e.getKeyCode() == 80) { // "p" key
 			if (!this.world.getIsPaused()) {
 				this.world.setIsPaused(true);

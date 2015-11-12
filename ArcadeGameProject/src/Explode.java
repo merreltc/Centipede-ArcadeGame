@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 /**
  * 
@@ -27,7 +28,6 @@ public class Explode extends Weapon {
 		this.getWorld().addEntity(shot);
 	}
 
-	@Override
 	public Shape getShape() {
 		return new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 10, 10);
 	}
@@ -41,5 +41,10 @@ public class Explode extends Weapon {
 	public void die(){
 		this.getWorld().addEntity(new Explosion(this.getWorld(), this.getCenterPoint()));
 		super.die();
+	}
+
+	@Override
+	public BufferedImage getImage() {
+		return null;
 	}
 }
