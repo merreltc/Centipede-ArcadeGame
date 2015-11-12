@@ -76,12 +76,12 @@ public class Player extends Entity {
 		// checkCollisionBottom(getCenterPoint()) + "\nCollide Top: "
 		// + checkCollisionTop(getCenterPoint()));
 
-		if (getHealth() == 0) {
+		if (getHealth() <= 0) {
+			this.lives --;
 			setCenterPoint(new Point2D.Double(9 * 20 + 20 / 2, 19 * 20 + 20 / 2));
-			this.lives--;
 		}
 
-		if (this.lives == 0) {
+		if (this.lives <= 0) {
 			die();
 			this.getWorld().setIsPaused(true);
 			JOptionPane.showMessageDialog(null, "Game Over");
@@ -119,7 +119,6 @@ public class Player extends Entity {
 		}
 
 		if (collisionCentipede(this.getCenterPoint())) {
-			this.lives--;
 			takeDamage();
 		}
 	}

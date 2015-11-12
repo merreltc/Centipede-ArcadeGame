@@ -23,15 +23,16 @@ public class World implements Drawable, Temporal {
 	public final int COLUMNS = 20;
 	public final int PLAYER_REGION_BOUND = 300;
 	private Color BG_COLOR = Color.BLACK;
-	private final List<Entity> entities = new ArrayList<Entity>();
-	private final List<Entity> entitiesToAdd = new ArrayList<Entity>();
-	private final List<Entity> entitiesToRemove = new ArrayList<Entity>();
-
+	
+	private final List<Entity> entities = new ArrayList<>();
+	private final List<Entity> entitiesToAdd = new ArrayList<>();
+	private final List<Entity> entitiesToRemove = new ArrayList<>();
 	private Shape background;
 	private boolean isPaused = false;
 	private int score;
 	private int level;
 	private Player player;
+	private int levelTime;
 
 	public World() throws IOException {
 		this.background = new Rectangle2D.Double(0, 0, 400, 400);
@@ -96,6 +97,7 @@ public class World implements Drawable, Temporal {
 	 */
 	public void loadLevel(int levelToLoad) throws IOException {
 		this.setIsPaused(true);
+		this.levelTime = 0;
 		this.entities.clear();
 
 		try {
@@ -255,9 +257,9 @@ public class World implements Drawable, Temporal {
 	@Override
 	public void timePassed() throws IOException {
 		if (!this.isPaused) {
-			if(Math.random() < .001)
+			if(Math.random() < .001 && this.getLevel() != 4)
 				this.addEntity(new Scorpion(this, new Point2D.Double(0, 0)));
-			if(Math.random() < .005)
+			if(Math.random() < .005  && this.getLevel() != 4)
 				this.addEntity(new Spider(this, new Point2D.Double(0,0)));
 			this.entities.removeAll(this.entitiesToRemove);
 			this.entitiesToRemove.clear();
@@ -280,11 +282,12 @@ public class World implements Drawable, Temporal {
 				loadLevel(this.level);
 				this.player.setHealth(1);
 			}
-			if(m <= 5 && !flea)
+			if(m <= 5 && !flea  && this.getLevel() != 4)
 				this.addEntity(new Flea(this, new Point2D.Double(0, 0)));
-			if(!centipedesRemain) {
+			if(!centipedesRemain && this.levelTime >= 5) {
 				this.loadLevel(this.getLevel()+1);
 			}
+			this.levelTime++;
 		}
 	}
 
