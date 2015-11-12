@@ -28,6 +28,7 @@ public class Explode extends Weapon {
 		this.getWorld().addEntity(shot);
 	}
 
+	@Override
 	public Shape getShape() {
 		return new Ellipse2D.Double(getCenterPoint().getX(), getCenterPoint().getY(), 10, 10);
 	}

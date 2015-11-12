@@ -38,8 +38,8 @@ public class World implements Drawable, Temporal {
 		this.background = new Rectangle2D.Double(0, 0, 400, 400);
 		this.score = 0;
 		this.level = 1;
-		this.player = new Player(this, new Point2D.Double(9 * this.CELL_WIDTH + CELL_WIDTH / 2,
-				19 * this.CELL_WIDTH + CELL_WIDTH / 2));
+		this.player = new Player(this, new Point2D.Double(9 * this.CELL_WIDTH + this.CELL_WIDTH / 2,
+				19 * this.CELL_WIDTH + this.CELL_WIDTH / 2));
 		addEntity(this.player);
 
 		// Creates a separate "thread of execution" to inform this world of the
@@ -107,8 +107,8 @@ public class World implements Drawable, Temporal {
 				for (int column = 0; column < 20; column++) {
 					switch (loader.nextInt()) {
 					case 1:
-						Mushroom m = new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
-								row * this.CELL_WIDTH + CELL_WIDTH / 2));
+						Mushroom m = new Mushroom(this, new Point2D.Double(column * this.CELL_WIDTH + this.CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + this.CELL_WIDTH / 2));
 						if (Math.random() > 0.85)
 							m.setPoisoned(true);
 						addEntity(m);
@@ -116,29 +116,29 @@ public class World implements Drawable, Temporal {
 
 					case 2:
 						addEntity(
-								new CentipedeSegment(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
-										row * this.CELL_WIDTH + CELL_WIDTH / 2), new Centipede(this, true)));
+								new CentipedeSegment(this, new Point2D.Double(column * this.CELL_WIDTH + this.CELL_WIDTH / 2,
+										row * this.CELL_WIDTH + this.CELL_WIDTH / 2), new Centipede(this, true)));
 						break;
 
 					case 3:
-						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
-								row * this.CELL_WIDTH + CELL_WIDTH / 2));
+						this.player = new Player(this, new Point2D.Double(column * this.CELL_WIDTH + this.CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + this.CELL_WIDTH / 2));
 						addEntity(this.player);
 						break;
 
 					case 4:
-						addEntity(new Flea(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
-								row * this.CELL_WIDTH + CELL_WIDTH / 2)));
+						addEntity(new Flea(this, new Point2D.Double(column * this.CELL_WIDTH + this.CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + this.CELL_WIDTH / 2)));
 						break;
 
 					case 5:
-						addEntity(new Scorpion(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
-								row * this.CELL_WIDTH + CELL_WIDTH / 2)));
+						addEntity(new Scorpion(this, new Point2D.Double(column * this.CELL_WIDTH + this.CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + this.CELL_WIDTH / 2)));
 						break;
 
 					case 6:
-						addEntity(new Spider(this, new Point2D.Double(column * this.CELL_WIDTH + CELL_WIDTH / 2,
-								row * this.CELL_WIDTH + CELL_WIDTH / 2)));
+						addEntity(new Spider(this, new Point2D.Double(column * this.CELL_WIDTH + this.CELL_WIDTH / 2,
+								row * this.CELL_WIDTH + this.CELL_WIDTH / 2)));
 						break;
 
 					default:
@@ -316,6 +316,7 @@ public class World implements Drawable, Temporal {
 		return null;
 	}
 	
+	@Override
 	public Shape getShape() {
 		return this.background;
 	}
