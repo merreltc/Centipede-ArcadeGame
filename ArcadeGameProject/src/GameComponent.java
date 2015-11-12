@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author merreltc. Created Oct 28, 2015.
  */
+
 public class GameComponent extends JComponent {
 
 	private static final int FRAMES_PER_SECOND = 100;
@@ -20,7 +21,6 @@ public class GameComponent extends JComponent {
 
 	private World world;
 	private boolean hasShownNullErrorMessage = false;
-	private Entity selectedEntity = null;
 	private JLabel scoreLabel;
 
 	/**

@@ -1,6 +1,4 @@
-import java.awt.Color;
 import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
 
 /**
  * Represents the player, weapons, mushrooms, and monsters in the game.
@@ -14,16 +12,12 @@ public abstract class Entity implements Drawable, Temporal {
 	private Point2D centerPoint;
 	private World world;
 	protected int health;
-	private Color color;
-	private BufferedImage image;
 	private boolean paused;
 
 	public Entity(World world, Point2D centerPoint) {
 		this.centerPoint = centerPoint;
 		this.world = world;
 		this.health = 1;
-		this.color = getColor();
-		this.image = getImage();
 	}
 
 	public double getRadius() {
@@ -79,7 +73,7 @@ public abstract class Entity implements Drawable, Temporal {
 					&& Math.abs(e.getCenterPoint().getY() - testMove.getY()) <= this.getRadius() + e.getRadius()
 					&& !e.getClass().equals(this.getClass())) {
 
-				return (Entity) e;
+				return e;
 			}
 		}
 		return null;

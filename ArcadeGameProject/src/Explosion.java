@@ -19,6 +19,7 @@ public class Explosion extends Weapon {
 		return Color.ORANGE;
 	}
 
+	@Override
 	public Shape getShape() {
 		return new Ellipse2D.Double(getCenterPoint().getX()-20, getCenterPoint().getY()-20, 50, 50);
 	}

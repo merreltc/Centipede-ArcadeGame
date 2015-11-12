@@ -19,6 +19,7 @@ public class Pierce extends Weapon {
 		return Color.YELLOW;
 	}
 	
+	@Override
 	public Shape getShape() {
 		return new Ellipse2D.Double(getCenterPoint().getX() - 5, getCenterPoint().getY()-2.5, 5, 20);
 	}

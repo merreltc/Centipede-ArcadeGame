@@ -1,17 +1,15 @@
-import java.awt.Color;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Centipede {
 
-	private Color color;
-	private boolean right, down, up, lastVert, moveRight;
+	private boolean moveRight;
 	private ArrayList<CentipedeSegment> centipede;
 	private World world;
 
 	public Centipede(World world, boolean moveRight) {
-		this.centipede = new ArrayList<CentipedeSegment>();
+		this.centipede = new ArrayList<>();
 		this.world = world;
 		this.moveRight = moveRight;
 	}

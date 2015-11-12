@@ -132,20 +132,20 @@ public class Player extends Entity {
 		return false;
 	}
 
-	public void right(boolean right) {
-		this.right = right;
+	public void right(boolean r) {
+		this.right = r;
 	}
 
-	public void left(boolean left) {
-		this.left = left;
+	public void left(boolean l) {
+		this.left = l;
 	}
 
-	public void up(boolean up) {
-		this.up = up;
+	public void up(boolean u) {
+		this.up = u;
 	}
 
-	public void down(boolean down) {
-		this.down = down;
+	public void down(boolean d) {
+		this.down = d;
 	}
 
 	public void setHealth(int i) {

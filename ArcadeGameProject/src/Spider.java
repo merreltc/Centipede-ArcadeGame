@@ -7,7 +7,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Spider extends Entity {
-	private final int VELOCITY = 3;
 	private final int VALUE = 500;
 
 	private int deltaH;

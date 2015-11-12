@@ -1,7 +1,5 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -20,8 +18,9 @@ import javax.swing.SwingConstants;
  *         Created Oct 28, 2015. 
  *
  */
+
 public class Main extends JFrame {
-	
+	/*
 	public static class StartGameListener implements ActionListener{
 		private JFrame frame;
 		
@@ -37,7 +36,7 @@ public class Main extends JFrame {
 		}
 		
 	}
-
+*/
 	/**
 	 * @param args
 	 * @throws IOException 
