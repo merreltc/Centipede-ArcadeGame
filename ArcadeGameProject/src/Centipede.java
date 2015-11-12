@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.geom.Point2D;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Centipede {
@@ -15,7 +16,7 @@ public class Centipede {
 		this.moveRight = moveRight;
 	}
 
-	public synchronized void split(CentipedeSegment segment) {
+	public synchronized void split(CentipedeSegment segment) throws IOException {
 		int index = this.centipede.indexOf(segment);
 		this.world.addEntity(new Mushroom(this.world, segment.getCenterPoint()));
 		Centipede firstHalf = new Centipede(this.world, true);
@@ -31,7 +32,7 @@ public class Centipede {
 		}
 	}
 
-	public void addHead(Point2D center) {
+	public void addHead(Point2D center) throws IOException {
 		CentipedeSegment segment = new CentipedeSegment(this.world, center, this);
 		this.centipede.add(segment);
 		this.centipede.get(this.centipede.size()-1).setDirection(this.moveRight);

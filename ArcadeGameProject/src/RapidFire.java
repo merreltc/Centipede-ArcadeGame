@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 /**
  * 
@@ -27,6 +28,10 @@ public class RapidFire extends Weapon {
 	}
 
 	@Override
+	public BufferedImage getImage() {
+		return null;
+	}
+	
 	public Shape getShape() {
 		return new Ellipse2D.Double(getCenterPoint().getX() - 5, getCenterPoint().getY()-2.5, 5, 10);
 	}

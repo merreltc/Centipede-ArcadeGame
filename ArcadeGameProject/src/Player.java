@@ -1,13 +1,15 @@
 import java.awt.Color;
-import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
  * 
- * TODO Put here a description of what this class does.
+ * Represents a player
  *
  * @author Trinity Merrell and Walter Panfil. Created Oct 28, 2015.
  */
@@ -16,9 +18,14 @@ public class Player extends Entity {
 	private Weapon currentWeapon;
 	private boolean right, left, up, down;
 	private int lives;
+	private BufferedImage playerImage;
 
-	public Player(World world, Point2D centerPoint) {
+	public Player(World world, Point2D centerPoint) throws IOException {
 		super(world, centerPoint);
+		// Load Image.
+		BufferedImage img = ImageIO.read(getClass().getResource("/Ship.png"));
+		this.playerImage = img;
+		
 		this.radius = 9;
 		this.health = 1;
 		this.lives = 3;
@@ -34,13 +41,13 @@ public class Player extends Entity {
 			this.currentWeapon.overheat();
 		}
 	}
-	
+
 	public int getLives() {
 		return this.lives;
 	}
-	
+
 	public void setCurrentWeapon(int weapon) {
-		if(weapon == 1 ) {
+		if (weapon == 1) {
 			this.currentWeapon = new RapidFire(getWorld(),
 					new Point2D.Double(this.getCenterPoint().getX() + 7.5, this.getCenterPoint().getY() - 10));
 		} else if (weapon == 2) {
@@ -58,14 +65,8 @@ public class Player extends Entity {
 	}
 
 	@Override
-	public Shape getShape() {
-		return new Polygon(
-				new int[] { (int) getCenterPoint().getX() - this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getX(),
-						(int) getCenterPoint().getX() + this.getWorld().CELL_WIDTH / 2 },
-				new int[] { (int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH / 2 }, 3);
+	public BufferedImage getImage() { // getImage
+		return this.playerImage;
 	}
 
 	@Override
@@ -76,12 +77,11 @@ public class Player extends Entity {
 		// + checkCollisionTop(getCenterPoint()));
 
 		if (getHealth() == 0) {
-			setCenterPoint(new Point2D.Double(9 * 20 + 20 / 2,
-					19 * 20 + 20 / 2));
+			setCenterPoint(new Point2D.Double(9 * 20 + 20 / 2, 19 * 20 + 20 / 2));
 			this.lives--;
 		}
-		
-		if(this.lives == 0) {
+
+		if (this.lives == 0) {
 			die();
 			this.getWorld().setIsPaused(true);
 			JOptionPane.showMessageDialog(null, "Game Over");
@@ -126,7 +126,8 @@ public class Player extends Entity {
 
 	public boolean collisionCentipede(Point2D nextMove) {
 		if (checkCollision(nextMove) != null && (checkCollision(nextMove).getClass().equals(CentipedeSegment.class)
-				|| checkCollision(nextMove).getClass().equals(Flea.class) || checkCollision(nextMove).getClass().equals(Spider.class))) {
+				|| checkCollision(nextMove).getClass().equals(Flea.class)
+				|| checkCollision(nextMove).getClass().equals(Spider.class))) {
 			return true;
 		}
 		return false;
@@ -150,5 +151,10 @@ public class Player extends Entity {
 
 	public void setHealth(int i) {
 		this.health = i;
+	}
+
+	@Override
+	public Shape getShape() {
+		return null;
 	}
 }

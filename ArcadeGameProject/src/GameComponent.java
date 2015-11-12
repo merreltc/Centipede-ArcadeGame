@@ -36,7 +36,7 @@ public class GameComponent extends JComponent {
 		addKeyListener(levelHandler);
 		PlayerListener playerHandler = new PlayerListener(world);
 		addKeyListener(playerHandler);
-		
+
 		this.scoreLabel = new JLabel("Score: " + world.getScore() + " Lives: " + 3);
 		this.scoreLabel.setBounds(0, 417, 415, 20);
 		if (this.world.getPlayer() != null) {
@@ -71,7 +71,14 @@ public class GameComponent extends JComponent {
 
 		List<Drawable> drawableParts = this.world.getDrawableParts();
 		for (Drawable d : drawableParts) {
-			drawDrawable(g2, d);
+			if(Weapon.class.isAssignableFrom(d.getClass())) {
+				drawDrawable(g2,d);
+			} else {
+				Entity entity = (Entity) d;
+				int x = (int) (entity.getCenterPoint().getX() - 10);
+				int y = (int) (entity.getCenterPoint().getY() - 10);
+				g2.drawImage(d.getImage(), null, x, y);
+			}
 		}
 	}
 

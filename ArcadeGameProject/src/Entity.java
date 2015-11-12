@@ -1,6 +1,6 @@
 import java.awt.Color;
-import java.awt.Shape;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 /**
  * Represents the player, weapons, mushrooms, and monsters in the game.
@@ -15,7 +15,7 @@ public abstract class Entity implements Drawable, Temporal {
 	private World world;
 	protected int health;
 	private Color color;
-	private Shape shape;
+	private BufferedImage image;
 	private boolean paused;
 
 	public Entity(World world, Point2D centerPoint) {
@@ -23,7 +23,7 @@ public abstract class Entity implements Drawable, Temporal {
 		this.world = world;
 		this.health = 1;
 		this.color = getColor();
-		this.shape = getShape();
+		this.image = getImage();
 	}
 
 	public double getRadius() {

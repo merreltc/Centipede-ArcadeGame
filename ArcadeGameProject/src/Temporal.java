@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /**
  * Represents things that vary with the passing of time.
  * 
@@ -8,8 +10,9 @@ public interface Temporal {
 	/**
 	 * Signals to this object that an "moment" of time has passed and the object
 	 * should update to its next state in time.
+	 * @throws IOException 
 	 */
-	public void timePassed();
+	public void timePassed() throws IOException;
 
 	/**
 	 * Signals to this object that it's useful life is over.

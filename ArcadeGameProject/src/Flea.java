@@ -1,23 +1,31 @@
 import java.awt.Color;
-import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-public class Flea extends Entity{
-	
+import javax.imageio.ImageIO;
+
+public class Flea extends Entity {
+
 	private final int VALUE = 500;
-	
-	public Flea(World world, Point2D centerPoint) {
+	private BufferedImage fleaImage;
+
+	public Flea(World world, Point2D centerPoint) throws IOException {
 		super(world, centerPoint);
-		this.setCenterPoint(new Point2D.Double(10+((int)(Math.random()*20))*20, this.getCenterPoint().getY()));
+		this.setCenterPoint(new Point2D.Double(10 + ((int) (Math.random() * 20)) * 20, this.getCenterPoint().getY()));
+
+		// Load Image.
+		BufferedImage img = ImageIO.read(getClass().getResource("/Flea.png"));
+		this.fleaImage = img;
+
 		this.health = 1;
 		this.radius = 10;
-		
-		
+
 	}
-	
-	public void spawnMushroom(){
-		if(Math.random() > .75){
+
+	public void spawnMushroom() throws IOException {
+		if (Math.random() > .75) {
 			Mushroom m = new Mushroom(this.getWorld(), this.getCenterPoint());
 			this.getWorld().addEntity(m);
 		}
@@ -29,38 +37,40 @@ public class Flea extends Entity{
 	}
 
 	@Override
-	public Shape getShape() {
-		return new Polygon(
-				new int[] { (int) getCenterPoint().getX() - this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getX(), (int) getCenterPoint().getX() + this.getWorld().CELL_WIDTH / 2 },
-				new int[] { (int) getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getY() + this.getWorld().CELL_WIDTH / 2,
-						(int) getCenterPoint().getY() - this.getWorld().CELL_WIDTH / 2 },
-				3);
+	public BufferedImage getImage() {
+		return this.fleaImage;
 	}
 
 	@Override
 	public void updatePosition() {
 		this.setCenterPoint(new Point2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY() + 3));
-		
+
 		if (this.getHealth() == 0) {
 			this.getWorld().setScore(this.VALUE);
 			this.die();
 		}
-		
+
 		if (checkCollision(getCenterPoint()) != null
 				&& Weapon.class.isAssignableFrom(checkCollision(getCenterPoint()).getClass())) {
 			this.takeDamage();
 			return;
 		}
-		
-		if(this.getCenterPoint().getY() % 20 == 10) {
-			this.spawnMushroom();
+
+		if (this.getCenterPoint().getY() % 20 == 10) {
+			try {
+				this.spawnMushroom();
+			} catch (IOException exception) {
+				System.out.println("Couldn't spawn Mushroom.");
+			}
 		}
-		
-		if(this.getCenterPoint().getY() > 400) {
+
+		if (this.getCenterPoint().getY() > 400) {
 			this.die();
 		}
 	}
-}
 
+	@Override
+	public Shape getShape() {
+		return null;
+	}
+}
