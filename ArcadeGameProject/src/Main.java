@@ -7,12 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 /**
- * The main class for your arcade game.
- * 
- * You can design your game any way you like, but make the game start
- * by running main here.
- * 
- * Also don't forget to write javadocs for your classes and functions!
+ * Creates all the necessary components of the game including a JFrame,
+ * 		JLabel for score and lives, GameComponent for handling the GUI,
+ * 		and World to handle the components of the centipede world
  * 
  * @author Trinity Merrell and Walter Panfil.
  *         Created Oct 28, 2015. 
@@ -49,13 +46,13 @@ public class Main extends JFrame {
 		//frame.add(start, BorderLayout.NORTH);
 		World world = new World();
 		GameComponent component = new GameComponent(world);
-		world.loadLevel(1);
 		frame.add(component);
 		JLabel scoreLabel = new JLabel();
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.add(scoreLabel, BorderLayout.SOUTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(417, 463));
+		world.startGame();
 		frame.setVisible(true);
 		while(true){
 			scoreLabel.setText("Score: " + world.getScore() + "    Lives: " + world.getPlayer().getLives());

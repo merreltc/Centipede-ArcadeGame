@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * 
- * TODO Put here a description of what this class does.
+ * A bullet that has an explosion effect
  *
  * @author Trinity Merrell and Walter Panfil.
  *         Created Oct 28, 2015.

@@ -4,6 +4,13 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * 
+ * Represents a bullet that can pierce through all objects in the world.
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Nov 12, 2015.
+ */
 public class Pierce extends Weapon {
 	
 	public Pierce(World world, Point2D centerPoint) {

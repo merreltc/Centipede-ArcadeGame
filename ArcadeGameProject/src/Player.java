@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  * 
- * Represents a player
+ * Represents a player that can shoot bullets into the world
  *
  * @author Trinity Merrell and Walter Panfil. Created Oct 28, 2015.
  */
@@ -124,7 +124,8 @@ public class Player extends Entity {
 	}
 
 	public boolean collisionCentipede(Point2D nextMove) {
-		if (checkCollision(nextMove) != null && (checkCollision(nextMove).getClass().equals(CentipedeSegment.class)
+		if (checkCollision(nextMove) != null &&
+				(checkCollision(nextMove).getClass().equals(CentipedeSegment.class)
 				|| checkCollision(nextMove).getClass().equals(Flea.class)
 				|| checkCollision(nextMove).getClass().equals(Spider.class))) {
 			return true;

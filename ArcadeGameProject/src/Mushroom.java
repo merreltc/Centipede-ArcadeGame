@@ -6,6 +6,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 
+ * Represents a mushroom that can be poisonous and killed after 4 bullet shots.
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Nov 12, 2015.
+ */
 public class Mushroom extends Entity {
 	private boolean poisoned;
 	private BufferedImage mushImage4;

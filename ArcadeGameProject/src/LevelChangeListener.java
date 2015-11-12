@@ -2,6 +2,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
+/**
+ * 
+ * Handles key presses that tell the centipede game to change or pause levels
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Nov 12, 2015.
+ */
 public class LevelChangeListener implements KeyListener {
 
 	World world;

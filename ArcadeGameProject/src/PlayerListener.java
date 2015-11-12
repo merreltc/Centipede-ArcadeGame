@@ -1,6 +1,14 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * 
+ * A key listener that allows the player to move, shoot bullets,
+ * 		and change between weapons.
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Nov 12, 2015.
+ */
 public class PlayerListener implements KeyListener {
 	private World world;
 

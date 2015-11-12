@@ -4,9 +4,10 @@ import java.awt.Shape;
 import java.awt.image.BufferedImage;
 
 /**
- * Represents objects that have a shape and a fill color.
+ * Represents objects that have an image, shape and a fill color.
  * 
- * @author Curt Clifton. Created Jan 22, 2011.
+ * @author Curt Clifton edited by Trinity Merrell.
+ * 		Created Jan 22, 2011 Edited Oct 28, 2015.
  */
 public interface Drawable {
 
