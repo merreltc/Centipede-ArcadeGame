@@ -6,6 +6,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 
+ * Represents a Flea monster that spawns only when there is less than 5 mushrooms
+ * 		in the playing area and randomly drops mushrooms on the way down
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Nov 12, 2015.
+ */
 public class Flea extends Entity {
 
 	private final int VALUE = 500;
@@ -23,7 +31,13 @@ public class Flea extends Entity {
 		this.radius = 10;
 
 	}
-
+	
+	/**
+	 * 
+	 * Will create a new mushroom in the world at a rate of 75%
+	 *
+	 * @throws IOException
+	 */
 	public void spawnMushroom() throws IOException {
 		if (Math.random() > .75) {
 			Mushroom m = new Mushroom(this.getWorld(), this.getCenterPoint());

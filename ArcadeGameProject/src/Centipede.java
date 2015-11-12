@@ -1,3 +1,8 @@
+/**
+ * Represents a centipede object
+ * 
+ * @author Trinity Merrell and Walter Panfil. Created Oct 28, 2015.
+ */
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +18,14 @@ public class Centipede {
 		this.world = world;
 		this.moveRight = moveRight;
 	}
+	
+	/**
+	 * 
+	 * Handles splitting the centipede into two new centipedes.
+	 *
+	 * @param segment segment at which to split the centipede
+	 * @throws IOException
+	 */
 
 	public synchronized void split(CentipedeSegment segment) throws IOException {
 		int index = this.centipede.indexOf(segment);
@@ -29,9 +42,16 @@ public class Centipede {
 			this.world.removeEntity(this.centipede.get(k));
 		}
 	}
-
-	public void addHead(Point2D center) throws IOException {
-		CentipedeSegment segment = new CentipedeSegment(this.world, center, this);
+	
+	/**
+	 * 
+	 * Adds an additional head to the centipede.
+	 *
+	 * @param centerPoint
+	 * @throws IOException
+	 */
+	public void addHead(Point2D centerPoint) throws IOException {
+		CentipedeSegment segment = new CentipedeSegment(this.world, centerPoint, this);
 		this.centipede.add(segment);
 		this.centipede.get(this.centipede.size()-1).setDirection(this.moveRight);
 		this.world.addEntity(segment);

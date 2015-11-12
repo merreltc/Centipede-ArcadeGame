@@ -38,6 +38,7 @@ public class World implements Drawable, Temporal {
 		this.background = new Rectangle2D.Double(0, 0, 400, 400);
 		this.score = 0;
 		this.level = 1;
+
 		this.player = new Player(this, new Point2D.Double(9 * this.CELL_WIDTH + this.CELL_WIDTH / 2,
 				19 * this.CELL_WIDTH + this.CELL_WIDTH / 2));
 		addEntity(this.player);
@@ -152,6 +153,8 @@ public class World implements Drawable, Temporal {
 			loadLevel(this.level);
 		}
 
+		System.out.println(levelToLoad);
+
 		if (levelToLoad == 1) {
 			Centipede centipede = new Centipede(this, false);
 			centipede.addHead(new Point2D.Double(10, 10));
@@ -180,7 +183,7 @@ public class World implements Drawable, Temporal {
 
 			Centipede head = new Centipede(this, true);
 			head.addHead(new Point2D.Double(190, 10));
-			
+
 			addEntity(this.player);
 
 		} else if (levelToLoad == 3) {
@@ -199,20 +202,10 @@ public class World implements Drawable, Temporal {
 
 			Centipede head2 = new Centipede(this, false);
 			head2.addHead(new Point2D.Double(210, 10));
-			
+
 			addEntity(this.player);
 		} else if (levelToLoad == 4) {
 			Centipede centipede = new Centipede(this, false);
-			centipede.addHead(new Point2D.Double(30, 10));
-			centipede.addHead(new Point2D.Double(50, 10));
-			centipede.addHead(new Point2D.Double(70, 10));
-			centipede.addHead(new Point2D.Double(90, 10));
-			centipede.addHead(new Point2D.Double(110, 10));
-			centipede.addHead(new Point2D.Double(130, 10));
-			centipede.addHead(new Point2D.Double(150, 10));
-			centipede.addHead(new Point2D.Double(170, 10));
-			centipede.addHead(new Point2D.Double(190, 10));
-			centipede.addHead(new Point2D.Double(210, 10));
 			centipede.addHead(new Point2D.Double(210, 30));
 			centipede.addHead(new Point2D.Double(190, 30));
 			centipede.addHead(new Point2D.Double(170, 30));
@@ -273,17 +266,19 @@ public class World implements Drawable, Temporal {
 				t.timePassed();
 				if (t.getClass().equals(CentipedeSegment.class))
 					centipedesRemain = true;
-				if(t.getClass().equals(Mushroom.class) && ((Entity) t).getCenterPoint().getY()>300)
+				if (t.getClass().equals(Mushroom.class) && ((Entity) t).getCenterPoint().getY() > 300)
 					m++;
-				if(t.getClass().equals(Flea.class))
+				if (t.getClass().equals(Flea.class))
 					flea = true;
 			}
-			if(this.player != null && this.player.health == 0) {
+			if (this.player != null && this.player.health == 0) {
 				loadLevel(this.level);
 				this.player.setHealth(1);
 			}
+
 			if(m <= 5 && !flea  && this.getLevel() != 4)
 				this.addEntity(new Flea(this, new Point2D.Double(0, 0)));
+
 			if(!centipedesRemain && this.levelTime >= 5) {
 				this.loadLevel(this.getLevel()+1);
 			}
@@ -315,9 +310,13 @@ public class World implements Drawable, Temporal {
 	public BufferedImage getImage() {
 		return null;
 	}
-	
+
 	@Override
 	public Shape getShape() {
 		return this.background;
+	}
+
+	public void startGame() throws IOException {
+		loadLevel(1);
 	}
 }

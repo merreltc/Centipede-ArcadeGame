@@ -66,6 +66,13 @@ public abstract class Entity implements Drawable, Temporal {
 		return this.health;
 	}
 
+	/**
+	 * 
+	 * Checks next position of an entity to make sure its not colliding with anything
+	 *
+	 * @param testMove candidate for next move
+	 * @return Entity the object is colliding with
+	 */
 	public Entity checkCollision(Point2D testMove) {
 		for (Drawable d : this.world.getDrawableParts()) {
 			Entity e = (Entity) d;
@@ -77,34 +84,6 @@ public abstract class Entity implements Drawable, Temporal {
 			}
 		}
 		return null;
-	}
-
-	public boolean checkCollisionBottom(Point2D testMove) {
-		for (Drawable d : this.world.getDrawableParts()) {
-			Entity e = (Entity) d;
-			if (e != this && Math.abs(e.getCenterPoint().getX() - testMove.getX()) == 0
-					&& Math.abs(e.getCenterPoint().getY() - testMove.getY()) <= this.getRadius() + e.getRadius()
-					&& e.getCenterPoint().getY() > testMove.getY() && e.getClass().equals(Mushroom.class)) {
-
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean checkCollisionTop(Point2D testMove) {
-		for (Drawable d : this.world.getDrawableParts()) {
-			Entity e = (Entity) d;
-			if (e != this
-					&& Math.abs(e.getCenterPoint().getX() - testMove.getX()) == 0
-					&& Math.abs(e.getCenterPoint().getY() - testMove.getY()) <= this.getRadius() + e.getRadius()
-					&& e.getCenterPoint().getY() < testMove.getY()
-					&& e.getClass().equals(Mushroom.class)) {
-
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public abstract void updatePosition();

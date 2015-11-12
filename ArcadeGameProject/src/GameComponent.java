@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 /**
  * Renders a centipede world on the GUI.
  *
- * @author merreltc. Created Oct 28, 2015.
+ * @author Trinity Merrell and Walter Panfil. Created Oct 28, 2015.
  */
 
 public class GameComponent extends JComponent {

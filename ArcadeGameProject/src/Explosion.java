@@ -4,6 +4,13 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * 
+ * Represents the explosive effect of an Explode bullet
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Nov 12, 2015.
+ */
 public class Explosion extends Weapon {
 
 	public Explosion(World world, Point2D centerPoint) {

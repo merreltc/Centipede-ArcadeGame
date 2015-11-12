@@ -6,6 +6,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 
+ * Represents a scorpion monster that moves horizontally and poisons mushrooms.
+ *
+ * @author Trinity Merrell and Walter Panfil.
+ *         Created Nov 12, 2015.
+ */
 public class Scorpion extends Entity{
 	
 	private int VALUE = 1000;

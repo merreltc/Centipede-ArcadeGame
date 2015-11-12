@@ -5,7 +5,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
+/**
+ * 
+ * Represents a segment of a centipede
+ *
+ * @author merreltc.
+ *         Created Nov 12, 2015.
+ */
 public class CentipedeSegment extends Entity {
 
 	private final int VALUE = 100;

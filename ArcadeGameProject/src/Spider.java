@@ -6,6 +6,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 
+ * Represents a spider monster that moves in a random zigzag motion and eats
+ * 	 	mushrooms at a rate of 3%.
+ *
+ * @author merreltc.
+ *         Created Nov 12, 2015.
+ */
 public class Spider extends Entity {
 	private final int VALUE = 500;
 
