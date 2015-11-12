@@ -117,7 +117,7 @@ public class CentipedeSegment extends Entity {
 				setCenterPoint(nextMove);
 			} else {
 				if (checkCollision(nextMove) != null &&
-						checkCollision(nextMove).getClass().equals(Mushroom.class) 
+						checkCollision(nextMove).getClass().equals(Mushroom.class)
 						&& ((Mushroom) checkCollision(nextMove)).isPoisoned())
 					this.poisoned = true;
 				this.right = false;

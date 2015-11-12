@@ -59,7 +59,7 @@ public class Main extends JFrame {
 		frame.setSize(new Dimension(417, 463));
 		frame.setVisible(true);
 		while(true){
-			scoreLabel.setText("Score: " + world.getScore());
+			scoreLabel.setText("Score: " + world.getScore() + "    Lives: " + world.getPlayer().getLives());
 		}
 	}
 }
