@@ -46,7 +46,7 @@ public class CentipedeSegment extends Entity {
 		
 		// Load Image.
 		BufferedImage img2 = ImageIO.read(getClass().getResource("/HeadR.png"));
-		this.headRImage = img2;		
+		this.headRImage = img2;
 	}
 
 	@Override
@@ -58,6 +58,7 @@ public class CentipedeSegment extends Entity {
 	public BufferedImage getImage() {
 		if (this.centipede != null &&
 				this.centipede.getList().indexOf(this) == 0) {
+			
 			if(this.right) {
 				return this.headRImage;
 			} else if(!this.right) {
