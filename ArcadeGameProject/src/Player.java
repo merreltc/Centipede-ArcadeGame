@@ -97,6 +97,7 @@ public class Player extends Entity {
 			if (checkCollision(nextMove) != null && collisionCentipede(nextMove)) {
 				this.lives--;
 				takeDamage();
+				return;
 			} else if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
 			}
@@ -106,6 +107,7 @@ public class Player extends Entity {
 			if (checkCollision(nextMove) != null && collisionCentipede(nextMove)) {
 				this.lives--;
 				takeDamage();
+				return;
 			} else if (!collisionCentipede(nextMove) && checkCollision(nextMove) == null) {
 				setCenterPoint(nextMove);
 			}
@@ -127,6 +129,7 @@ public class Player extends Entity {
 		if (collisionCentipede(this.getCenterPoint())) {
 			this.lives--;
 			takeDamage();
+			return;
 		}
 	}
 
