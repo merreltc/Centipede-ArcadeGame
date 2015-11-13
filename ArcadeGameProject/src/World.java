@@ -153,8 +153,6 @@ public class World implements Drawable, Temporal {
 			loadLevel(this.level);
 		}
 
-		System.out.println(levelToLoad);
-
 		if (levelToLoad == 1) {
 			Centipede centipede = new Centipede(this, false);
 			centipede.addHead(new Point2D.Double(10, 10));
