@@ -17,23 +17,7 @@ import javax.swing.SwingConstants;
  */
 
 public class Main extends JFrame {
-	/*
-	public static class StartGameListener implements ActionListener{
-		private JFrame frame;
-		
-		public StartGameListener(JFrame frame){
-			this.frame = frame;
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub.
-			//frame.removeAll();
-			
-		}
-		
-	}
-*/
+
 	/**
 	 * @param args
 	 * @throws IOException 
@@ -41,9 +25,6 @@ public class Main extends JFrame {
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new JFrame();
 		frame.setTitle("Centipede");
-		//JButton start = new JButton("Start Game!");
-		//start.addActionListener(new StartGameListener(frame));
-		//frame.add(start, BorderLayout.NORTH);
 		World world = new World();
 		GameComponent component = new GameComponent(world);
 		frame.add(component);
