@@ -1,3 +1,3 @@
-# Centipede-ArcadeGame-CSSE220Final
+# CentipedeArcadeGame
 
 A graphical Java-based video game for Rose-Hulman's CSSE 220 Fall 2016 course.
