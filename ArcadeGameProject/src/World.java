@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -103,7 +104,7 @@ public class World implements Drawable, Temporal {
 
 		try {
 			Scanner loader = new Scanner(
-					new File("C:\\EclipseWorkspaces\\csse220\\ArcadeGameProject\\Level Files\\level" + levelToLoad));
+					new File(this.getClass().getResource("/Level Files/level" + levelToLoad).toURI()));
 			for (int row = 0; row < 20; row++) {
 				for (int column = 0; column < 20; column++) {
 					switch (loader.nextInt()) {
@@ -151,6 +152,9 @@ public class World implements Drawable, Temporal {
 			this.level = levelToLoad;
 		} catch (FileNotFoundException e) {
 			loadLevel(this.level);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		if (levelToLoad == 1) {

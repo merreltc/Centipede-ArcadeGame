@@ -1,3 +1,4 @@
+import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -16,7 +17,7 @@ import javax.swing.SwingConstants;
  *
  */
 
-public class Main extends JFrame {
+public class Main extends Applet {
 
 	/**
 	 * @param args
